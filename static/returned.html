@@ -18,6 +18,11 @@
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .table-container {
+        overflow-x: auto;
+    }
+    </style>
 </head>
 
 <body>
@@ -26,7 +31,7 @@
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.html">
 					<img src="img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
-          <br><span class="align-middle">Inventory System</span>
+          <br><span class="align-middle">Inventory & Loans System</span>
         </a>
 
 				<ul class="sidebar-nav">
@@ -58,7 +63,7 @@
                     
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-sign-in.html">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+              <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log out</span>
             </a>
 					</li>
 			</div>
@@ -76,233 +81,202 @@
               </a>
             </ul>
 			</nav>
-
-            <main class="content">
-				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3"><strong>Inventory</strong> List</h1>
-
-					<div class="row">
-						<div class="col-12 col-lg-9 col-xxl-12 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-
-									<h5 class="card-title mb-0">Loans</h5>
-								</div>
-								<table class="table table-hover my-0">
-									<thead>
-										<tr>
-											<th class="d-none d-md-table-cell">ID</th>
-											<th>gn</th>
-											<th class="d-none d-xl-table-cell">PTag</th>
-											<th class="d-none d-xl-table-cell">Description</th>
-											<th>Model</th>
-											<th class="d-none d-md-table-cell">Serial_No</th>
-											<th class="d-none d-md-table-cell">Fund</th>
-											<th class="d-none d-md-table-cell">AC</th>
-											<th class="d-none d-md-table-cell">CL</th>
-											<th class="d-none d-md-table-cell">F</th>
-											<th class="d-none d-md-table-cell">AQU</th>
-											<th class="d-none d-md-table-cell">ST</th>
-											<th class="d-none d-md-table-cell">Acquisition</th>
-											<th class="d-none d-md-table-cell">Received</th>
-											<th class="d-none d-md-table-cell">Doc No</th>
-											<th class="d-none d-md-table-cell">Amt</th>
-											<th class="d-none d-md-table-cell">Location</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-										<tr>
-											<td>6</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-										<tr>
-											<td>7</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-										<tr>
-											<td>8</td>
-											<td class="d-none d-xl-table-cell">35010</td>
-											<td class="d-none d-xl-table-cell">Y02087990</td>
-											<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-											<td class="d-none d-md-table-cell">INTEL CORE</td>
-											<td class="d-none d-md-table-cell">MXL70420SH</td>
-											<td class="d-none d-md-table-cell">116071</td>
-											<td class="d-none d-md-table-cell">49</td>
-											<td class="d-none d-md-table-cell">5</td>
-											<td class="d-none d-md-table-cell">IN</td>
-											<td class="d-none d-md-table-cell">PO</td>
-											<td class="d-none d-md-table-cell">I</td>
-											<td class="d-none d-md-table-cell">12/19/2016</td>
-											<td class="d-none d-md-table-cell"></td>
-											<td class="d-none d-md-table-cell">PY170377</td>
-											<td class="d-none d-md-table-cell">864.12</td>
-											<td class="d-none d-md-table-cell">F-203</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</main>
-
-    
             
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="#" target="_blank"></strong></a>&copy;
-							</p>
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
+                <main class="content">
+                    <div class="container-fluid p-0">
+                        <h1 class="h3 mb-3"><strong>Inventory</strong> List</h1>
+            
+                        <div class="row">
+                            <div class="col-12 col-lg-14 col-xxl-12 d-flex">
+                                <div class="card flex-fill">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Loans</h5>
+                                    </div>
+                                    <div class="table-container">
+                                        <table class="table table-hover my-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>gn</th>
+                                                    <th>PTag</th>
+                                                    <th>Description</th>
+                                                    <th>Model</th>
+                                                    <th>Serial_No</th>
+                                                    <th>Fund</th>
+                                                    <th>AC</th>
+                                                    <th>CL</th>
+                                                    <th>F</th>
+                                                    <th>AQU</th>
+                                                    <th>ST</th>
+                                                    <th>Acquisition</th>
+                                                    <th>Received</th>
+                                                    <th>Doc No</th>
+                                                    <th>Amt</th>
+                                                    <th>Location</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td>35010</td>
+                                                    <td>Y02087990</td>
+                                                    <td>MINI DESKTOP (29)</td>
+                                                    <td>INTEL CORE</td>
+                                                    <td>MXL70420SH</td>
+                                                    <td>116071</td>
+                                                    <td>49</td>
+                                                    <td>5</td>
+                                                    <td>IN</td>
+                                                    <td>PO</td>
+                                                    <td>I</td>
+                                                    <td>12/19/2016</td>
+                                                    <td></td>
+                                                    <td>PY170377</td>
+                                                    <td>864.12</td>
+                                                    <td>F-203</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
 		</div>
 	</div>
 
