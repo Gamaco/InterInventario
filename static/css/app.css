@@ -2334,6 +2334,12 @@ progress {
     }
 }
 
+@media (max-width: 767px) {
+    body {
+        overflow-x: hidden;
+    }
+}
+
 @media(max-width:767.98px) {
     .table-responsive-md {
         -webkit-overflow-scrolling: touch;
@@ -14629,7 +14635,8 @@ screen and (-ms-high-contrast:active) {
 
 .sidebar,
 .sidebar-content {
-    background: #00833e;
+    background: rgb(0,131,62);
+    background: linear-gradient(180deg, rgba(0,131,62,1) 65%, rgba(40,36,36,1) 100%);
     transition: margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out
 }
 

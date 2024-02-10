@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body>
+<body draggable="false">
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
@@ -39,13 +39,7 @@
 						Menu
 					</li>
 
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="inventory.html">
-              <i class="align-middle" data-feather="database"></i> <span class="align-middle">Inventory</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
+                    <li class="sidebar-item">
 						<a class="sidebar-link" href="index.html">
               <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Loans</span>
             </a>
@@ -54,6 +48,12 @@
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="returned.html">
               <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returned List</span>
+            </a>
+					</li>
+
+                    <li class="sidebar-item active">
+						<a class="sidebar-link" href="inventory.html">
+              <i class="align-middle" data-feather="database"></i> <span class="align-middle">Inventory</span>
             </a>
 					</li>
 
@@ -114,6 +114,7 @@
                                                     <th>Amt</th>
                                                     <th>Location</th>
 													<th>Stock</th>
+                                                    <th>Options</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -136,6 +137,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>4 out of 10</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
@@ -156,6 +161,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>7 out of 10</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
@@ -176,6 +185,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>6 out of 10</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>4</td>
@@ -196,6 +209,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>4 out of 50</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>5</td>
@@ -216,6 +233,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>2 out of 30</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>6</td>
@@ -236,6 +257,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>6 out of 13</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>7</td>
@@ -256,6 +281,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>13 out of 70</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                                 <tr>
                                                     <td>8</td>
@@ -276,6 +305,10 @@
                                                     <td>864.12</td>
                                                     <td>F-203</td>
 													<td>7 out of 60</td>
+                                                    <th>
+                                                        <button class="btn btn-primary mb-1">Edit <div data-feather="edit"></div></button>
+                                                        <button class="btn btn-danger">Delete <div data-feather="trash-2"></div></button>
+                                                    </th>
                                                 </tr>
                                             </tbody>
                                         </table>
