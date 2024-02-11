@@ -142,7 +142,7 @@ body {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     background-color: var(--bs-body-bg);
     color: var(--bs-body-color);
-    font-family: var(--bs-body-font-family);
+    font-family: Arial, Helvetica, sans-serif;
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
@@ -170,7 +170,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--bs-heading-color);
+    color:#181717;
     font-weight: 400;
     line-height: 1.2;
     margin-bottom: .5rem;
@@ -4914,7 +4914,7 @@ fieldset:disabled .btn {
     --bs-card-spacer-y: 1.25rem;
     --bs-card-spacer-x: 1.25rem;
     --bs-card-title-spacer-y: 0.5rem;
-    --bs-card-title-color: #939ba2;
+    --bs-card-title-color: #111111;
     --bs-card-subtitle-color: ;
     --bs-card-border-width: 0;
     --bs-card-border-color: transparent;
@@ -4971,13 +4971,13 @@ fieldset:disabled .btn {
 }
 
 .card-body {
-    color: var(--bs-card-color);
+    color: black;
     flex: 1 1 auto;
     padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x)
 }
 
 .card-title {
-    color: var(--bs-card-title-color);
+    color: black;
     margin-bottom: var(--bs-card-title-spacer-y)
 }
 
@@ -5002,7 +5002,7 @@ fieldset:disabled .btn {
 .card-header {
     background-color: var(--bs-card-cap-bg);
     border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
-    color: var(--bs-card-cap-color);
+    color: black;
     margin-bottom: 0;
     padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x)
 }
@@ -14635,8 +14635,8 @@ screen and (-ms-high-contrast:active) {
 
 .sidebar,
 .sidebar-content {
-    background: rgb(0,131,62);
-    background: linear-gradient(180deg, rgba(0,131,62,1) 65%, rgba(40,36,36,1) 100%);
+    background: rgb(43,45,49);
+    background: linear-gradient(180deg, rgba(43,45,49,1) 65%, rgba(32,67,52,1) 94%);
     transition: margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out
 }
 
@@ -14655,7 +14655,7 @@ screen and (-ms-high-contrast:active) {
 
 .sidebar-link,
 a.sidebar-link {
-    background: #00833e;
+    background: #2b2d31;
     border-left: 3px solid transparent;
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
@@ -14681,7 +14681,7 @@ a.sidebar-link svg {
 }
 
 .sidebar-link:hover {
-    background: #00973c;
+    background: #3c3e42;
     border-left-color: transparent
 }
 
@@ -14693,7 +14693,7 @@ a.sidebar-link svg {
 
 .sidebar-item.active .sidebar-link:hover,
 .sidebar-item.active>.sidebar-link {
-    background: #282424;
+    background: #00973c; 
     border-left-color: #ffd24f;
     color: #fff
 }
@@ -14708,7 +14708,7 @@ a.sidebar-link svg {
 /* Tamaño del titulo del sidebar */
 .sidebar-brand {
     color: #ffff;
-    background-color: #282424; /* negro */
+    background-color: #2b2d31; /* negro */
     display: block;
     font-size: 1rem;
     font-weight: 600;
