@@ -99,15 +99,7 @@
 			
 												<div class="d-flex mt-3">
 													<div class="input-group mb-3">
-														<button class="btn btn-outline-secondary dropdown-toggle p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropDownBtn">Student ID</button>
-														<ul class="dropdown-menu">
-															<li><a class="dropdown-item" href="#" onclick="updateDropdownText('Student ID')">Student ID</a></li>
-															<li><a class="dropdown-item" href="#" onclick="updateDropdownText('PTag')">PTag</a></li>
-														</ul>
-														<input type="text" class="form-control" aria-label="Text input with dropdown button">
-													</div>
-													<div class="ms-2">
-														<a class="btn btn-primary p-2">Search</a>
+														<input type="text" id="searchInput" class="form-control" placeholder="Search">
 													</div>
 												</div>										
 											</div>
@@ -119,7 +111,7 @@
 												</button></td>
 										</div>
 									</div>
-									<table class="table table-hover my-0 table-bordered border-secondary">
+									<table id="dataTable" class="table table-hover my-0 table-striped">
 										<thead>
 											<tr>
 												<th>Description</th>
@@ -137,7 +129,7 @@
 												<td>Y02088025</td>
 												<td class="d-none d-xl-table-cell"><span class="badge bg-warning">In
 														Progress</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
 												<td><button class="btn btn-success mb-2">Return</button>
@@ -187,7 +179,7 @@
 														class="badge bg-danger">Overdue</span></td>
 												<td class="d-none d-xl-table-cell">01/01/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
+												<td class="d-none d-xl-table-cell">Y02088024</td>
 												<td><button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
