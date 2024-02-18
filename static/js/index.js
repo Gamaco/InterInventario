@@ -1,4 +1,9 @@
+document.getElementById('searchInput').addEventListener('input', function () {
+    const searchText = this.value.toLowerCase();
+    const tableRows = document.querySelectorAll('#dataTable tbody tr');
 
-function updateDropdownText(selectedText) {
-    document.getElementById('dropDownBtn').innerText = selectedText;
-}
+    tableRows.forEach(row => {
+      const rowData = row.textContent.toLowerCase();
+      row.style.display = rowData.includes(searchText) ? '' : 'none';
+    });
+  });
