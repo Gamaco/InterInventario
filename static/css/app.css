@@ -1,9 +1,6 @@
-/*!
- * AdminKit v3.4.0 (https://adminkit.io/)
- * Copyright 2023 Paul Laros
- * Copyright 2023 AdminKit
- * Licensed under MIT (https://github.com/adminkit/adminkit/blob/master/LICENSE)
- */
+/* 
+    Bootstrap 5.2.0 
+*/
 :root,
 [data-bs-theme=light] {
     --bs-blue: #3b7ddd;
@@ -2709,7 +2706,6 @@ textarea.form-control-lg {
 
 .form-check-input {
     --bs-form-check-bg: #fff;
-    color-adjust: exact;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -3528,8 +3524,8 @@ fieldset:disabled .btn {
 
 .btn-light {
     --bs-btn-color: #000;
-    --bs-btn-bg: #f5f7fb;
-    --bs-btn-border-color: #f5f7fb;
+    --bs-btn-bg: #ffffff;
+    --bs-btn-border-color: #c4c6c9;
     --bs-btn-hover-color: #000;
     --bs-btn-hover-bg: #d0d2d5;
     --bs-btn-hover-border-color: #c4c6c9;
