@@ -70,8 +70,7 @@
 
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="login.php">
-                            <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log
-                                out</span>
+                            <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log out</span>
                         </a>
                     </li>
             </div>
@@ -108,13 +107,13 @@
                                                     <li><a class="dropdown-item" href="#">All Category</a></li>
                                                     <li><a class="dropdown-item" href="#">Devices</a></li>
                                                     <li><a class="dropdown-item" href="#">Infrastructure</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                    <li><a class="dropdown-item" href="#">Placeholder</a></li>
                                                 </ul>
                                             </div>
                                             <button class="btn btn-light">Search</button>
                                         </div>
                                         <div class="col-auto text-center d-flex align-items-center">
-                                            <button class="btn btn-primary mb-2">Add New <div data-feather="plus"></div></button>
+                                            <a class="btn btn-primary mb-2" href="inventory-create.php">Add New</a>
                                         </div>
                                     </div>
                                 </div>
@@ -125,10 +124,10 @@
                                         <thead>
                                             <tr>
                                                 <th>PTag</th>
-                                                <th>gn</th>
+                                                <th>GN</th>
                                                 <th>Description</th>
                                                 <th>Model</th>
-                                                <th>Serial_No</th>
+                                                <th>Serial No</th>
                                                 <th>Fund</th>
                                                 <th>AC</th>
                                                 <th>CL</th>
@@ -173,7 +172,7 @@
                                                <tr>
                                                <td data-label='PTag'>$equipo[Ptag]</td>
                                                <td data-label='gn'>$equipo[gn]</td>
-                                                                                              <td data-label='Description'>$equipo[Description]</td>
+                                               <td data-label='Description'>$equipo[Description]</td>
                                                <td data-label='Model'>$equipo[Model]</td>
                                                <td data-label='Serial_No'>$equipo[Serial_No]</td>
                                                <td data-label='Fund'>$equipo[Fund]</td>

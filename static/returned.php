@@ -125,70 +125,7 @@
 												<td><span class="badge bg-danger">Damaged</span></td>
 												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-												<td><span class="badge bg-danger">Damaged</span></td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-												<td><span class="badge bg-success">Good</span></td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-												<td><span class="badge bg-success">Good</span></td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-												<td><span class="badge bg-danger">Damaged</span></td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-												<td><span class="badge bg-danger">Damaged</span></td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-												<td><span class="badge bg-success">Good</span></td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">MINI DESKTOP (29)</td>
-												<td><span class="badge bg-success">Good</span></td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td><button class="btn btn-primary mb-2">Revised</button></td>
+												<td><button class="btn btn-primary mb-2">Checked</button></td>
 											</tr>
 										</tbody>
 									</table>
