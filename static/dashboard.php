@@ -109,7 +109,7 @@
                                 </div>
                                 <h1 class="mt-1 mb-3">10</h1>
                                 <div class="mb-0">
-                                    <a class="btn btn-lg btn-success mb-2" href="loans.php">View Loans</a>
+                                    <a class="btn btn-lg btn-success mb-2" href="loans.php" style="background-color: #00973c !important;">View Loans</a>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                                 </div>
                                 <h1 class="mt-1 mb-3">17</h1>
                                 <div class="mb-0">
-                                    <a class="btn btn-lg btn-success mb-2" href="returned.php">Returned List</a>
+                                    <a class="btn btn-lg btn-success mb-2" href="returned.php" style="background-color: #00973c !important;">Returned List</a>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                                 </div>
                                 <h1 class="mt-1 mb-3">321</h1>
                                 <div class="mb-0">
-                                 <a class="btn btn-lg btn-success mb-2" href="inventory.php">Access Inventory</a>
+                                 <a class="btn btn-lg btn-success mb-2" href="inventory.php" style="background-color: #00973c !important;">View Inventory</a>
                                 </div>
                             </div>
                         </div>

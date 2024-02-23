@@ -98,19 +98,37 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center flex-wrap">
                                         <div class="d-flex w-75 w-md-100 mb-2 mb-md-0">
-                                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search">
+                                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
                                             <div class="dropdown-center d-none d-xl-table-cell me-2">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
                                                     All Category
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-menu-dark" id="categoryDropdown">
+                                                <ul class="dropdown-menu dropdown-menu" id="categoryDropdown">
                                                     <li><a class="dropdown-item" href="#">All Category</a></li>
-                                                    <li><a class="dropdown-item" href="#">Devices</a></li>
-                                                    <li><a class="dropdown-item" href="#">Infrastructure</a></li>
-                                                    <li><a class="dropdown-item" href="#">Placeholder</a></li>
+                                                    <li><a class="dropdown-item" href="#">PC LENOVO</a></li>
+                                                    <li><a class="dropdown-item" href="#">THINKSTATION</a></li>
+                                                    <li><a class="dropdown-item" href="#">ESTACION DE TRABAJO</a></li>
+                                                    <li><a class="dropdown-item" href="#">PODIUM</a></li>
+                                                    <li><a class="dropdown-item" href="#">HIDDEN POWER CENTER</a></li>
+                                                    <li><a class="dropdown-item" href="#">MINI DESKTOP</a></li>
+                                                    <li><a class="dropdown-item" href="#">IBM LENOVO</a></li>
+                                                    <li><a class="dropdown-item" href="#">Computers</a></li>
+                                                    <li><a class="dropdown-item" href="#">STORAGE CIBER LABS</a></li>
+                                                    <li><a class="dropdown-item" href="#">ACCU SCOPE - ZOOM ST</a></li>
+                                                    <li><a class="dropdown-item" href="#">TABLEAU TX1</a></li>
+                                                    <li><a class="dropdown-item" href="#">ULTIMAKER S3 - 3D PR</a></li>
+                                                    <li><a class="dropdown-item" href="#">HOT MELT</a></li>
+                                                    <li><a class="dropdown-item" href="#">AUTO POLICHER KIT</a></li>
+                                                    <li><a class="dropdown-item" href="#">BUNDLE STATIONS</a></li>
+                                                    <li><a class="dropdown-item" href="#">THINKCENTRE</a></li>
+                                                    <li><a class="dropdown-item" href="#">PRELOAD TYPE STANDAR</a></li>
+                                                    <li><a class="dropdown-item" href="#">TV SMART</a></li>
+                                                    <li><a class="dropdown-item" href="#">VADDIO CONFERENCE</a></li>
+                                                    <li><a class="dropdown-item" href="#">NEC MULTISYNC</a></li>
+                                                    <li><a class="dropdown-item" href="#">PURIFICADOR DE AIRE</a></li>
+                                                    <li><a class="dropdown-item" href="#">Logitech Rally Plus</a></li>
                                                 </ul>
                                             </div>
-                                            <button class="btn btn-light">Search</button>
                                         </div>
                                         <div class="col-auto text-center d-flex align-items-center">
                                             <a class="btn btn-primary mb-2" href="inventory-create.php">Add New</a>
@@ -139,7 +157,6 @@
                                                 <th>Doc No</th>
                                                 <th>Amt</th>
                                                 <th>Location</th>
-                                                <th>Stock</th>
                                                 <th>Options</th>
                                             </tr>
                                         </thead>
@@ -186,7 +203,6 @@
                                                <td data-label='Doc No'>$equipo[DocNo]</td>
                                                <td data-label='Amt'>$equipo[Amt]</td>
                                                <td data-label='Location'>$equipo[Location]</td>
-                                               <td data-label='Stock'>4 out of 10</td>
                                                <th>
                                                    <a class='btn btn-primary mb-1' href=details.php?id=$equipo[id]>Edit
                                                        </div></a>

@@ -34,7 +34,13 @@
                         Menu
                     </li>
 
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="dashboard.php">
+                            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="loans.php">
                             <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Loans</span>
                         </a>
@@ -46,7 +52,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item active">
                         <a class="sidebar-link" href="inventory.php">
                             <i class="align-middle" data-feather="database"></i> <span class="align-middle">Inventory</span>
                         </a>
@@ -83,34 +89,34 @@
                 <div class="container-fluid p-0 justify-content-center">
                     <div class="row">
                         <div class="card mx-auto my-5 col-12 col-md-6 p-0">
-                            <div class="card-header bg-success w-100">
-                                <h1 class="h1 mb-0 text-white">New Item</h1>
+                            <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
+                                <h5 class="h5 mb-0 text-white"><i>New Item</i></h5>
                             </div>
                             <div class="card-body">
                                 <form>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="Ptag" class="form-control" />
                                                 <label class="form-label" for="PTag">PTag</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="gn" class="form-control" />
                                                 <label class="form-label" for="gn">GN</label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="description" class="form-control" />
                                                 <label class="form-label" for="description">Description</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="model" class="form-control" />
@@ -118,15 +124,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="Serial_No" class="form-control" />
                                                 <label class="form-label" for="description">Serial No</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="Fund" class="form-control" />
@@ -134,15 +140,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="AC" class="form-control" />
                                                 <label class="form-label" for="AC">AC</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="CL" class="form-control" />
@@ -150,15 +156,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="F" class="form-control" />
                                                 <label class="form-label" for="F">F</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="AQU" class="form-control" />
@@ -166,15 +172,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="ST" class="form-control" />
                                                 <label class="form-label" for="ST">ST</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="Acquisition" class="form-control" />
@@ -182,15 +188,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="Received" class="form-control" />
                                                 <label class="form-label" for="Received">Received</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="DocNo" class="form-control" />
@@ -198,15 +204,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col">
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="Amt" class="form-control" />
                                                 <label class="form-label" for="Amt">Amt</label>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" id="Location" class="form-control" />
@@ -214,15 +220,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Button container with centering classes -->
-                                    <div class="d-flex justify-content-center">
-                                        <!-- Submit button -->
-                                        <button type="button" class="btn btn-primary btn-lg mb-2" style="margin-right: 20px !important";>Submit</button>
 
-                                        <!-- Cancel button -->
-                                        <a type="button" class="btn btn-light btn-lg mb-2" href="inventory.php">Cancel</a>
+
+                                    <!-- Button container with centering classes -->
+                                    <div class="justify-content-center">
+                                        <div class="row">
+                                            <!-- Submit button -->
+                                            <button type="button" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
+                                        </div>
+                                        <div class="row">
+                                            <!-- Cancel button -->
+                                            <a type="button" class="btn btn-light btn-lg mb-2" href="inventory.php">Cancel</a>
+                                        </div>
                                     </div>
-                                    
+
                                 </form>
 
                             </div>
