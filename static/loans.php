@@ -35,6 +35,12 @@
 						Menu
 					</li>
 
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="dashboard.php">
+                            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
+                        </a>
+                    </li>
+
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="loans.php">
 							<i class="align-middle" data-feather="file-text"></i> <span

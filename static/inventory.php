@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Sistema de Inventario">
     <meta name="author" content="Inter Bayamon">
-    <meta name="keywords"
-        content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
+    <meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="img/icons/interlogo3.png" />
@@ -42,23 +41,26 @@
                     </li>
 
                     <li class="sidebar-item">
+                        <a class="sidebar-link" href="dashboard.php">
+                            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="loans.php">
-                            <i class="align-middle" data-feather="file-text"></i> <span
-                                class="align-middle">Loans</span>
+                            <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Loans</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="returned.php">
-                            <i class="align-middle" data-feather="check-circle"></i> <span
-                                class="align-middle">Returned</span>
+                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returned</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item active">
                         <a class="sidebar-link" href="inventory.php">
-                            <i class="align-middle" data-feather="database"></i> <span
-                                class="align-middle">Inventory</span>
+                            <i class="align-middle" data-feather="database"></i> <span class="align-middle">Inventory</span>
                         </a>
                     </li>
 
@@ -91,39 +93,39 @@
             <main class="content">
                 <div class="container-fluid p-0">
                     <h1 class="h3 mb-3"><strong>Inventory</strong> List</h1>
-
-                    <div class="row">
-                        <div class="d-flex mb-2">
-                            <input type="text" id="searchInput" class="form-control" placeholder="Search">
-                            <div class="dropdown d-none d-xl-table-cell">
-                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    All Category
-                                </button>
-                                <ul class="dropdown-menu" id="categoryDropdown">
-                                    <li><a class="dropdown-item" href="#">Devices</a></li>
-                                    <li><a class="dropdown-item" href="#">Infrastrcuture</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-auto text-center text-md-start">
-                            <button class="btn btn-primary mb-2">Add New <div data-feather="plus"></div>
-                            </button></td>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-12 col-lg-14 col-xxl-12 d-flex">
                             <div class="card flex-fill">
                                 <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                        <div class="d-flex w-75 w-md-100 mb-2 mb-md-0">
+                                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search">
+                                            <div class="dropdown-center d-none d-xl-table-cell me-2">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    All Category
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-dark" id="categoryDropdown">
+                                                    <li><a class="dropdown-item" href="#">All Category</a></li>
+                                                    <li><a class="dropdown-item" href="#">Devices</a></li>
+                                                    <li><a class="dropdown-item" href="#">Infrastructure</a></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                </ul>
+                                            </div>
+                                            <button class="btn btn-light">Search</button>
+                                        </div>
+                                        <div class="col-auto text-center d-flex align-items-center">
+                                            <button class="btn btn-primary mb-2">Add New <div data-feather="plus"></div></button>
+                                        </div>
+                                    </div>
                                 </div>
+
+
                                 <div class="table-container">
-                                    <table id="InventoryTable" class="table my-0 table-bordered border-secondary">
+                                    <table id="InventoryTable" class="table my-0 table-striped border-secondary">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>gn</th>
                                                 <th>PTag</th>
+                                                <th>gn</th>
                                                 <th>Description</th>
                                                 <th>Model</th>
                                                 <th>Serial_No</th>
@@ -143,214 +145,60 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td data-label="ID">1</td>
-                                                <td data-label="gn">35010</td>
-                                                <td data-label="PTag">Y02087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">MA</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170373</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="ID">2</td>
-                                                <td data-label="gn">36010</td>
-                                                <td data-label="PTag">Y12087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">MA</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170377</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="ID">3</td>
-                                                <td data-label="gn">35010</td>
-                                                <td data-label="PTag">Y02087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">PO</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170377</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="ID">4</td>
-                                                <td data-label="gn">35010</td>
-                                                <td data-label="PTag">Y02087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">PO</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170377</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="ID">5</td>
-                                                <td data-label="gn">35010</td>
-                                                <td data-label="PTag">Y02087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">PO</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170377</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="ID">6</td>
-                                                <td data-label="gn">35010</td>
-                                                <td data-label="PTag">Y02087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">PO</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170377</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="ID">7</td>
-                                                <td data-label="gn">35010</td>
-                                                <td data-label="PTag">Y02087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">PO</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170377</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="ID">8</td>
-                                                <td data-label="gn">35010</td>
-                                                <td data-label="PTag">Y02087990</td>
-                                                <td data-label="Description">MINI DESKTOP (29)</td>
-                                                <td data-label="Model">INTEL CORE</td>
-                                                <td data-label="Serial_No">MXL70420SH</td>
-                                                <td data-label="Fund">116071</td>
-                                                <td data-label="AC">49</td>
-                                                <td data-label="CL">5</td>
-                                                <td data-label="F">IN</td>
-                                                <td data-label="AQU">PO</td>
-                                                <td data-label="ST">I</td>
-                                                <td data-label="Acquisition">12/19/2016</td>
-                                                <td data-label="Received"> N/A</td>
-                                                <td data-label="Doc No">PY170377</td>
-                                                <td data-label="Amt">864.12</td>
-                                                <td data-label="Location">F-203</td>
-                                                <td data-label="Stock">4 out of 10</td>
-                                                <th>
-                                                    <button class="btn btn-primary mb-1">Edit <div data-feather="edit">
-                                                        </div></button>
-                                                    <button class="btn btn-danger">Delete <div data-feather="trash-2">
-                                                        </div></button>
-                                                </th>
-                                            </tr>
+                                            <?php
+                                            $servername = "localhost";
+                                            $username = "root";
+                                            $password = "";
+                                            $database = "interloanhub";
+
+                                            // Create connection
+                                            $connection = new mysqli($servername, $username, $password, $database);
+
+                                            // Check connection
+                                            if ($connection->connect_error) {
+                                                die("Connection failed: " . $connection->connect_error);
+                                            }
+
+                                            $query = "SELECT * FROM inventario";
+                                            $equipos = $connection->query($query);
+
+                                            // In case the query failed
+                                            if (!$equipos) {
+                                                die("Invalid query: " . $$connection->error);
+                                            }
+
+                                            // Read data
+                                            while ($equipo = $equipos->fetch_assoc()) {
+                                                echo "
+                                               <tr>
+                                               <td data-label='PTag'>$equipo[Ptag]</td>
+                                               <td data-label='gn'>$equipo[gn]</td>
+                                                                                              <td data-label='Description'>$equipo[Description]</td>
+                                               <td data-label='Model'>$equipo[Model]</td>
+                                               <td data-label='Serial_No'>$equipo[Serial_No]</td>
+                                               <td data-label='Fund'>$equipo[Fund]</td>
+                                               <td data-label='AC'>$equipo[AC]</td>
+                                               <td data-label='CL'>$equipo[CL]</td>
+                                               <td data-label='F'>$equipo[F]</td>
+                                               <td data-label='AQU'>$equipo[AQU]</td>
+                                               <td data-label='ST'>$equipo[ST]</td>
+                                               <td data-label='Acquisition'>$equipo[Acquisition]</td>
+                                               <td data-label='Received'>$equipo[Received]</td>
+                                               <td data-label='Doc No'>$equipo[DocNo]</td>
+                                               <td data-label='Amt'>$equipo[Amt]</td>
+                                               <td data-label='Location'>$equipo[Location]</td>
+                                               <td data-label='Stock'>4 out of 10</td>
+                                               <th>
+                                                   <a class='btn btn-primary mb-1' href=details.php?id=$equipo[id]>Edit
+                                                       </div></a>
+                                                   <a class='btn btn-danger' href=delete.php?$equipo[id]>Delete
+                                                       </div></a>
+                                               </th>
+                                           </tr>
+                                               ";
+                                            }
+
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -370,6 +218,12 @@
     <!-- Local JS -->
     <script src="js/app.js"></script>
     <script src="js/inventory.js"></script>
+
+    <!-- Custom -->
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </body>
 
 </html>
