@@ -10,7 +10,7 @@
   <meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="shortcut icon" href="img/icons/interlogo3.png" />
+  <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
   <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 

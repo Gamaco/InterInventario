@@ -32,6 +32,6 @@ if (isset($_GET["id"])) {
 }
 
 // Redirect to inventory.php
-header("location: inventory.php");
+header("location: ../inventory/index.php");
 exit;
 ?>
