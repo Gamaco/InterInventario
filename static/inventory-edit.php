@@ -7,19 +7,51 @@ $database = "interloanhub";
 // Connection
 $connection = new mysqli($servername, $username, $password, $database);
 
-$ptag = $gn = $description = $model = $Serial_No = $Fund = $AC = $CL = $F = $AQU = $ST = $Acquisition = $Received = $DocNo = $Amt = $Location = "";
 $errorMessage = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (!isset($_GET["id"])) {
+        header("location: inventory.php");
+        exit;
+    }
 
-    /*  FYI
-        FILTER_SANITIZE_SPECIAL_CHARS is a filter constant in PHP used for sanitizing input data 
-        by converting special characters to HTML entities. This is particularly useful when you want 
-        to prevent cross-site scripting (XSS) attacks by ensuring that user-supplied data doesn't contain 
-        characters that could be interpreted as HTML or JavaScript.
-    */
+    $id = $_GET["id"];
 
+    // Use prepared statement for SELECT
+    $query = "SELECT * FROM inventario WHERE id = ?";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $item = $result->fetch_assoc();
+
+    $stmt->close();
+
+    if (!$item) {
+        header("location: inventory.php");
+        exit;
+    }
+
+    $ptag = $item["Ptag"];
+    $gn = $item["gn"];
+    $description = $item["Description"];
+    $model = $item["Model"];
+    $Serial_No = $item["Serial_No"];
+    $Fund = $item["Fund"];
+    $AC = $item["AC"];
+    $CL = $item["CL"];
+    $F = $item["F"];
+    $AQU = $item["AQU"];
+    $ST = $item["ST"];
+    $Acquisition = $item["Acquisition"];
+    $Received = $item["Received"];
+    $DocNo = $item["DocNo"];
+    $Amt = $item["Amt"];
+    $Location = $item["Location"];
+} else {
     // Validate and sanitize user inputs
+    $id = filter_var($_POST["id"], FILTER_SANITIZE_SPECIAL_CHARS);
     $ptag = filter_var($_POST["ptag"], FILTER_SANITIZE_SPECIAL_CHARS);
     $gn = filter_var($_POST["gn"], FILTER_SANITIZE_SPECIAL_CHARS);
     $description = filter_var($_POST["description"], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -43,11 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
         }
 
-        // add a new item to the database using prepared statements
-        $query = "INSERT INTO inventario 
-        (ptag, gn, `description`, model, Serial_No, Fund, AC, CL, F,
-        AQU, ST, Acquisition, Received, DocNo, Amt, Location) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        // Use prepared statement for UPDATE
+        $query = "UPDATE inventario " .
+            "SET ptag = ?, gn = ?, description = ?, model = ?, Serial_No = ?,
+            Fund = ?, AC = ?, CL = ?, F = ?, AQU = ?, ST = ?, Acquisition = ?,
+            Received = ?, DocNo = ?, Amt = ?, Location = ? " .
+            "WHERE id = ?";
 
         // Prepare the statement
         $stmt = $connection->prepare($query);
@@ -58,25 +91,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Bind parameters
-        $stmt->bind_param("ssssssssssssssss", $ptag, $gn, $description, $model, $Serial_No, $Fund, $AC, $CL, $F, $AQU, $ST, $Acquisition, $Received, $DocNo, $Amt, $Location);
+        $stmt->bind_param("ssssssssssssssssi", $ptag, $gn, $description, $model, $Serial_No, $Fund, $AC, $CL, $F, $AQU, $ST, $Acquisition, $Received, $DocNo, $Amt, $Location, $id);
 
         // Execute the statement
         $result = $stmt->execute();
 
         if (!$result) {
-            $errorMessage = "Error executing statement: " . $stmt->error;
+            $errorMessage = "Invalid Input: <br>" . $stmt->error;
             break;
         }
 
         $stmt->close();
         $connection->close();
-
         header("location: inventory.php");
         exit;
 
     } while (false);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -169,8 +202,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="container-fluid p-0 justify-content-center">
                     <div class="row">
                         <div class="card mx-auto my-5 col-12 col-md-6 p-0">
-                            <div class="card-header">
-                            <h1 class="h3"><strong>New</strong> Item</h1>
+                            <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
+                                <h5 class="h5 mb-0 text-white"><i>Edit Item</i></h5>
                             </div>
                             <div class="card-body">
                                 <?php
@@ -187,6 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 }
                                 ?>
                                 <form method="post">
+                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
                                     <div class="row flex-wrap">
                                         <div class="col-12 col-md mb-3">
                                             <div data-mdb-input-init class="form-outline">
@@ -222,7 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" name="Serial_No" id="Serial_No" class="form-control" value="<?php echo $Serial_No; ?>" />
-                                                <label class="form-label" for="description">Serial No</label>
+                                                <label class="form-label" for="Serial_No">Serial No</label>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md mb-3">

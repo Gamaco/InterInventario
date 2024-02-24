@@ -97,14 +97,14 @@
                             <div class="card flex-fill">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                        <div class="d-flex w-75 w-md-100 mb-2 mb-md-0">
+                                        <div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
                                             <input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
-                                            <div class="dropdown-center d-none d-xl-table-cell me-2">
+                                            <div class="dropdown-center me-2">
                                                 <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
-                                                    All Category
+                                                    Categories
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-menu" id="categoryDropdown">
-                                                    <li><a class="dropdown-item" href="#">All Category</a></li>
+                                                <ul class="dropdown-menu" id="categoryDropdown">
+                                                    <li><a class="dropdown-item" href="#">All Categories</a></li>
                                                     <li><a class="dropdown-item" href="#">PC LENOVO</a></li>
                                                     <li><a class="dropdown-item" href="#">THINKSTATION</a></li>
                                                     <li><a class="dropdown-item" href="#">ESTACION DE TRABAJO</a></li>
@@ -130,8 +130,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-auto text-center d-flex align-items-center">
-                                            <a class="btn btn-primary mb-2" href="inventory-create.php">Add New</a>
+                                        <div class="mx-auto">
+                                            <a class="btn btn-primary mt-3 fs-5" href="inventory-create.php" style="padding-left: 50px !important; padding-right: 50px !important; padding-bottom: 7px; padding-top: 7px";>Add New</a>
                                         </div>
                                     </div>
                                 </div>
@@ -182,6 +182,8 @@
                                             if (!$equipos) {
                                                 die("Invalid query: " . $$connection->error);
                                             }
+                                            
+                                           
 
                                             // Read data
                                             while ($equipo = $equipos->fetch_assoc()) {
@@ -204,15 +206,16 @@
                                                <td data-label='Amt'>$equipo[Amt]</td>
                                                <td data-label='Location'>$equipo[Location]</td>
                                                <th>
-                                                   <a class='btn btn-primary mb-1' href=details.php?id=$equipo[id]>Edit
+                                                   <a class='btn btn-primary mb-1' href=inventory-edit.php?id=$equipo[id]>Edit
                                                        </div></a>
-                                                   <a class='btn btn-danger' href=delete.php?$equipo[id]>Delete
+                                                   <a class='btn btn-danger' href=inventory-delete.php?id=$equipo[id]>Delete
                                                        </div></a>
                                                </th>
                                            </tr>
                                                ";
                                             }
 
+                                            $connection->close();
                                             ?>
                                         </tbody>
                                     </table>

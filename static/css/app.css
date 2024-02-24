@@ -3842,11 +3842,15 @@ fieldset:disabled .btn {
     font-size: var(--bs-dropdown-font-size);
     list-style: none;
     margin: 0;
+    max-height: 300px;
+    overflow-y: scroll;
     min-width: var(--bs-dropdown-min-width);
     padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);
     position: absolute;
     text-align: left;
-    z-index: var(--bs-dropdown-zindex)
+    z-index: var(--bs-dropdown-zindex);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adjust the values to control the shadow */
+    padding: 20px;
 }
 
 .dropdown-menu[data-bs-popper] {
