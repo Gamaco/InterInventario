@@ -14636,8 +14636,10 @@ screen and (-ms-high-contrast:active) {
 .sidebar,
 .sidebar-content {
     position: relative;
-    background: rgb(43, 45, 49);
-    background-color: rgba(43, 45, 49, 1);
+    /* background: rgb(43, 45, 49);
+    background-color: rgba(43, 45, 49, 1); */
+    background: rgb(43,45,49);
+    background: linear-gradient(180deg, rgba(43,45,49,1) 65%, rgba(32,67,52,1) 94%);
 
     /* Add a background image at the bottom */
     &::before {
