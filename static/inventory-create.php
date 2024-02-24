@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="row">
                         <div class="card mx-auto my-5 col-12 col-md-6 p-0">
                             <div class="card-header">
-                            <h1 class="h3"><strong>New</strong> Item</h1>
+                            <h1 class="h3">New Item</h1>
                             </div>
                             <div class="card-body">
                                 <?php

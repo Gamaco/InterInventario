@@ -96,10 +96,13 @@
                         <div class="col-12 col-lg-14 col-xxl-12 d-flex">
                             <div class="card flex-fill">
                                 <div class="card-header">
-                                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                    <div class="d-flex flex-column justify-content-between align-items-start flex-wrap">
                                         <div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
                                             <input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
-                                            <div class="dropdown-center me-2">
+                                        </div>
+                                        <div class="d-flex mt-4">
+                                            <a class="btn btn-primary me-2" href="inventory-create.php">Add New</a>
+                                            <div class="dropdown-center">
                                                 <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
                                                     Categories
                                                 </button>
@@ -130,10 +133,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="mx-auto">
-                                            <a class="btn btn-primary mt-3 fs-5" href="inventory-create.php" style="padding-left: 50px !important; padding-right: 50px !important; padding-bottom: 7px; padding-top: 7px";>Add New</a>
-                                        </div>
                                     </div>
+
                                 </div>
 
 
@@ -182,8 +183,8 @@
                                             if (!$equipos) {
                                                 die("Invalid query: " . $$connection->error);
                                             }
-                                            
-                                           
+
+
 
                                             // Read data
                                             while ($equipo = $equipos->fetch_assoc()) {
