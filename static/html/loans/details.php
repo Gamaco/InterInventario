@@ -40,25 +40,25 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="dashboard.php">
+            <a class="sidebar-link" href="../dashboard.php">
               <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
             </a>
           </li>
 
           <li class="sidebar-item active">
-            <a class="sidebar-link" href="loans.php">
+            <a class="sidebar-link" href="../loans/index.php">
               <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Loans</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="returned.php">
+            <a class="sidebar-link" href="../returns/index.php">
               <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returned</span>
             </a>
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="inventory.php">
+            <a class="sidebar-link" href="../inventory/index.php">
               <i class="align-middle" data-feather="database"></i> <span class="align-middle">Inventory</span>
             </a>
           </li>

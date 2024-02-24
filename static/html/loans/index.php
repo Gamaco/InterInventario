@@ -24,7 +24,7 @@
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="loans.php">
+                <a class="sidebar-brand" href="../loans/index.php">
                     <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                     <br><span class="align-middle">Equipment Loan System</span>
                 </a>
@@ -47,8 +47,8 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="../returned/index.php">
-                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returned</span>
+                        <a class="sidebar-link" href="../returns/index.php">
+                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returns</span>
                         </a>
                     </li>
 
@@ -99,7 +99,7 @@
 											</div>
 										</div>
 										<div class="col-auto text-center text-md-start">
-											<a class="btn btn-primary mb-2" href="create.html">Create New Loan
+											<a class="btn btn-primary mb-2" href="./create.php">Create New Loan
 											</a></td>
 										</div>
 									</div>
@@ -107,11 +107,12 @@
 										<thead>
 											<tr>
 												<th>Description</th>
-												<th>Student_ID</th>
+												<th>Student ID</th>
 												<th class="d-none d-xl-table-cell">Status</th>
 												<th class="d-none d-xl-table-cell">Start_Date</th>
 												<th class="d-none d-xl-table-cell">End_Date</th>
 												<th class="d-none d-xl-table-cell">PTag</th>
+												<th class="d-none d-xl-table-cell">Lender</th>
 												<th>Options</th>
 											</tr>
 										</thead>
@@ -119,96 +120,120 @@
 											<tr>
 												<td>MINI DESKTOP (29)</td>
 												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell"><span class="badge bg-warning">In
-														Progress</span></td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
+												</td>
 												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td><button class="btn btn-success mb-2">Return</button>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
 											</tr>
 											<tr>
 												<td>MINI DESKTOP (29)</td>
-												<td>Y62088025</td>
-												<td class="d-none d-xl-table-cell"><span
-														class="badge bg-danger">Overdue</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
+												<td>Y12088025</td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
+												</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td><button class="btn btn-success mb-2">Return</button>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
 											</tr>
 											<tr>
 												<td>MINI DESKTOP (29)</td>
-												<td>Y52088025</td>
-												<td class="d-none d-xl-table-cell"><span class="badge bg-warning">In
-														Progress</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
+												<td>Y12088025</td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
+												</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td><button class="btn btn-success mb-2">Return</button>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
 											</tr>
 											<tr>
 												<td>MINI DESKTOP (29)</td>
-												<td>Y82088025</td>
-												<td class="d-none d-xl-table-cell"><span
-														class="badge bg-danger">Overdue</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
+												<td>Y12088025</td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
+												</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td><button class="btn btn-success mb-2">Return</button>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
 											</tr>
 											<tr>
 												<td>MINI DESKTOP (29)</td>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell"><span
-														class="badge bg-danger">Overdue</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088024</td>
-												<td><button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
+												<td>Y12088025</td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
 												</td>
-											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell"><span class="badge bg-warning">In
-														Progress</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td><button class="btn btn-success mb-2">Return</button>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
 											</tr>
 											<tr>
 												<td>MINI DESKTOP (29)</td>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell"><span class="badge bg-warning">In
-														Progress</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
+												<td>Y12088025</td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
+												</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td><button class="btn btn-success mb-2">Return</button>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
 											</tr>
 											<tr>
 												<td>MINI DESKTOP (29)</td>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell"><span class="badge bg-warning">In
-														Progress</span></td>
-												<td class="d-none d-xl-table-cell">01/01/2023</td>
+												<td>Y12088025</td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
+												</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
 												<td class="d-none d-xl-table-cell">30/12/2025</td>
 												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td><button class="btn btn-success mb-2">Return</button>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
+													<button class="btn btn-info mb-2">Details</button>
+												</td>
+											</tr>
+											<tr>
+												<td>MINI DESKTOP (29)</td>
+												<td>Y12088025</td>
+												<td class="d-none d-xl-table-cell">
+													<span class="badge bg-warning">In Progress</span>
+												</td>
+												<td class="d-none d-xl-table-cell">01/02/2023</td>
+												<td class="d-none d-xl-table-cell">30/12/2025</td>
+												<td class="d-none d-xl-table-cell">Y02088027</td>
+												<td class="d-none d-xl-table-cell">Y00093456</td>
+												<td>
+													<button class="btn btn-success mb-2">Return</button>
 													<button class="btn btn-info mb-2">Details</button>
 												</td>
 											</tr>

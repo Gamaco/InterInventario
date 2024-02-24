@@ -7,7 +7,8 @@ $database = "interloanhub";
 // Connection
 $connection = new mysqli($servername, $username, $password, $database);
 
-$ptag = $gn = $description = $model = $Serial_No = $Fund = $AC = $CL = $F = $AQU = $ST = $Acquisition = $Received = $DocNo = $Amt = $Location = "";
+// Initialize variables
+$gn = $description = $model = $Serial_No = $Fund = $AC = $CL = $F = $AQU = $ST = $Acquisition = $Received = $DocNo = $Amt = $Location = "";
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -22,34 +23,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     */
 
     // Validate and sanitize user inputs
-    $ptag = filter_var($_POST["ptag"], FILTER_SANITIZE_SPECIAL_CHARS);
     $gn = filter_var($_POST["gn"], FILTER_SANITIZE_SPECIAL_CHARS);
     $description = filter_var($_POST["description"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $model = filter_var($_POST["model"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Serial_No = filter_var($_POST["Serial_No"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Fund = filter_var($_POST["Fund"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $AC = filter_var($_POST["AC"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $CL = filter_var($_POST["CL"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $F = filter_var($_POST["F"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $AQU = filter_var($_POST["AQU"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $ST = filter_var($_POST["ST"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Acquisition = filter_var($_POST["Acquisition"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Received = filter_var($_POST["Received"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $DocNo = filter_var($_POST["DocNo"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Amt = filter_var($_POST["Amt"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Location = filter_var($_POST["Location"], FILTER_SANITIZE_SPECIAL_CHARS); 
+    $model = filter_var($_POST["model"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Serial_No = filter_var($_POST["Serial_No"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Fund = filter_var($_POST["Fund"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $AC = filter_var($_POST["AC"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $CL = filter_var($_POST["CL"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $F = filter_var($_POST["F"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $AQU = filter_var($_POST["AQU"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $ST = filter_var($_POST["ST"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Acquisition = filter_var($_POST["Acquisition"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Received = filter_var($_POST["Received"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $DocNo = filter_var($_POST["DocNo"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Amt = filter_var($_POST["Amt"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Location = filter_var($_POST["Location"], FILTER_SANITIZE_SPECIAL_CHARS);
 
     do {
-        if (empty($ptag)) {
-            $errorMessage = "Please provide a PTag.";
+        if (empty($description)) {
+            $errorMessage = "Please provide a description.";
+            break;
+        }
+        if (empty($model)) {
+            $errorMessage = "Please provide the model.";
+            break;
+        }
+        if (empty($Serial_No)) {
+            $errorMessage = "Please provide the serial no.";
+            break;
+        }
+        if (empty($Location)) {
+            $errorMessage = "Please provide a location.";
             break;
         }
 
-        // add a new item to the database using prepared statements
+        // Add a new item to the database using prepared statements
         $query = "INSERT INTO inventario 
-        (ptag, gn, `description`, model, Serial_No, Fund, AC, CL, F,
+        (gn, `description`, model, Serial_No, Fund, AC, CL, F,
         AQU, ST, Acquisition, Received, DocNo, Amt, Location) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Prepare the statement
         $stmt = $connection->prepare($query);
@@ -60,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Bind parameters
-        $stmt->bind_param("ssssssssssssssss", $ptag, $gn, $description, $model, $Serial_No, $Fund, $AC, $CL, $F, $AQU, $ST, $Acquisition, $Received, $DocNo, $Amt, $Location);
+        $stmt->bind_param("sssssssssssssss", $gn, $description, $model, $Serial_No, $Fund, $AC, $CL, $F, $AQU, $ST, $Acquisition, $Received, $DocNo, $Amt, $Location);
 
         // Execute the statement
         $result = $stmt->execute();
@@ -75,7 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         header("location: ../inventory/index.php");
         exit;
-
     } while (false);
 }
 ?>
@@ -111,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="loans.php">
+                <a class="sidebar-brand" href="../loans/index.php">
                     <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                     <br><span class="align-middle">Equipment Loan System</span>
                 </a>
@@ -134,8 +145,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="../returned/index.php">
-                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returned</span>
+                        <a class="sidebar-link" href="../returns/index.php">
+                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returns</span>
                         </a>
                     </li>
 
@@ -175,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="container-fluid p-0 justify-content-center">
                     <div class="row">
                         <div class="card mx-auto my-5 col-12 col-md-6 p-0">
-                        <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
+                            <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
                                 <h5 class="h5 mb-0 text-white"><i>New Item</i></h5>
                             </div>
                             <div class="card-body">
@@ -192,18 +203,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     ";
                                 }
                                 ?>
-                                <form method="post">
+                                <form method="post" onsubmit="return validateForm()">
                                     <div class="row flex-wrap">
                                         <div class="col-12 col-md mb-3">
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="ptag" id="ptag" class="form-control" value="<?php echo $ptag; ?>" />
-                                                <label class="form-label" for="ptag">PTag</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="gn" id="gn" class="form-control" value="<?php echo $gn; ?>" />
-                                                <label class="form-label" for="gn">GN</label>
+                                                <input type="text" name="description" id="description" class="form-control" value="<?php echo $description; ?>" />
+                                                <label class="form-label" for="description">Description</label>
                                             </div>
                                         </div>
                                     </div>
@@ -211,8 +216,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="description" id="description" class="form-control" value="<?php echo $description; ?>" />
-                                                <label class="form-label" for="description">Description</label>
+                                                <input type="text" name="gn" id="gn" class="form-control" value="<?php echo $gn; ?>" />
+                                                <label class="form-label" for="gn">GN</label>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md mb-3">
@@ -345,6 +350,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <script src="../../js/app.js"></script>
+    <script>
+        function validateForm() {
+            // Get the value of the inputs
+            var description = document.getElementById('description').value;
+            var model = document.getElementById('model').value;
+            var Serial_No = document.getElementById('Serial_No').value;
+            var Location = document.getElementById('Location').value;
+
+            if (description.trim() === '') {
+                alert('Description is empty');
+                return false;
+            }
+            if (model.trim() === '') {
+                alert('model is empty');
+                return false;
+            }
+            if (Serial_No.trim() === '') {
+                alert('Serial_No is empty');
+                return false;
+            }
+            if (Location.trim() === '') {
+                alert('Location is empty');
+                return false;
+            }
+            // Return true to allow the form to submit
+            return true;
+        }
+    </script>
 </body>
 
 </html>

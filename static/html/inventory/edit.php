@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="loans.php">
+                <a class="sidebar-brand" href="../loans/index.php">
                     <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                     <br><span class="align-middle">Equipment Loan System</span>
                 </a>
@@ -165,8 +165,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="../returned/index.php">
-                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returned</span>
+                        <a class="sidebar-link" href="../returns/index.php">
+                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returns</span>
                         </a>
                     </li>
 

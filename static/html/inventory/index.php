@@ -19,6 +19,7 @@
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
         .table-container {
             overflow-x: auto;
@@ -30,7 +31,7 @@
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="loans.php">
+                <a class="sidebar-brand" href="../loans/index.php">
                     <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                     <br><span class="align-middle">Equipment Loan System</span>
                 </a>
@@ -53,8 +54,8 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="../returned/index.php">
-                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returned</span>
+                        <a class="sidebar-link" href="../returns/index.php">
+                            <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returns</span>
                         </a>
                     </li>
 
@@ -207,11 +208,10 @@
                                                <td data-label='Amt'>$equipo[Amt]</td>
                                                <td data-label='Location'>$equipo[Location]</td>
                                                <th>
-                                                   <a class='btn btn-primary mb-1' href=edit.php?id=$equipo[id]>Edit
+                                                   <a class='btn btn-primary mb-1' href=./edit.php?id=$equipo[id]>Edit
                                                        </div></a>
-                                                   <a class='btn btn-danger' href=delete.php?id=$equipo[id]>Delete
-                                                       </div></a>
-                                               </th>
+                                                   <a class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'>Delete</a>
+                                                </th>
                                            </tr>
                                                ";
                                             }
@@ -226,6 +226,26 @@
                     </div>
                 </div>
             </main>
+            <!-- Modal -->
+            <div class="modal fade" id="itemDeletionModal" tabindex="-1" aria-labelledby="itemDeletionModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="itemDeletionModalLabel">Confirm Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>You are about to delete this item. This action cannot be undone.</p>
+                            <p>Are you sure you want to proceed?</p>
+                            <input type="hidden" id="itemIdToDelete" name="deleteItemId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -240,9 +260,19 @@
 
     <!-- Custom -->
     <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        var itemDeletionModal = document.getElementById('itemDeletionModal');
+        itemDeletionModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget; // Button that triggered the modal
+            var itemId = button.getAttribute('data-item-id'); // Extract info from data-* attributes
+            var modal = this;
+            modal.querySelector('#itemIdToDelete').textContent = itemId;
+            modal.querySelector('#confirmDeleteBtn').addEventListener('click', function() {
+                // Perform deletion action here using the itemId
+                window.location.href = './delete.php?id=' + itemId;
+            });
+        });
     </script>
+
 </body>
 
 </html>
