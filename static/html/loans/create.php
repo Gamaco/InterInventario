@@ -104,6 +104,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		.table-container {
 			overflow-x: auto;
 		}
+
+		.modal-fullscreen {
+			width: 100vw !important;
+			max-width: 100% !important;
+			margin: 1.75rem auto;
+		}
+
+		.modal-fullscreen .modal-dialog {
+			margin: 1.75rem auto;
+			max-width: none;
+			width: 100%;
+		}
+
+		@media (min-width: 576px) {
+			.modal-dialog {
+				max-width: 100%;
+				margin: 1.75rem auto;
+			}
+		}
+
+		@media (min-width: 992px) {
+			.modal-lg {
+				max-width: 100%;
+				margin: 1.75rem auto;
+			}
+		}
 	</style>
 </head>
 
@@ -196,9 +222,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<div class="row flex-wrap">
 										<div class="col-12 col-md mb-3">
 											<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="PTAG">PTAG</label>
+												<label class="form-label" for="PTAG">PTAG</label>
 												<div class="input-group mb-3">
-													<button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
+													<button class="btn btn-primary btn-outline-secondary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
 													<input type="text" id="PTAG" class="form-control" placeholder="" aria-describedby="button-addon1">
 												</div>
 											</div>
@@ -208,10 +234,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<div class="row flex-wrap">
 										<div class="col-12 col-md mb-3">
 											<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="ptag">LOAN TO</label>
-											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo $gn; ?>" />
-											</div>
+												<label class="form-label" for="ptag">LOAN TO</label>
+												<div data-mdb-input-init class="form-outline">
+													<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo $gn; ?>" />
+												</div>
 											</div>
 										</div>
 									</div>
@@ -219,16 +245,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<div class="row flex-wrap">
 										<div class="col-12 col-md mb-3">
 											<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="LOANER_AUTH">LOANER AUTH</label>
-											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo $gn; ?>" />
-											</div>
+												<label class="form-label" for="LOANER_AUTH">LOANER AUTH</label>
+												<div data-mdb-input-init class="form-outline">
+													<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo $gn; ?>" />
+												</div>
 											</div>
 										</div>
 									</div>
 
+									<div class="row flex-wrap">
+										<div class="col-12 col-md mb-3">
+											<div data-mdb-input-init class="form-outline">
+												<label class="form-label" for="LOANER_AUTH">START DATE</label>
+												<div class="mb-3">
+													<input type="date" id="datepicker" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
 
-
+									<div class="row flex-wrap">
+										<div class="col-12 col-md mb-3">
+											<div data-mdb-input-init class="form-outline">
+												<label class="form-label" for="LOANER_AUTH">END DATE</label>
+												<div class="mb-3">
+													<input type="date" id="datepicker" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
 									<!-- Button container with centering classes -->
 									<div class="justify-content-center">
 										<div class="row">
@@ -242,7 +287,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									</div>
 
 								</form>
-
 							</div>
 						</div>
 					</div>
@@ -250,9 +294,122 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</main>
 
 		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="inventoryList" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="inventoryListLabel" aria-hidden="true">
+			<div class="modal-dialog modal-fullscreen">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="inventoryListLabel">Inventory</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: red;"></button>
+					</div>
+					<div class="modal-body">
+						<div class="d-flex flex-column justify-content-between align-items-start flex-wrap">
+							<div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
+								<input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
+							</div>
+							<div class="d-flex mt-4">
+								<div class="dropdown-center">
+									<button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
+										Categories
+									</button>
+									<ul class="dropdown-menu" id="categoryDropdown">
+										<li><a class="dropdown-item" href="#">All Categories</a></li>
+										<li><a class="dropdown-item" href="#">PC LENOVO</a></li>
+										<li><a class="dropdown-item" href="#">THINKSTATION</a></li>
+										<li><a class="dropdown-item" href="#">ESTACION DE TRABAJO</a></li>
+										<li><a class="dropdown-item" href="#">PODIUM</a></li>
+										<li><a class="dropdown-item" href="#">HIDDEN POWER CENTER</a></li>
+										<li><a class="dropdown-item" href="#">MINI DESKTOP</a></li>
+										<li><a class="dropdown-item" href="#">IBM LENOVO</a></li>
+										<li><a class="dropdown-item" href="#">Computers</a></li>
+										<li><a class="dropdown-item" href="#">STORAGE CIBER LABS</a></li>
+										<li><a class="dropdown-item" href="#">ACCU SCOPE - ZOOM ST</a></li>
+										<li><a class="dropdown-item" href="#">TABLEAU TX1</a></li>
+										<li><a class="dropdown-item" href="#">ULTIMAKER S3 - 3D PR</a></li>
+										<li><a class="dropdown-item" href="#">HOT MELT</a></li>
+										<li><a class="dropdown-item" href="#">AUTO POLICHER KIT</a></li>
+										<li><a class="dropdown-item" href="#">BUNDLE STATIONS</a></li>
+										<li><a class="dropdown-item" href="#">THINKCENTRE</a></li>
+										<li><a class="dropdown-item" href="#">PRELOAD TYPE STANDAR</a></li>
+										<li><a class="dropdown-item" href="#">TV SMART</a></li>
+										<li><a class="dropdown-item" href="#">VADDIO CONFERENCE</a></li>
+										<li><a class="dropdown-item" href="#">NEC MULTISYNC</a></li>
+										<li><a class="dropdown-item" href="#">PURIFICADOR DE AIRE</a></li>
+										<li><a class="dropdown-item" href="#">Logitech Rally Plus</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="table-container">
+							<table id="InventoryTable" class="table my-0 table-striped border-secondary fs-6">
+								<thead>
+									<tr>
+										<th>Options</th>
+										<th>PTag</th>
+										<th>Description</th>
+										<th>Serial No</th>
+										<th>Model</th>
+										<th>Location</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$servername = "localhost";
+									$username = "root";
+									$password = "";
+									$database = "interloanhub";
+
+									// Create connection
+									$connection = new mysqli($servername, $username, $password, $database);
+
+									// Check connection
+									if ($connection->connect_error) {
+										die("Connection failed: " . $connection->connect_error);
+									}
+
+									$query = "SELECT * FROM inventario";
+									$equipos = $connection->query($query);
+
+									// In case the query failed
+									if (!$equipos) {
+										die("Invalid query: " . $$connection->error);
+									}
+
+
+
+									// Read data
+									while ($equipo = $equipos->fetch_assoc()) {
+										echo "
+                                               <tr>
+											   <th>
+											   <a class='btn btn-primary mb-1' href=./edit.php?id=$equipo[id]>Select
+												   </div></a>
+											</th>
+											   <td data-label='PTag'>$equipo[Ptag]</td>
+											   <td data-label='Description'>$equipo[Description]</td>
+											   <td data-label='Serial_No'>$equipo[Serial_No]</td>
+											   <td data-label='Model'>$equipo[Model]</td>
+											   <td data-label='Location'>$equipo[Location]</td>
+                                           </tr>
+                                               ";
+									}
+
+									$connection->close();
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<script src="../../js/app.js"></script>
+	<script src="../../js/inventory.js"></script>
 </body>
 
 </html>

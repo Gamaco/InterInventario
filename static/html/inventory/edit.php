@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         exit;
     }
 
-    $ptag = $item["Ptag"];
     $gn = $item["gn"];
     $description = $item["Description"];
     $model = $item["Model"];
@@ -52,32 +51,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 } else {
     // Validate and sanitize user inputs
     $id = filter_var($_POST["id"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $ptag = filter_var($_POST["ptag"], FILTER_SANITIZE_SPECIAL_CHARS);
     $gn = filter_var($_POST["gn"], FILTER_SANITIZE_SPECIAL_CHARS);
     $description = filter_var($_POST["description"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $model = filter_var($_POST["model"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Serial_No = filter_var($_POST["Serial_No"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Fund = filter_var($_POST["Fund"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $AC = filter_var($_POST["AC"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $CL = filter_var($_POST["CL"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $F = filter_var($_POST["F"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $AQU = filter_var($_POST["AQU"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $ST = filter_var($_POST["ST"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Acquisition = filter_var($_POST["Acquisition"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Received = filter_var($_POST["Received"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $DocNo = filter_var($_POST["DocNo"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Amt = filter_var($_POST["Amt"], FILTER_SANITIZE_SPECIAL_CHARS); 
-    $Location = filter_var($_POST["Location"], FILTER_SANITIZE_SPECIAL_CHARS); 
+    $model = filter_var($_POST["model"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Serial_No = filter_var($_POST["Serial_No"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Fund = filter_var($_POST["Fund"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $AC = filter_var($_POST["AC"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $CL = filter_var($_POST["CL"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $F = filter_var($_POST["F"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $AQU = filter_var($_POST["AQU"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $ST = filter_var($_POST["ST"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Acquisition = filter_var($_POST["Acquisition"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Received = filter_var($_POST["Received"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $DocNo = filter_var($_POST["DocNo"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Amt = filter_var($_POST["Amt"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Location = filter_var($_POST["Location"], FILTER_SANITIZE_SPECIAL_CHARS);
 
     do {
-        if (empty($ptag)) {
-            $errorMessage = "Please provide a PTag.";
-            break;
-        }
 
         // Use prepared statement for UPDATE
         $query = "UPDATE inventario " .
-            "SET ptag = ?, gn = ?, description = ?, model = ?, Serial_No = ?,
+            "SET gn = ?, description = ?, model = ?, Serial_No = ?,
             Fund = ?, AC = ?, CL = ?, F = ?, AQU = ?, ST = ?, Acquisition = ?,
             Received = ?, DocNo = ?, Amt = ?, Location = ? " .
             "WHERE id = ?";
@@ -91,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
 
         // Bind parameters
-        $stmt->bind_param("ssssssssssssssssi", $ptag, $gn, $description, $model, $Serial_No, $Fund, $AC, $CL, $F, $AQU, $ST, $Acquisition, $Received, $DocNo, $Amt, $Location, $id);
+        $stmt->bind_param("sssssssssssssssi", $gn, $description, $model, $Serial_No, $Fund, $AC, $CL, $F, $AQU, $ST, $Acquisition, $Received, $DocNo, $Amt, $Location, $id);
 
         // Execute the statement
         $result = $stmt->execute();
@@ -105,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $connection->close();
         header("location: ../inventory/index.php");
         exit;
-
     } while (false);
 }
 ?>
@@ -227,24 +220,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                                     <div class="row flex-wrap">
                                         <div class="col-12 col-md mb-3">
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="ptag" id="ptag" class="form-control" value="<?php echo $ptag; ?>" />
-                                                <label class="form-label" for="ptag">PTag</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="gn" id="gn" class="form-control" value="<?php echo $gn; ?>" />
-                                                <label class="form-label" for="gn">GN</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
                                                 <input type="text" name="description" id="description" class="form-control" value="<?php echo $description; ?>" />
                                                 <label class="form-label" for="description">Description</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
+                                            <div data-mdb-input-init class="form-outline">
+                                                <input type="text" name="gn" id="gn" class="form-control" value="<?php echo $gn; ?>" />
+                                                <label class="form-label" for="gn">GN</label>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md mb-3">

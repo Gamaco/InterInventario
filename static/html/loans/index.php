@@ -106,14 +106,14 @@
 									<table id="dataTable" class="table table-hover my-0 table-striped">
 										<thead>
 											<tr>
-												<th>Description</th>
-												<th>Student ID</th>
-												<th class="d-none d-xl-table-cell">Status</th>
-												<th class="d-none d-xl-table-cell">Start_Date</th>
-												<th class="d-none d-xl-table-cell">End_Date</th>
-												<th class="d-none d-xl-table-cell">PTag</th>
-												<th class="d-none d-xl-table-cell">Lender</th>
-												<th>Options</th>
+												<th>DESCRIPTION</th>
+												<th>LOAN TO</th>
+												<th class="d-none d-xl-table-cell">STATUS</th>
+												<th class="d-none d-xl-table-cell">START DATE</th>
+												<th class="d-none d-xl-table-cell">END DATE</th>
+												<th class="d-none d-xl-table-cell">PTAG</th>
+												<th class="d-none d-xl-table-cell">LOANER AUTH</th>
+												<th>OPTIONS</th>
 											</tr>
 										</thead>
 										<tbody>
