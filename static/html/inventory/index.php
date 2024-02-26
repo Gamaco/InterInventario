@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-    <title>Inventario de Equipos</title>
+    <title>Index - IELS</title>
     <link rel="stylesheet" , href="../../css/inventory.css">
     <!-- Font Awesome CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
@@ -140,7 +140,7 @@
 
 
                                 <div class="table-container">
-                                    <table id="InventoryTable" class="table my-0 table-striped border-secondary">
+                                    <table id="InventoryTable" class="table my-0 border-secondary">
                                         <thead>
                                             <tr>
                                                 <th>PTag</th>
@@ -177,7 +177,7 @@
                                                 die("Connection failed: " . $connection->connect_error);
                                             }
 
-                                            $query = "SELECT * FROM inventario";
+                                            $query = "SELECT * FROM inventario ORDER BY id DESC";
                                             $equipos = $connection->query($query);
 
                                             // In case the query failed
@@ -187,31 +187,34 @@
 
 
 
-                                            // Read data
+                                            // Reads data and also checks if the field value is empty.
+                                            // In case the field is empty, it'll display N/A on the table,
+                                            // to avoid having empty spaces on the table. 
+                                            // Empty spaces make the table collapse/wrap a field into another.
                                             while ($equipo = $equipos->fetch_assoc()) {
                                                 echo "
                                                <tr>
-                                               <td data-label='PTag'>$equipo[Ptag]</td>
-                                               <td data-label='gn'>$equipo[gn]</td>
-                                               <td data-label='Description'>$equipo[Description]</td>
-                                               <td data-label='Model'>$equipo[Model]</td>
-                                               <td data-label='Serial_No'>$equipo[Serial_No]</td>
-                                               <td data-label='Fund'>$equipo[Fund]</td>
-                                               <td data-label='AC'>$equipo[AC]</td>
-                                               <td data-label='CL'>$equipo[CL]</td>
-                                               <td data-label='F'>$equipo[F]</td>
-                                               <td data-label='AQU'>$equipo[AQU]</td>
-                                               <td data-label='ST'>$equipo[ST]</td>
-                                               <td data-label='Acquisition'>$equipo[Acquisition]</td>
-                                               <td data-label='Received'>$equipo[Received]</td>
-                                               <td data-label='Doc No'>$equipo[DocNo]</td>
-                                               <td data-label='Amt'>$equipo[Amt]</td>
-                                               <td data-label='Location'>$equipo[Location]</td>
-                                               <th>
-                                                   <a class='btn btn-primary mb-1' href=./edit.php?id=$equipo[id]>Edit
+                                               <td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
+                                               <td data-label='gn'>" . ($equipo['gn'] ? $equipo['gn'] : 'N/A') . "</td>
+                                               <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
+                                               <td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
+                                               <td data-label='Serial_No'>" . ($equipo['Serial_No'] ? $equipo['Serial_No'] : 'N/A') . "</td>
+                                               <td data-label='Fund'>" . ($equipo['Fund'] ? $equipo['Fund'] : 'N/A') . "</td>
+                                               <td data-label='AC'>" . ($equipo['AC'] ? $equipo['AC'] : 'N/A') . "</td>
+                                               <td data-label='CL'>" . ($equipo['CL'] ? $equipo['CL'] : 'N/A') . "</td>
+                                               <td data-label='F'>" . ($equipo['F'] ? $equipo['F'] : 'N/A') . "</td>
+                                               <td data-label='AQU'>" . ($equipo['AQU'] ? $equipo['AQU'] : 'N/A') . "</td>
+                                               <td data-label='ST'>" . ($equipo['ST'] ? $equipo['ST'] : 'N/A') . "</td>
+                                               <td data-label='Acquisition'>" . ($equipo['Acquisition'] ? $equipo['Acquisition'] : 'N/A') . "</td>
+                                               <td data-label='Received'>" . ($equipo['Received'] ? $equipo['Received'] : 'N/A') . "</td>
+                                               <td data-label='Doc No'>" . ($equipo['DocNo'] ? $equipo['DocNo'] : 'N/A') . "</td>
+                                               <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
+                                               <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
+                                               <td>
+                                                   <a class='btn btn-primary mb-lg-1' style='width: 80px;' href=./edit.php?id=$equipo[id]>Edit
                                                        </div></a>
-                                                   <a class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'>Delete</a>
-                                                </th>
+                                                   <a class='btn btn-danger' style='width: 80px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'>Delete</a>
+                                                </td>
                                            </tr>
                                                ";
                                             }

@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-	<title>Inventario de Equipos</title>
+	<title>Create - IELS</title>
 	<!-- Font Awesome CSS -->
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 	<!-- Bootstrap added locally -->

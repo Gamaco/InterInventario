@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-    <title>Inventario de Equipos</title>
+    <title>Login - IELS</title>
 
     <link href="../../css/app.css" rel="stylesheet">
     <link href="../../css/login.css" rel="stylesheet">

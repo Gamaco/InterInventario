@@ -2327,13 +2327,13 @@ progress {
 @media(max-width:575.98px) {
     .table-responsive-sm {
         -webkit-overflow-scrolling: touch;
-        overflow-x: auto
+        overflow-x: hidden !important;
     }
 }
 
 @media (max-width: 767px) {
     body {
-        overflow-x: hidden;
+        overflow-x: hidden !important;
     }
 }
 
