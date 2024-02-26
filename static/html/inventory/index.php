@@ -32,7 +32,7 @@
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="../loans/index.php">
+                <a class="sidebar-brand" href="../dashboard.php">
                     <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                     <br><span class="align-middle">Equipment Loan System</span>
                 </a>
@@ -135,6 +135,9 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                        <div class="row mt-2">
+                                            <h5 id="displayedRowCount"></h5>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -144,9 +147,9 @@
                                     <table id="InventoryTable" class="table my-0 border-secondary">
                                         <thead>
                                             <tr>
+                                                <th>Description</th>
                                                 <th>PTag</th>
                                                 <th>GN</th>
-                                                <th>Description</th>
                                                 <th>Model</th>
                                                 <th>Serial No</th>
                                                 <th>Fund</th>
@@ -195,9 +198,9 @@
                                             while ($equipo = $equipos->fetch_assoc()) {
                                                 echo "
                                                <tr>
+                                               <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
                                                <td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
                                                <td data-label='gn'>" . ($equipo['gn'] ? $equipo['gn'] : 'N/A') . "</td>
-                                               <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
                                                <td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
                                                <td data-label='Serial_No'>" . ($equipo['Serial_No'] ? $equipo['Serial_No'] : 'N/A') . "</td>
                                                <td data-label='Fund'>" . ($equipo['Fund'] ? $equipo['Fund'] : 'N/A') . "</td>
@@ -262,7 +265,7 @@
     <script src="../../js/app.js"></script>
     <script src="../../js/inventory.js"></script>
 
-    <!-- Custom -->
+    <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
     <script>
         var itemDeletionModal = document.getElementById('itemDeletionModal');
         itemDeletionModal.addEventListener('show.bs.modal', function(event) {

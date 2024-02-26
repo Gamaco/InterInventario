@@ -25,7 +25,7 @@
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="./loans/index.php">
+                <a class="sidebar-brand" href="./dashboard.php">
                     <img src="../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                     <br><span class="align-middle">Equipment Loan System</span>
                 </a>
@@ -122,7 +122,7 @@
                                 </div>
                                 <h1 class="mt-1 mb-3">17</h1>
                                 <div class="mb-0">
-                                    <a class="btn btn-lg btn-success mb-2" href="./returned/index.php" style="background-color: #00973c !important;">Returned List</a>
+                                    <a class="btn btn-lg btn-success mb-2" href="./returned/index.php" style="background-color: #00973c !important;">View Returns</a>
                                 </div>
                             </div>
                         </div>

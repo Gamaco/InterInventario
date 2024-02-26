@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
     <title>Index - IELS</title>
+	<link rel="stylesheet" , href="../../css/inventory.css">
     <!-- Font Awesome CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
@@ -24,7 +25,7 @@
     <div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="../loans/index.php">
+			<a class="sidebar-brand" href="../dashboard.php">
                     <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                     <br><span class="align-middle">Equipment Loan System</span>
                 </a>
@@ -103,140 +104,64 @@
 											</a></td>
 										</div>
 									</div>
-									<table id="dataTable" class="table table-hover my-0 table-striped">
+									<table id="dataTable" class="table table-hover my-0">
 										<thead>
 											<tr>
 												<th>DESCRIPTION</th>
 												<th>LOAN TO</th>
-												<th class="d-none d-xl-table-cell">STATUS</th>
-												<th class="d-none d-xl-table-cell">START DATE</th>
-												<th class="d-none d-xl-table-cell">END DATE</th>
-												<th class="d-none d-xl-table-cell">PTAG</th>
-												<th class="d-none d-xl-table-cell">LOANER AUTH</th>
+												<th>LOANER AUTH</th>
+												<th>PTAG</th>
+												<th>STATUS</th>
+												<th>START DATE</th>
+												<th>END DATE</th>
 												<th>OPTIONS</th>
 											</tr>
 										</thead>
 										<tbody>
+										<?php
+                                            $servername = "localhost";
+                                            $username = "root";
+                                            $password = "";
+                                            $database = "interloanhub";
+
+                                            // Create connection
+                                            $connection = new mysqli($servername, $username, $password, $database);
+
+                                            // Check connection
+                                            if ($connection->connect_error) {
+                                                die("Connection failed: " . $connection->connect_error);
+                                            }
+
+                                            $query = "SELECT * FROM prestamos ORDER BY id DESC";
+                                            $prestamos = $connection->query($query);
+
+                                            // In case the query failed
+                                            if (!$prestamos) {
+                                                die("Invalid query: " . $$connection->error);
+                                            }
+
+											while ($prestamo = $prestamos->fetch_assoc()) {
+                                                echo "
 											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
+												<td data-label='Description'>" . ($prestamo['DESCRIPTION'] ? $prestamo['DESCRIPTION'] : 'N/A') . "</td>
+												<td data-label='Loan To'>" . ($prestamo['LOAN_TO'] ? $prestamo['LOAN_TO'] : 'N/A') . "</td>
+												<td data-label='Loaner Auth'>" . ($prestamo['LOANER_AUTH'] ? $prestamo['LOANER_AUTH'] : 'N/A') . "</td>
+												<td data-label='PTag'>" . ($prestamo['PTag'] ? $prestamo['PTag'] : 'N/A') . "</td>
+												<td data-label='Status'>
+												<span class='badge bg-warning'>In Progress</span>
 												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
+												<td data-label='Start Date'>" . ($prestamo['START_DATE'] ? $prestamo['START_DATE'] : 'N/A') . "</td>
+												<td data-label='End Date'>" . ($prestamo['END_DATE'] ? $prestamo['END_DATE'] : 'N/A') . "</td>
+												<td data-label='Options'>
+													<button class='btn btn-success mb-2'>Return</button>
+													<button class='btn btn-info mb-2'>Details</button>
 												</td>
 											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
-												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
-												</td>
-											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
-												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
-												</td>
-											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
-												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
-												</td>
-											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
-												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
-												</td>
-											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
-												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
-												</td>
-											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
-												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
-												</td>
-											</tr>
-											<tr>
-												<td>MINI DESKTOP (29)</td>
-												<td>Y12088025</td>
-												<td class="d-none d-xl-table-cell">
-													<span class="badge bg-warning">In Progress</span>
-												</td>
-												<td class="d-none d-xl-table-cell">01/02/2023</td>
-												<td class="d-none d-xl-table-cell">30/12/2025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">Y00093456</td>
-												<td>
-													<button class="btn btn-success mb-2">Return</button>
-													<button class="btn btn-info mb-2">Details</button>
-												</td>
-											</tr>
+											";
+											}
+
+										$connection->close();
+										?>
 										</tbody>
 									</table>
 								</div>

@@ -2,13 +2,24 @@
 document.getElementById('searchInput').addEventListener('input', function () {
   const searchText = this.value.trim().toLowerCase();
   const tableRows = document.querySelectorAll('#InventoryTable tbody tr');
+  let displayedRowCount = 0; // Initialize counter for displayed rows
 
   tableRows.forEach(row => {
     const rowData = row.textContent.trim().toLowerCase();
     row.style.display = rowData.includes(searchText) ? '' : 'none';
+    if (row.style.display !== 'none') {
+      displayedRowCount++; // Increment the counter for displayed rows
+    }
   });
 
+  if (!searchText == "") {
+    // Update the counter element in your HTML
+    document.getElementById('displayedRowCount').textContent = "Showing " + displayedRowCount + " of " + tableRows.length + " entries for \'" + searchText.toUpperCase() + "'";
+  } else {
+    document.getElementById('displayedRowCount').textContent = "";
+  }
 });
+
 
 
 var dropdownButton = document.querySelector('.dropdown-toggle');
@@ -30,27 +41,36 @@ categoryDropdown.addEventListener('click', function(event) {
   }
 });
 
+
 function filterTable(filterText) {
   const tableRows = document.querySelectorAll('#InventoryTable tbody tr');
+  let displayedRowCount = 0; // Initialize counter for displayed rows
 
   tableRows.forEach(row => {
-    // Display all rows when "All Categories" is selected
-    if (filterText === 'all categories') {
+    const descriptionCell = row.cells[0];
+
+    if (filterText === 'all categories' || !descriptionCell) {
+      // Display all rows when "All Categories" is selected or if there's no description column
       row.style.display = '';
-    } 
-    else {
-      const descriptionCell = row.cells[2];
+      displayedRowCount++; // Increment the counter for displayed rows
+    } else {
+      const descriptionText = descriptionCell.textContent.trim().toLowerCase();
 
-      // Check if the description column exists in the row
-      if (descriptionCell) {
-        const descriptionText = descriptionCell.textContent.trim().toLowerCase();
-
-        // Display the row if filterText exists in the description
-        row.style.display = (descriptionText.includes(filterText.toLowerCase())) ? '' : 'none';
+      // Display the row if filterText exists in the description
+      if (descriptionText.includes(filterText.toLowerCase())) {
+        row.style.display = '';
+        displayedRowCount++; // Increment the counter for displayed rows
       } else {
-        // If description column doesn't exist, hide the row
         row.style.display = 'none';
       }
     }
   });
+
+  if (!(filterText == "all categories")) {
+    // Update the counter element in your HTML
+    document.getElementById('displayedRowCount').textContent = "Showing " + displayedRowCount + " of " + tableRows.length + " entries for \'" + filterText.toUpperCase() + "'";
+  } else {
+    document.getElementById('displayedRowCount').textContent = "";
+  }
 }
+
