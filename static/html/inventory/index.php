@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+
     <meta name="description" content="Sistema de Inventario">
     <meta name="author" content="Inter Bayamon">
     <meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
@@ -102,9 +103,9 @@
                                             <input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
                                         </div>
                                         <div class="d-flex mt-4">
-                                            <a class="btn btn-primary me-2" href="../inventory/create.php">Add New</a>
+                                            <a class="btn btn-primary btn-lg me-2" href="../inventory/create.php">Add New</a>
                                             <div class="dropdown-center">
-                                                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
+                                                <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
                                                     Categories
                                                 </button>
                                                 <ul class="dropdown-menu" id="categoryDropdown">
