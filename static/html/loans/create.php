@@ -8,7 +8,7 @@ $database = "interloanhub";
 $connection = new mysqli($servername, $username, $password, $database);
 
 // Initialize variables
-$ptag = $gn = $description = $model = $Serial_No = $Fund = $AC = $CL = $F = $AQU = $ST = $Acquisition = $Received = $DocNo = $Amt = $Location = "";
+$Ptag = $LOAN_TO = $LOANER_AUTH = $START_DATE = $END_DATE = "";
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -23,34 +23,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     */
 
 	// Validate and sanitize user inputs
-	$ptag = filter_var($_POST["ptag"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$gn = filter_var($_POST["gn"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$description = filter_var($_POST["description"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$model = filter_var($_POST["model"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Serial_No = filter_var($_POST["Serial_No"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Fund = filter_var($_POST["Fund"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$AC = filter_var($_POST["AC"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$CL = filter_var($_POST["CL"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$F = filter_var($_POST["F"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$AQU = filter_var($_POST["AQU"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$ST = filter_var($_POST["ST"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Acquisition = filter_var($_POST["Acquisition"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Received = filter_var($_POST["Received"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$DocNo = filter_var($_POST["DocNo"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Amt = filter_var($_POST["Amt"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Location = filter_var($_POST["Location"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$Ptag = filter_var($_POST["Ptag"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$LOAN_TO = filter_var($_POST["LOAN_TO"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$LOANER_AUTH = filter_var($_POST["LOANER_AUTH"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$START_DATE = filter_var($_POST["START_DATE"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$END_DATE = filter_var($_POST["END_DATE"], FILTER_SANITIZE_SPECIAL_CHARS);
 
 	do {
-		if (empty($ptag)) {
-			$errorMessage = "Please provide a PTag.";
+		if (empty($Ptag)) {
+			$errorMessage = "Missing 'PTag'.";
+			break;
+		}
+		if (empty($LOAN_TO)) {
+			$errorMessage = "Missing 'LOAN_TO'.";
+			break;
+		}
+		if (empty($Ptag)) {
+			$errorMessage = "Missing 'LOANER_AUTH'.";
+			break;
+		}
+		if (empty($Ptag)) {
+			$errorMessage = "Missing 'START_DATE'.";
+			break;
+		}
+		if (empty($Ptag)) {
+			$errorMessage = "Missing 'END_DATE'.";
 			break;
 		}
 
 		// Add a new item to the database using prepared statements
-		$query = "INSERT INTO inventario 
-        (ptag, gn, `description`, model, Serial_No, Fund, AC, CL, F,
-        AQU, ST, Acquisition, Received, DocNo, Amt, Location) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$query = "INSERT INTO prestamos 
+        (Ptag, LOAN_TO, LOANER_AUTH, START_DATE, END_DATE) 
+        VALUES (?, ?, ?, ?, ?)";
 
 		// Prepare the statement
 		$stmt = $connection->prepare($query);
@@ -61,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		// Bind parameters
-		$stmt->bind_param("ssssssssssssssss", $ptag, $gn, $description, $model, $Serial_No, $Fund, $AC, $CL, $F, $AQU, $ST, $Acquisition, $Received, $DocNo, $Amt, $Location);
+		$stmt->bind_param("sssss", $Ptag, $LOAN_TO, $LOANER_AUTH, $START_DATE, $END_DATE);
 
 		// Execute the statement
 		$result = $stmt->execute();
@@ -74,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$stmt->close();
 		$connection->close();
 
-		header("location: ../inventory/index.php");
+		header("location: ../loans/index.php");
 		exit;
 	} while (false);
 }
@@ -226,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 												<label class="form-label" for="PTAG">PTAG</label>
 												<div class="input-group mb-3">
 													<button class="btn btn-primary btn-outline-secondary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
-													<input type="text" id="PTAG" class="form-control" placeholder="" aria-describedby="button-addon1" disabled>
+													<input type="text" name="Ptag" id="PTAG" class="form-control" aria-describedby="searchInput" value="<?php echo $Ptag; ?>">
 												</div>
 											</div>
 										</div>
@@ -237,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 											<div data-mdb-input-init class="form-outline">
 												<label class="form-label" for="ptag">LOAN TO</label>
 												<div data-mdb-input-init class="form-outline">
-													<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo $gn; ?>" />
+													<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo $LOAN_TO; ?>" />
 												</div>
 											</div>
 										</div>
@@ -248,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 											<div data-mdb-input-init class="form-outline">
 												<label class="form-label" for="LOANER_AUTH">LOANER AUTH</label>
 												<div data-mdb-input-init class="form-outline">
-													<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo $gn; ?>" />
+													<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo $LOANER_AUTH; ?>" />
 												</div>
 											</div>
 										</div>
@@ -257,9 +261,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<div class="row flex-wrap">
 										<div class="col-12 col-md mb-3">
 											<div data-mdb-input-init class="form-outline">
-												<label class="form-label" for="LOANER_AUTH">START DATE</label>
+												<label class="form-label" for="START_DATE">START DATE</label>
 												<div class="mb-3">
-													<input type="date" id="datepicker" class="form-control">
+													<input type="date" name="START_DATE" id="START_DATE" class="form-control" value="<?php echo $START_DATE; ?>">
 												</div>
 											</div>
 										</div>
@@ -268,9 +272,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<div class="row flex-wrap">
 										<div class="col-12 col-md mb-3">
 											<div data-mdb-input-init class="form-outline">
-												<label class="form-label" for="LOANER_AUTH">END DATE</label>
+												<label class="form-label" for="END_DATE">END DATE</label>
 												<div class="mb-3">
-													<input type="date" id="datepicker" class="form-control">
+													<input type="date" name="END_DATE" id="END_DATE" class="form-control" value="<?php echo $END_DATE; ?>">
 												</div>
 											</div>
 										</div>
@@ -388,9 +392,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                <td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
                                                <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
 											   <td>
-											   <a class='btn btn-primary mb-1' href=./edit.php?id=$equipo[id]>Select
-												   </div></a>
-												</td>
+											   <a class='btn btn-primary mb-1' onclick='getPTagFromModal(\"" . $equipo['Ptag'] . "\")'>Select</a>
+										   	   </td>
                                            </tr>
                                                ";
 									}
@@ -411,6 +414,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<script src="../../js/app.js"></script>
 	<script src="../../js/inventory.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- Get Item PTag and Close Modal -->
+	<script>
+    function getPTagFromModal(Ptag) {
+        document.getElementById('PTAG').value = Ptag;
+        $('#inventoryList').modal('hide');
+    }
+	</script>
+
 </body>
 
 </html>
