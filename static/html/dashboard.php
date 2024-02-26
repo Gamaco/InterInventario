@@ -101,7 +101,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">10</h1>
+                                <?php
+                                $servername = "localhost";
+                                $username = "root";
+                                $password = "";
+                                $database = "interloanhub";
+
+                                // Create connection
+                                $connection = new mysqli($servername, $username, $password, $database);
+
+                                $query = "SELECT COUNT(*) AS TotalItems FROM prestamos";
+                                $result = $connection->query($query);
+                                
+                                if ($result) {
+                                    $row = $result->fetch_assoc();
+                                    $totalItems = $row['TotalItems'];
+                                } else {
+                                    die("Invalid query: " . $connection->error);
+                                }
+                                echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+                                ?>
                                 <div class="mb-0">
                                     <a class="btn btn-lg btn-success mb-2" href="./loans/index.php" style="background-color: #00973c !important;">View Loans</a>
                                 </div>
@@ -141,7 +160,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h1 class="mt-1 mb-3">321</h1>
+                                <?php
+                                $servername = "localhost";
+                                $username = "root";
+                                $password = "";
+                                $database = "interloanhub";
+
+                                // Create connection
+                                $connection = new mysqli($servername, $username, $password, $database);
+
+                                $query = "SELECT COUNT(*) AS TotalItems FROM inventario";
+                                $result = $connection->query($query);
+                                
+                                if ($result) {
+                                    $row = $result->fetch_assoc();
+                                    $totalItems = $row['TotalItems'];
+                                } else {
+                                    die("Invalid query: " . $connection->error);
+                                }
+                                echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+                                ?>
                                 <div class="mb-0">
                                     <a class="btn btn-lg btn-success mb-2" href="./inventory/index.php" style="background-color: #00973c !important;">View Inventory</a>
                                 </div>

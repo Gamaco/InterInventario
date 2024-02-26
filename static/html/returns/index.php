@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
     <title>Returns - IELS</title>
+	<link rel="stylesheet" , href="../../css/inventory.css">
     <!-- Font Awesome CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
@@ -101,35 +102,24 @@
 											</div>	
 										</div>
 									</div>
-									<table id="dataTable" class="table table-hover my-0 table-striped">
+									<table id="dataTable" class="table table-hover my-0">
 										<thead>
 											<tr>
+												<th>Description</th>
 												<th>PTag</th>
-												<th class="d-none d-xl-table-cell">Student ID</th>
-												<th class="d-none d-xl-table-cell">Description</th>
-												<th>EQUIP STATE</th>
-												<th class="d-none d-xl-table-cell">Comments</th>
+												<th>Student ID</th>
+												<th>Equip State</th>
+												<th>Comments</th>
 												<th>Options</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">TV SMART 65'' - VIZI</td>
-												<td><span class="badge bg-danger">Damaged</span></td>
-												<td class="d-none d-xl-table-cell">Se apaga solo a los 3 minutos de uso.</td>
-												<td>
-													<button class="btn btn-primary mb-2">Complete</button>
-													<button class="btn btn-info mb-2">Info</button>
-												</td>
-											</tr>
-											<tr>
-												<td>Y02088025</td>
-												<td class="d-none d-xl-table-cell">Y02088027</td>
-												<td class="d-none d-xl-table-cell">PC LENOVO</td>
-												<td><span class="badge bg-warning">Incomplete</span></td>
-												<td class="d-none d-xl-table-cell">Se perdio el cable HDMI que connecta al monitor.</td>
+												<td data-label='Description'>TV SMART 65'' - VIZI</td>
+												<td data-label='PTag'>Y02088027</td>
+												<td data-label='Student ID'>Y02088025</td>
+												<td data-label='Equp State'><span class="badge bg-danger">Damaged</span></td>
+												<td data-label='Comments'>Se apaga solo a los 3 minutos de uso.</td>
 												<td>
 													<button class="btn btn-primary mb-2">Complete</button>
 													<button class="btn btn-info mb-2">Info</button>

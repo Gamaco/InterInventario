@@ -223,14 +223,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     ";
 								}
 								?>
-								<form method="post">
+								<form id="submit" method="post">
 									<div class="row flex-wrap">
 										<div class="col-12 col-md mb-3">
 											<div data-mdb-input-init class="form-outline">
 												<label class="form-label" for="PTAG">PTAG</label>
 												<div class="input-group mb-3">
 													<button class="btn btn-primary btn-outline-secondary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
-													<input type="text" name="Ptag" id="PTAG" class="form-control" aria-describedby="searchInput" value="<?php echo $Ptag; ?>">
+													<input type="text" name="Ptag" id="PTAG" class="form-control" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
 												</div>
 											</div>
 										</div>
@@ -419,9 +419,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<!-- Get Item PTag and Close Modal -->
 	<script>
     function getPTagFromModal(Ptag) {
-        document.getElementById('PTAG').value = Ptag;
+		var inputField = document.getElementById('PTAG');
+		inputField.value = Ptag;
         $('#inventoryList').modal('hide');
     }
+
+	document.getElementById('submit').addEventListener('submit', function() {
+    document.getElementById('PTAG').disabled = false;
+});
 	</script>
 
 </body>

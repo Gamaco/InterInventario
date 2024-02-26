@@ -132,7 +132,12 @@
                                                 die("Connection failed: " . $connection->connect_error);
                                             }
 
-                                            $query = "SELECT * FROM prestamos ORDER BY id DESC";
+                                            // Query searches for the item description in the inventario table.
+                                            $query = "SELECT prestamos.*, inventario.Description AS ItemDescription
+                                            FROM prestamos
+                                            LEFT JOIN inventario ON prestamos.Ptag = inventario.Ptag
+                                            ORDER BY prestamos.id DESC";
+
                                             $prestamos = $connection->query($query);
 
                                             // In case the query failed
@@ -143,7 +148,7 @@
 											while ($prestamo = $prestamos->fetch_assoc()) {
                                                 echo "
 											<tr>
-												<td data-label='Description'>" . ($prestamo['DESCRIPTION'] ? $prestamo['DESCRIPTION'] : 'N/A') . "</td>
+												<td data-label='Description'>" . ($prestamo['ItemDescription'] ? $prestamo['ItemDescription'] : 'N/A') . "</td>
 												<td data-label='Loan To'>" . ($prestamo['LOAN_TO'] ? $prestamo['LOAN_TO'] : 'N/A') . "</td>
 												<td data-label='Loaner Auth'>" . ($prestamo['LOANER_AUTH'] ? $prestamo['LOANER_AUTH'] : 'N/A') . "</td>
 												<td data-label='PTag'>" . ($prestamo['PTag'] ? $prestamo['PTag'] : 'N/A') . "</td>
