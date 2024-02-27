@@ -161,13 +161,7 @@
                                     </div>
                                 </div>
                                 <?php
-                                $servername = "localhost";
-                                $username = "root";
-                                $password = "";
-                                $database = "interloanhub";
-
-                                // Create connection
-                                $connection = new mysqli($servername, $username, $password, $database);
+                                include '../db/config.php';
 
                                 $query = "SELECT COUNT(*) AS TotalItems FROM inventario";
                                 $result = $connection->query($query);

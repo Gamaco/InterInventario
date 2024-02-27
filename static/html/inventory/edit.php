@@ -1,11 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "interloanhub";
-
-// Connection
-$connection = new mysqli($servername, $username, $password, $database);
+include '../../db/config.php';
 
 $errorMessage = "";
 

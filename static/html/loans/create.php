@@ -1,11 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "interloanhub";
-
-// Connection
-$connection = new mysqli($servername, $username, $password, $database);
+include '../../db/config.php';
 
 // Initialize variables
 $Ptag = $LOAN_TO = $LOANER_AUTH = $START_DATE = $END_DATE = "";
@@ -359,18 +353,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								</thead>
 								<tbody>
 									<?php
-									$servername = "localhost";
-									$username = "root";
-									$password = "";
-									$database = "interloanhub";
-
-									// Create connection
-									$connection = new mysqli($servername, $username, $password, $database);
-
-									// Check connection
-									if ($connection->connect_error) {
-										die("Connection failed: " . $connection->connect_error);
-									}
+									include '../../db/config.php';
 
 									$query = "SELECT * FROM inventario ORDER BY id DESC";
 									$equipos = $connection->query($query);

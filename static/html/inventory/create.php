@@ -1,11 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "interloanhub";
-
-// Connection
-$connection = new mysqli($servername, $username, $password, $database);
+include '../../db/config.php';
 
 // Initialize variables
 $gn = $description = $model = $Serial_No = $Fund = $AC = $CL = $F = $AQU = $ST = $Acquisition = $Received = $DocNo = $Amt = $Location = "";

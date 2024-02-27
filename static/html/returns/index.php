@@ -122,7 +122,6 @@
 												<td data-label='Comments'>Se apaga solo a los 3 minutos de uso.</td>
 												<td>
 													<button class="btn btn-primary mb-2">Complete</button>
-													<button class="btn btn-info mb-2">Info</button>
 												</td>
 											</tr>
 										</tbody>

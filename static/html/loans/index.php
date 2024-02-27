@@ -119,18 +119,7 @@
 										</thead>
 										<tbody>
 										<?php
-                                            $servername = "localhost";
-                                            $username = "root";
-                                            $password = "";
-                                            $database = "interloanhub";
-
-                                            // Create connection
-                                            $connection = new mysqli($servername, $username, $password, $database);
-
-                                            // Check connection
-                                            if ($connection->connect_error) {
-                                                die("Connection failed: " . $connection->connect_error);
-                                            }
+                                            include '../../db/config.php';
 
                                             // Query searches for the item description in the inventario table.
                                             $query = "SELECT prestamos.*, inventario.Description AS ItemDescription
@@ -159,7 +148,6 @@
 												<td data-label='End Date'>" . ($prestamo['END_DATE'] ? $prestamo['END_DATE'] : 'N/A') . "</td>
 												<td data-label='Options'>
 													<button class='btn btn-success mb-2'>Return</button>
-													<button class='btn btn-info mb-2'>Details</button>
 												</td>
 											</tr>
 											";
