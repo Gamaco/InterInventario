@@ -40,7 +40,7 @@
 								<div class="col-auto text-center text-md-start">
 									<div class="d-flex mt-3">
 										<div class="input-group mb-3">
-											<input type="text" id="searchInput" class="form-control" placeholder="Search">
+											<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
 										</div>
 									</div>
 								</div>
@@ -60,7 +60,7 @@
 									<?php
 									include '../../db/config.php';
 
-									$query = "SELECT * FROM returns ORDER BY id DESC"; // Removed single quotes from 'returns'
+									$query = "SELECT * FROM returns ORDER BY id DESC";
 									$equipos = $connection->query($query);
 
 									// In case the query failed
