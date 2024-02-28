@@ -137,7 +137,7 @@
 body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    background-color: var(--bs-body-bg);
+    background-color: white !important;
     color: var(--bs-body-color);
     font-family: Arial, Helvetica, sans-serif;
     font-size: var(--bs-body-font-size);
@@ -5137,6 +5137,50 @@ fieldset:disabled .btn {
     white-space: nowrap
 }
 
+.rounded-pill {
+    border-radius: 50rem!important;
+}
+
+.badge-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.badge-secondary {
+    color: #fff;
+    background-color: #6c757d;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.badge-warning {
+    color: #212529;
+    background-color: #ffc107;
+}
+
+.badge-info {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+.badge-light {
+    color: #212529;
+    background-color: #f8f9fa;
+}
+
+.badge-dark {
+    color: #fff;
+    background-color: #343a40;
+}
+
 .badge:empty {
     display: none
 }
@@ -7532,7 +7576,7 @@ fieldset:disabled .btn {
 }
 
 .fs-4 {
-    font-size: 1.09375rem !important
+    font-size: 1.09375rem
 }
 
 .fs-5,
@@ -8294,6 +8338,10 @@ fieldset:disabled .btn {
     .float-sm-start {
         float: left !important
     }
+
+    .fs-sm-5 {
+        font-size: 1.25rem !important;
+      }
 
     .float-sm-end {
         float: right !important

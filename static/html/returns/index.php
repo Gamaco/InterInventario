@@ -22,7 +22,8 @@
 </head>
 
 <body draggable="false">
-	<?php $activePage = 'returns'; include '../components/sidebar.php'; ?>
+	<?php $activePage = 'returns';
+	include '../components/sidebar.php'; ?>
 
 	<div class="main">
 		<?php include '../components/navbar.php'; ?>
@@ -50,22 +51,40 @@
 										<th>Description</th>
 										<th>PTag</th>
 										<th>Student ID</th>
-										<th>Equip State</th>
+										<th>Condition</th>
 										<th>Comments</th>
 										<th>Options</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td data-label='Description'>TV SMART 65'' - VIZI</td>
-										<td data-label='PTag'>Y02088027</td>
-										<td data-label='Student ID'>Y02088025</td>
-										<td data-label='Equp State'><span class="badge bg-danger">Damaged</span></td>
-										<td data-label='Comments'>Se apaga solo a los 3 minutos de uso.</td>
-										<td>
-											<button class="btn btn-primary mb-2">Complete</button>
-										</td>
-									</tr>
+									<?php
+									include '../../db/config.php';
+
+									$query = "SELECT * FROM returns ORDER BY id DESC"; // Removed single quotes from 'returns'
+									$equipos = $connection->query($query);
+
+									// In case the query failed
+									if (!$equipos) {
+										die("Invalid query: " . $connection->error);
+									}
+
+									while ($equipo = $equipos->fetch_assoc()) {
+										echo "
+        										<tr>
+            									<td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
+            									<td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
+            									<td data-label='Student ID'>" . ($equipo['Student_ID'] ? $equipo['Student_ID'] : 'N/A') . "</td>
+            									<td data-label='Condition'>" . ($equipo['Item_Cond'] ? $equipo['Item_Cond'] : 'N/A') . "</td>
+            									<td data-label='Comments'>" . ($equipo['Comments'] ? $equipo['Comments'] : 'N/A') . "</td>
+            									<td>
+                								<a class='btn btn-success' style='width: 80px;' data-bs-toggle='modal' data-bs-target='#itemCompletionModal' data-item-id='{$equipo['id']}'>Return</a>
+            									</td>
+        										</tr>";
+									}
+
+									$connection->close();
+									?>
+
 								</tbody>
 							</table>
 						</div>

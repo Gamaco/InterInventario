@@ -29,106 +29,131 @@
 </head>
 
 <body draggable="false">
-    <?php $activePage = 'inventory'; include '../components/sidebar.php'; ?>
+    <?php $activePage = 'inventory';
+    include '../components/sidebar.php'; ?>
 
-        <div class="main">
+    <div class="main">
         <?php include '../components/navbar.php'; ?>
-            
-            <main class="content">
-                <div class="container-fluid p-0">
-                    <h1 class="h3 mb-3"><strong>Inventory</strong> List</h1>
-                    <div class="row">
-                        <div class="col-12 col-lg-14 col-xxl-12 d-flex">
-                            <div class="card flex-fill">
-                                <div class="card-header">
-                                    <div class="d-flex flex-column justify-content-between align-items-start flex-wrap">
-                                        <div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
-                                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
-                                        </div>
-                                        <div class="d-flex mt-4">
-                                            <a class="btn btn-primary btn-lg me-2" href="../inventory/create.php">Add New</a>
-                                            <div class="dropdown-center">
-                                                <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
-                                                    Categories
-                                                </button>
-                                                <ul class="dropdown-menu" id="categoryDropdown">
-                                                    <li><a class="dropdown-item" href="#">All Categories</a></li>
-                                                    <li><a class="dropdown-item" href="#">PC LENOVO</a></li>
-                                                    <li><a class="dropdown-item" href="#">THINKSTATION</a></li>
-                                                    <li><a class="dropdown-item" href="#">ESTACION DE TRABAJO</a></li>
-                                                    <li><a class="dropdown-item" href="#">PODIUM</a></li>
-                                                    <li><a class="dropdown-item" href="#">HIDDEN POWER CENTER</a></li>
-                                                    <li><a class="dropdown-item" href="#">MINI DESKTOP</a></li>
-                                                    <li><a class="dropdown-item" href="#">IBM LENOVO</a></li>
-                                                    <li><a class="dropdown-item" href="#">Computers</a></li>
-                                                    <li><a class="dropdown-item" href="#">STORAGE CIBER LABS</a></li>
-                                                    <li><a class="dropdown-item" href="#">ACCU SCOPE - ZOOM ST</a></li>
-                                                    <li><a class="dropdown-item" href="#">TABLEAU TX1</a></li>
-                                                    <li><a class="dropdown-item" href="#">ULTIMAKER S3 - 3D PR</a></li>
-                                                    <li><a class="dropdown-item" href="#">HOT MELT</a></li>
-                                                    <li><a class="dropdown-item" href="#">AUTO POLICHER KIT</a></li>
-                                                    <li><a class="dropdown-item" href="#">BUNDLE STATIONS</a></li>
-                                                    <li><a class="dropdown-item" href="#">THINKCENTRE</a></li>
-                                                    <li><a class="dropdown-item" href="#">PRELOAD TYPE STANDAR</a></li>
-                                                    <li><a class="dropdown-item" href="#">TV SMART</a></li>
-                                                    <li><a class="dropdown-item" href="#">VADDIO CONFERENCE</a></li>
-                                                    <li><a class="dropdown-item" href="#">NEC MULTISYNC</a></li>
-                                                    <li><a class="dropdown-item" href="#">PURIFICADOR DE AIRE</a></li>
-                                                    <li><a class="dropdown-item" href="#">Logitech Rally Plus</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <h5 id="displayedRowCount"></h5>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+                <h1 class="h3 mb-3"><strong>Inventory</strong> List</h1>
+                <div class="row">
+                    <div class="col-12 col-lg-14 col-xxl-12 d-flex">
+                        <div class="card flex-fill">
+                            <div class="card-body mt-0">
+                                <h5 class="card-title mb-2">Options</h5>
+                                <div class="row mt-0">
+                                    <div class="col-6 col-sm-auto">
+                                        <a class="btn btn-primary btn-lg btn-block mb-2 mb-sm-0" href="../inventory/create.php" style="width: 160px" ;>Add New Item</a>
+                                    </div>
+                                    <div class="col-6 col-sm-auto">
+                                        <a class="btn btn-lg btn-primary btn-block" href="../inventory/create-category.php" style="width: 160px" ;>Add New Category</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-14 col-xxl-12 d-flex">
+                        <div class="card flex-fill">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+                                    </div>
+                                    <div class="col-sm-6 d-flex justify-content-center justify-content-sm-end">
+                                        <div class="dropdown-center">
+                                            <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c;">
+                                                Categories
+                                            </button>
+                                            <ul class="dropdown-menu" id="categoryDropdown">
+                                                <?php
+                                                include '../../db/config.php';
+
+                                                $query = "SELECT * FROM categories";
+                                                $categories = $connection->query($query);
+
+                                                // In case the query failed
+                                                if (!$categories) {
+                                                    die("Invalid query: " . $$connection->error);
+                                                }
+
+                                                while ($category = $categories->fetch_assoc()) {
+                                                    echo "
+                                                        <li><a class='dropdown-item'>" . $category["Category"] . "</a></li>
+                                                ";
+                                                }
+                                                ?>
+                                            </ul>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-14 col-xxl-12 d-flex">
+                        <div class="card flex-fill">
+                            <div class="card-header">
+                                <div class="row mt-3">
+                                    <span class="badge badge-dark responsive-badge fs-5 p-2" id="displayedRowCount"></span>
                                 </div>
 
-
-                                <div class="table-container">
-                                    <table id="InventoryTable" class="table my-0 border-secondary">
-                                        <thead>
-                                            <tr>
-                                                <th>Description</th>
-                                                <th>PTag</th>
-                                                <th>GN</th>
-                                                <th>Model</th>
-                                                <th>Serial No</th>
-                                                <th>Fund</th>
-                                                <th>AC</th>
-                                                <th>CL</th>
-                                                <th>F</th>
-                                                <th>AQU</th>
-                                                <th>ST</th>
-                                                <th>Acquisition</th>
-                                                <th>Received</th>
-                                                <th>Doc No</th>
-                                                <th>Amt</th>
-                                                <th>Location</th>
-                                                <th>Options</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            include '../../db/config.php';
-
-                                            $query = "SELECT * FROM inventario ORDER BY id DESC";
-                                            $equipos = $connection->query($query);
-
-                                            // In case the query failed
-                                            if (!$equipos) {
-                                                die("Invalid query: " . $$connection->error);
-                                            }
+                            </div>
 
 
+                            <div class="table-container">
+                                <table id="InventoryTable" class="table my-0 border-secondary">
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>PTag</th>
+                                            <th>GN</th>
+                                            <th>Model</th>
+                                            <th>Serial No</th>
+                                            <th>Fund</th>
+                                            <th>AC</th>
+                                            <th>CL</th>
+                                            <th>F</th>
+                                            <th>AQU</th>
+                                            <th>ST</th>
+                                            <th>Acquisition</th>
+                                            <th>Received</th>
+                                            <th>Doc No</th>
+                                            <th>Amt</th>
+                                            <th>Location</th>
+                                            <th>Options</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        include '../../db/config.php';
 
-                                            // Reads data and also checks if the field value is empty.
-                                            // In case the field is empty, it'll display N/A on the table,
-                                            // to avoid having empty spaces on the table. 
-                                            // Empty spaces make the table collapse/wrap a field into another.
-                                            while ($equipo = $equipos->fetch_assoc()) {
-                                                echo "
+                                        $query = "SELECT * FROM inventario ORDER BY id DESC";
+                                        $equipos = $connection->query($query);
+
+                                        // In case the query failed
+                                        if (!$equipos) {
+                                            die("Invalid query: " . $$connection->error);
+                                        }
+
+
+
+                                        // Reads data and also checks if the field value is empty.
+                                        // In case the field is empty, it'll display N/A on the table,
+                                        // to avoid having empty spaces on the table. 
+                                        // Empty spaces make the table collapse/wrap a field into another.
+                                        while ($equipo = $equipos->fetch_assoc()) {
+                                            echo "
                                                <tr>
                                                <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
                                                <td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
@@ -153,40 +178,40 @@
                                                 </td>
                                            </tr>
                                                ";
-                                            }
+                                        }
 
-                                            $connection->close();
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        $connection->close();
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
-            <!-- Modal -->
-            <div class="modal fade" id="itemDeletionModal" tabindex="-1" aria-labelledby="itemDeletionModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="itemDeletionModalLabel">Confirm Deletion</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>You are about to delete this item. This action cannot be undone.</p>
-                            <p>Are you sure you want to proceed?</p>
-                            <input type="hidden" id="itemIdToDelete" name="deleteItemId">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Confirm</button>
-                        </div>
+            </div>
+        </main>
+        <!-- Modal -->
+        <div class="modal fade" id="itemDeletionModal" tabindex="-1" aria-labelledby="itemDeletionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="itemDeletionModalLabel">Confirm Deletion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to delete this item. This action cannot be undone.</p>
+                        <p>Are you sure you want to proceed?</p>
+                        <input type="hidden" id="itemIdToDelete" name="deleteItemId">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Confirm</button>
                     </div>
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
     </div>
 

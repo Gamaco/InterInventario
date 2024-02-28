@@ -2,82 +2,113 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
-    <meta name="description" content="Sistema de Inventario">
-    <meta name="author" content="Inter Bayamon">
-    <meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
+	<meta name="description" content="Sistema de Inventario">
+	<meta name="author" content="Inter Bayamon">
+	<meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-    <title>Index - IELS</title>
+	<title>Index - IELS</title>
 	<link rel="stylesheet" , href="../../css/inventory.css">
-    <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
-    <!-- Bootstrap added locally -->
-    <link href="../../css/app.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<!-- Font Awesome CSS -->
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+	<!-- Bootstrap added locally -->
+	<link href="../../css/app.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body draggable="false">
-	<?php $activePage = 'loans'; include '../components/sidebar.php'; ?>
+	<?php $activePage = 'loans';
+	include '../components/sidebar.php'; ?>
 
-        <div class="main">
-        <?php include '../components/navbar.php'; ?>
+	<div class="main">
+		<?php include '../components/navbar.php'; ?>
 
-			<main class="content">
-				<div class="container-fluid p-0">
-					
-						<h1 class="h3 mb-3"><strong>Active</strong> Loans</h1>
+		<main class="content">
+			<div class="container-fluid p-0">
 
-						<div class="row">
-							<div class="col-12 col-lg-15 col-xxl-12 d-flex">
-								<div class="card flex-fill">
-									<div class="card-header">
-										<div class="d-flex mt-3 mb-3">
-											<div class="input-group">
-												<input type="text" id="searchInput" class="form-control" placeholder="Search">
-											</div>
-										</div>
-										<div class="col-auto text-center text-md-start">
-											<a class="btn btn-primary mb-2" href="./create.php">Create New Loan
-											</a></td>
+				<h1 class="h3 mb-3"><strong>Active</strong> Loans</h1>
+
+				<div class="row">
+					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
+						<div class="card flex-fill">
+							<div class="card-header">
+								<div class="d-flex mt-3 mb-3">
+									<div class="input-group">
+										<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
+									</div>
+								</div>
+								<div class="col-auto text-center text-md-start">
+									<div class="d-flex mt-4">
+										<a class="btn btn-primary btn-lg me-2" href="./create.php">Create New Loan</a></td>
+										<div class="dropdown-center">
+											<button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c;">
+												Categories
+											</button>
+											<ul class="dropdown-menu" id="categoryDropdown">
+											<?php
+                                                include '../../db/config.php';
+
+                                                $query = "SELECT * FROM categories";
+                                                $categories = $connection->query($query);
+
+                                                // In case the query failed
+                                                if (!$categories) {
+                                                    die("Invalid query: " . $$connection->error);
+                                                }
+
+                                                while ($category = $categories->fetch_assoc()) {
+                                                    echo "
+                                                        <li><a class='dropdown-item'>" . $category["Category"] . "</a></li>
+                                                ";
+                                                }
+
+												$connection->close();
+                                                ?>
+											</ul>
 										</div>
 									</div>
-									<table id="dataTable" class="table table-hover my-0">
-										<thead>
-											<tr>
-												<th>DESCRIPTION</th>
-												<th>LOAN TO</th>
-												<th>LOANER AUTH</th>
-												<th>PTAG</th>
-												<th>STATUS</th>
-												<th>START DATE</th>
-												<th>END DATE</th>
-												<th>OPTIONS</th>
-											</tr>
-										</thead>
-										<tbody>
-										<?php
-                                            include '../../db/config.php';
+									<div class="row mt-3">
+										<span class="badge badge-secondary responsive-badge fs-5" id="displayedRowCount"></span>
+									</div>
+								</div>
+							</div>
+							<table id="InventoryTable" class="table table-hover my-0">
+								<thead>
+									<tr>
+										<th>Category</th>
+										<th>LOAN TO</th>
+										<th>LOANER AUTH</th>
+										<th>PTAG</th>
+										<th>STATUS</th>
+										<th>START DATE</th>
+										<th>END DATE</th>
+										<th>OPTIONS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									include '../../db/config.php';
 
-                                            // Query searches for the item description in the inventario table.
-                                            $query = "SELECT prestamos.*, inventario.Description AS ItemDescription
+									// Query searches for the item description in the inventario table.
+									$query = "SELECT prestamos.*, inventario.Description AS ItemDescription
                                             FROM prestamos
                                             LEFT JOIN inventario ON prestamos.Ptag = inventario.Ptag
                                             ORDER BY prestamos.id DESC";
 
-                                            $prestamos = $connection->query($query);
+									$prestamos = $connection->query($query);
 
-                                            // In case the query failed
-                                            if (!$prestamos) {
-                                                die("Invalid query: " . $$connection->error);
-                                            }
+									// In case the query failed
+									if (!$prestamos) {
+										die("Invalid query: " . $$connection->error);
+									}
 
-											while ($prestamo = $prestamos->fetch_assoc()) {
-                                                echo "
+									while ($prestamo = $prestamos->fetch_assoc()) {
+										echo "
 											<tr>
 												<td data-label='Description'>" . ($prestamo['ItemDescription'] ? $prestamo['ItemDescription'] : 'N/A') . "</td>
 												<td data-label='Loan To'>" . ($prestamo['LOAN_TO'] ? $prestamo['LOAN_TO'] : 'N/A') . "</td>
@@ -93,24 +124,24 @@
 												</td>
 											</tr>
 											";
-											}
+									}
 
-										$connection->close();
-										?>
-										</tbody>
-									</table>
-								</div>
-							</div>
+									$connection->close();
+									?>
+								</tbody>
+							</table>
 						</div>
-
 					</div>
-			</main>
+				</div>
 
-		</div>
+			</div>
+		</main>
+
+	</div>
 	</div>
 
 	<script src="../../js/app.js"></script>
-	<script src="../../js/index.js"></script>
+	<script src="../../js/inventory.js"></script>
 </body>
 
 </html>

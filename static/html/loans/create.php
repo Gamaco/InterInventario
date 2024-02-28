@@ -133,7 +133,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body draggable="false">
-	<?php $activePage = 'loans'; include '../components/sidebar.php'; ?>
+	<?php $activePage = 'loans';
+	include '../components/sidebar.php'; ?>
 
 	<div class="main">
 		<?php include '../components/navbar.php'; ?>
@@ -244,43 +245,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: red;"></button>
 				</div>
 				<div class="modal-body">
-					<div class="d-flex flex-column justify-content-between align-items-start flex-wrap">
+					<div class="d-flex flex-column justify-content-between align-items-center flex-wrap">
 						<div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
 							<input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
 						</div>
-						<div class="d-flex mt-4">
-							<div class="dropdown-center">
-								<button class="btn btn-success dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c !important;">
+						<div class="d-flex mt-4 justify-content-center">
+							<div class="dropdown-center mb-3">
+								<button class="btn btn-primary btn-lg dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Categories
 								</button>
 								<ul class="dropdown-menu" id="categoryDropdown">
-									<li><a class="dropdown-item" href="#">All Categories</a></li>
-									<li><a class="dropdown-item" href="#">PC LENOVO</a></li>
-									<li><a class="dropdown-item" href="#">THINKSTATION</a></li>
-									<li><a class="dropdown-item" href="#">ESTACION DE TRABAJO</a></li>
-									<li><a class="dropdown-item" href="#">PODIUM</a></li>
-									<li><a class="dropdown-item" href="#">HIDDEN POWER CENTER</a></li>
-									<li><a class="dropdown-item" href="#">MINI DESKTOP</a></li>
-									<li><a class="dropdown-item" href="#">IBM LENOVO</a></li>
-									<li><a class="dropdown-item" href="#">Computers</a></li>
-									<li><a class="dropdown-item" href="#">STORAGE CIBER LABS</a></li>
-									<li><a class="dropdown-item" href="#">ACCU SCOPE - ZOOM ST</a></li>
-									<li><a class="dropdown-item" href="#">TABLEAU TX1</a></li>
-									<li><a class="dropdown-item" href="#">ULTIMAKER S3 - 3D PR</a></li>
-									<li><a class="dropdown-item" href="#">HOT MELT</a></li>
-									<li><a class="dropdown-item" href="#">AUTO POLICHER KIT</a></li>
-									<li><a class="dropdown-item" href="#">BUNDLE STATIONS</a></li>
-									<li><a class="dropdown-item" href="#">THINKCENTRE</a></li>
-									<li><a class="dropdown-item" href="#">PRELOAD TYPE STANDAR</a></li>
-									<li><a class="dropdown-item" href="#">TV SMART</a></li>
-									<li><a class="dropdown-item" href="#">VADDIO CONFERENCE</a></li>
-									<li><a class="dropdown-item" href="#">NEC MULTISYNC</a></li>
-									<li><a class="dropdown-item" href="#">PURIFICADOR DE AIRE</a></li>
-									<li><a class="dropdown-item" href="#">Logitech Rally Plus</a></li>
+									<?php
+									include '../../db/config.php';
+
+									$query = "SELECT * FROM categories";
+									$categories = $connection->query($query);
+
+									// In case the query failed
+									if (!$categories) {
+										die("Invalid query: " . $connection->error);
+									}
+
+									while ($category = $categories->fetch_assoc()) {
+										echo "
+                        					<li><a class='dropdown-item'>" . $category["Category"] . "</a></li>
+                    					";
+									}
+									?>
 								</ul>
 							</div>
 						</div>
 					</div>
+
 					<div class="table-container">
 						<table id="InventoryTable" class="table my-0 border-secondary fs-6">
 							<thead>

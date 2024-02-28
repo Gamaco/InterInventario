@@ -14,7 +14,7 @@ document.getElementById('searchInput').addEventListener('input', function () {
 
   if (!searchText == "") {
     // Update the counter element in your HTML
-    document.getElementById('displayedRowCount').textContent = "Showing " + displayedRowCount + " of " + tableRows.length + " entries for \'" + searchText.toUpperCase() + "'";
+    document.getElementById('displayedRowCount').textContent = displayedRowCount + " items found for \'" + searchText.toUpperCase() + "'";
   } else {
     document.getElementById('displayedRowCount').textContent = "";
   }
@@ -68,7 +68,7 @@ function filterTable(filterText) {
 
   if (!(filterText == "all categories")) {
     // Update the counter element in your HTML
-    document.getElementById('displayedRowCount').textContent = "Showing " + displayedRowCount + " of " + tableRows.length + " entries for \'" + filterText.toUpperCase() + "'";
+    document.getElementById('displayedRowCount').textContent = displayedRowCount + " items found for \'" + filterText.toUpperCase() + "'";
   } else {
     document.getElementById('displayedRowCount').textContent = "";
   }
