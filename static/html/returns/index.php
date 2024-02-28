@@ -60,30 +60,41 @@
 									<?php
 									include '../../db/config.php';
 
+									// Prepare the SQL statement
 									$query = "SELECT * FROM returns ORDER BY id DESC";
-									$equipos = $connection->query($query);
+									$statement = $connection->prepare($query);
 
-									// In case the query failed
+									// Execute the statement
+									$statement->execute();
+
+									// Get the result set
+									$equipos = $statement->get_result();
+
+									// Check for errors
 									if (!$equipos) {
 										die("Invalid query: " . $connection->error);
 									}
 
+									// Output the results
 									while ($equipo = $equipos->fetch_assoc()) {
 										echo "
-        										<tr>
-            									<td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
-            									<td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
-            									<td data-label='Student ID'>" . ($equipo['Student_ID'] ? $equipo['Student_ID'] : 'N/A') . "</td>
-            									<td data-label='Condition'>" . ($equipo['Item_Cond'] ? $equipo['Item_Cond'] : 'N/A') . "</td>
-            									<td data-label='Comments'>" . ($equipo['Comments'] ? $equipo['Comments'] : 'N/A') . "</td>
-            									<td>
-                								<a class='btn btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#itemCompletionModal' data-item-id='{$equipo['id']}'>Complete</a>
-            									</td>
-        										</tr>";
+        									<tr>
+            								<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
+            								<td data-label='PTag'>" . htmlspecialchars($equipo['Ptag'] ?? 'N/A') . "</td>
+           									<td data-label='Student ID'>" . htmlspecialchars($equipo['Student_ID'] ?? 'N/A') . "</td>
+            								<td data-label='Condition'>" . htmlspecialchars($equipo['Item_Cond'] ?? 'N/A') . "</td>
+            								<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
+            								<td>
+                							<a class='btn btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#itemCompletionModal' data-item-id='" . htmlspecialchars($equipo['id']) . "'>Complete</a>
+            								</td>
+        									</tr>";
 									}
 
+									// Close the connection
+									$statement->close();
 									$connection->close();
 									?>
+
 
 								</tbody>
 							</table>

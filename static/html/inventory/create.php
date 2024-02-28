@@ -289,24 +289,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         function validateForm() {
             // Get the value of the inputs
-            var description = document.getElementById('description').value;
-            var model = document.getElementById('model').value;
-            var Serial_No = document.getElementById('Serial_No').value;
-            var Location = document.getElementById('Location').value;
+            var des = document.getElementById('description').value;
+            var mod = document.getElementById('model').value;
+            var Ser = document.getElementById('Serial_No').value;
+            var Loc = document.getElementById('Location').value;
 
-            if (description.trim() === '') {
+            if (des.trim() === '') {
                 alert('Description is empty');
                 return false;
             }
-            if (model.trim() === '') {
+            if (mod.trim() === '') {
                 alert('model is empty');
                 return false;
             }
-            if (Serial_No.trim() === '') {
+            if (Ser.trim() === '') {
                 alert('Serial_No is empty');
                 return false;
             }
-            if (Location.trim() === '') {
+            if (Loc.trim() === '') {
                 alert('Location is empty');
                 return false;
             }
