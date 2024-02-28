@@ -120,7 +120,7 @@
 												<td data-label='Start Date'>" . ($prestamo['START_DATE'] ? $prestamo['START_DATE'] : 'N/A') . "</td>
 												<td data-label='End Date'>" . ($prestamo['END_DATE'] ? $prestamo['END_DATE'] : 'N/A') . "</td>
 												<td data-label='Options'>
-													<button class='btn btn-success mb-2'>Return</button>
+													<button class='btn btn-primary btn-lg mb-2'>Return</button>
 												</td>
 											</tr>
 											";

@@ -77,7 +77,7 @@
             									<td data-label='Condition'>" . ($equipo['Item_Cond'] ? $equipo['Item_Cond'] : 'N/A') . "</td>
             									<td data-label='Comments'>" . ($equipo['Comments'] ? $equipo['Comments'] : 'N/A') . "</td>
             									<td>
-                								<a class='btn btn-success' style='width: 80px;' data-bs-toggle='modal' data-bs-target='#itemCompletionModal' data-item-id='{$equipo['id']}'>Return</a>
+                								<a class='btn btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#itemCompletionModal' data-item-id='{$equipo['id']}'>Complete</a>
             									</td>
         										</tr>";
 									}

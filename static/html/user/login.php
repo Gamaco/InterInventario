@@ -57,7 +57,7 @@
                                             </div>
                                         </div>
                                         <div class="d-grid gap-2 mt-3">
-                                            <a href="../dashboard.php" class="btn btn-lg btn-primary">Sign in</a>
+                                            <a href="../components/dashboard.php" class="btn btn-lg btn-primary">Sign in</a>
                                         </div>
                                     </form>
                                 </div>

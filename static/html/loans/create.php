@@ -167,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 											<label class="form-label" for="PTAG">PTAG</label>
 											<div class="input-group mb-3">
 												<button class="btn btn-primary btn-outline-secondary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
-												<input type="text" name="Ptag" id="PTAG" class="form-control" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
+												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
 											</div>
 										</div>
 									</div>
@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<div class="modal-body">
 					<div class="d-flex flex-column justify-content-between align-items-center flex-wrap">
 						<div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
-							<input type="text" id="searchInput" class="form-control me-2" placeholder="Search e.g. Y00109987">
+							<input type="text" id="searchInput" class="form-control me-2 fs-4" placeholder="Search e.g. Y00109987">
 						</div>
 						<div class="d-flex mt-4 justify-content-center">
 							<div class="dropdown-center mb-3">
