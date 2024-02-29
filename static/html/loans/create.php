@@ -176,9 +176,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="ptag">LOAN TO</label>
+											<label class="form-label" for="LOAN_TO">LOAN TO</label>
 											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo $LOAN_TO; ?>" />
+												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo htmlspecialchars($LOAN_TO); ?>" />
 											</div>
 										</div>
 									</div>
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="LOANER_AUTH">LOANER AUTH</label>
 											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo $LOANER_AUTH; ?>" />
+												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo htmlspecialchars($LOANER_AUTH); ?>" />
 											</div>
 										</div>
 									</div>
@@ -200,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="START_DATE">START DATE</label>
 											<div class="mb-3">
-												<input type="date" name="START_DATE" id="START_DATE" class="form-control" value="<?php echo $START_DATE; ?>">
+												<input type="date" name="START_DATE" id="START_DATE" class="form-control" value="<?php echo htmlspecialchars($START_DATE); ?>">
 											</div>
 										</div>
 									</div>
@@ -211,11 +211,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="END_DATE">END DATE</label>
 											<div class="mb-3">
-												<input type="date" name="END_DATE" id="END_DATE" class="form-control" value="<?php echo $END_DATE; ?>">
+												<input type="date" name="END_DATE" id="END_DATE" class="form-control" value="<?php echo htmlspecialchars($END_DATE); ?>">
 											</div>
 										</div>
 									</div>
 								</div>
+
 								<!-- Button container with centering classes -->
 								<div class="justify-content-center">
 									<div class="row">
@@ -300,8 +301,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								if (!$equipos) {
 									die("Invalid query: " . $$connection->error);
 								}
-
-
 
 								// Read data
 								while ($equipo = $equipos->fetch_assoc()) {

@@ -2,18 +2,7 @@
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "interloanhub";
-
-    // Connection
-    $connection = new mysqli($servername, $username, $password, $database);
-
-    // Check connection
-    if ($connection->connect_error) {
-        die("Connection failed: " . $connection->connect_error);
-    }
+    include '../../db/config.php';
 
     // Sanitize the ID to prevent SQL injection
     $id = $connection->real_escape_string($id);

@@ -1,3 +1,79 @@
+<?php
+include '../../db/config.php';
+
+$PTag = $Description = $Comments = $Condition = "";
+$errorMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+	// Validate and sanitize user inputs
+	$PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
+
+	do {
+		// Add a new item to the database using prepared statements
+		$queryInsert = "INSERT INTO returns (Description, PTag, Item_Cond, Comments) VALUES (?, ?, ?, ?)";
+
+		// Prepare the statement
+		$stmtInsert = $connection->prepare($queryInsert);
+
+		if (!$stmtInsert) {
+			$errorMessage = "Error preparing statement: " . $connection->error;
+			break;
+		}
+
+		// Bind parameters
+		$stmtInsert->bind_param("ssss", $Description, $PTag, $Condition, $Comments);
+
+		// Execute the statement
+		$resultInsert = $stmtInsert->execute();
+
+		if (!$resultInsert) {
+			$errorMessage = "Error executing statement: " . $stmtInsert->error;
+			break;
+		}
+
+		// Close the statement
+		$stmtInsert->close();
+
+		// Delete the row from the prestamos table
+		$queryDelete = "DELETE FROM prestamos WHERE PTag = ?";
+
+		// Prepare the statement
+		$stmtDelete = $connection->prepare($queryDelete);
+
+		if (!$stmtDelete) {
+			$errorMessage = "Error preparing statement: " . $connection->error;
+			break;
+		}
+
+		// Bind parameter
+		$stmtDelete->bind_param("s", $PTag);
+
+		// Execute the statement
+		$resultDelete = $stmtDelete->execute();
+
+		if (!$resultDelete) {
+			$errorMessage = "Error executing statement: " . $stmtDelete->error;
+			break;
+		}
+
+		// Close the statement
+		$stmtDelete->close();
+
+		// Close the connection
+		$connection->close();
+
+		header("location: ../loans/index.php");
+		exit;
+	} while (false);
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,33 +121,47 @@
 								<div class="col-auto text-center text-md-start">
 									<div class="d-flex mt-4">
 										<a class="btn btn-primary btn-lg me-2" href="./create.php">Create New Loan</a></td>
+										<!-- Dropdown for categories -->
 										<div class="dropdown-center">
 											<button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c;">
 												Categories
 											</button>
 											<ul class="dropdown-menu" id="categoryDropdown">
-											<?php
-                                                include '../../db/config.php';
+												<?php
+												include '../../db/config.php';
 
-                                                $query = "SELECT * FROM categories";
-                                                $categories = $connection->query($query);
+												$query = "SELECT * FROM categories";
+												$categories = $connection->query($query);
 
-                                                // In case the query failed
-                                                if (!$categories) {
-                                                    die("Invalid query: " . $$connection->error);
-                                                }
+												// In case the query failed
+												if (!$categories) {
+													die("Invalid query: " . $$connection->error);
+												}
 
-                                                while ($category = $categories->fetch_assoc()) {
-                                                    echo "
+												while ($category = $categories->fetch_assoc()) {
+													echo "
                                                         <li><a class='dropdown-item'>" . $category["Category"] . "</a></li>
                                                 ";
-                                                }
+												}
 
 												$connection->close();
-                                                ?>
+												?>
 											</ul>
 										</div>
 									</div>
+									<?php
+							if (!empty($errorMessage)) {
+								echo "
+                                    <div class='container-fluid bg-danger mt-1 mb-1 bg-opacity-10'>
+                                        <div class='alert text-danger alert-dismissible fs-4 fade show mb-5 d-flex justify-content-between' role='alert'>
+                                        <strong> $errorMessage </strong>
+                                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                     </div>
+                                    </div>
+
+                                    ";
+							}
+							?>
 									<div class="row mt-3">
 										<span class="badge badge-secondary responsive-badge fs-5" id="displayedRowCount"></span>
 									</div>
@@ -80,7 +170,7 @@
 							<table id="InventoryTable" class="table table-hover my-0">
 								<thead>
 									<tr>
-										<th>Category</th>
+										<th>Description</th>
 										<th>LOAN TO</th>
 										<th>LOANER AUTH</th>
 										<th>PTAG</th>
@@ -94,38 +184,47 @@
 									<?php
 									include '../../db/config.php';
 
-									// Query searches for the item description in the inventario table.
+									// Query to fetch loan details with item description
 									$query = "SELECT prestamos.*, inventario.Description AS ItemDescription
-                                            FROM prestamos
-                                            LEFT JOIN inventario ON prestamos.Ptag = inventario.Ptag
-                                            ORDER BY prestamos.id DESC";
+          									  FROM prestamos
+         									  LEFT JOIN inventario ON prestamos.Ptag = inventario.Ptag
+          									  ORDER BY prestamos.id DESC";
 
-									$prestamos = $connection->query($query);
+									// Prepare the SQL statement
+									$stmt = $connection->prepare($query);
 
-									// In case the query failed
+									// Execute the statement
+									$stmt->execute();
+
+									// Get the result set
+									$prestamos = $stmt->get_result();
+
+									// Check for errors
 									if (!$prestamos) {
-										die("Invalid query: " . $$connection->error);
+										die("Invalid query: " . $connection->error);
 									}
 
+									// Output the loan details
 									while ($prestamo = $prestamos->fetch_assoc()) {
 										echo "
-											<tr>
-												<td data-label='Description'>" . ($prestamo['ItemDescription'] ? $prestamo['ItemDescription'] : 'N/A') . "</td>
-												<td data-label='Loan To'>" . ($prestamo['LOAN_TO'] ? $prestamo['LOAN_TO'] : 'N/A') . "</td>
-												<td data-label='Loaner Auth'>" . ($prestamo['LOANER_AUTH'] ? $prestamo['LOANER_AUTH'] : 'N/A') . "</td>
-												<td data-label='PTag'>" . ($prestamo['PTag'] ? $prestamo['PTag'] : 'N/A') . "</td>
-												<td data-label='Status'>
-												<span class='badge bg-warning'>In Progress</span>
-												</td>
-												<td data-label='Start Date'>" . ($prestamo['START_DATE'] ? $prestamo['START_DATE'] : 'N/A') . "</td>
-												<td data-label='End Date'>" . ($prestamo['END_DATE'] ? $prestamo['END_DATE'] : 'N/A') . "</td>
-												<td data-label='Options'>
-													<button class='btn btn-primary btn-lg mb-2'>Return</button>
-												</td>
-											</tr>
-											";
+        									<tr>
+            								<td data-label='Description'>" . htmlspecialchars($prestamo['ItemDescription'] ?? 'N/A') . "</td>
+            								<td data-label='Loan To'>" . htmlspecialchars($prestamo['LOAN_TO'] ?? 'N/A') . "</td>
+            								<td data-label='Loaner Auth'>" . htmlspecialchars($prestamo['LOANER_AUTH'] ?? 'N/A') . "</td>
+            								<td data-label='PTag'>" . htmlspecialchars($prestamo['PTag'] ?? 'N/A') . "</td>
+            								<td data-label='Status'>
+                								<span class='badge bg-warning'>In Progress</span>
+            								</td>
+            								<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
+            								<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
+           									<td data-label='Options'>
+											<a class='btn btn-primary' style='width: 80px;' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='$prestamo[PTag]' data-item-description='$prestamo[ItemDescription]'>Return</a>
+           									</td>
+       										</tr>";
 									}
 
+									// Close the statement and connection
+									$stmt->close();
 									$connection->close();
 									?>
 								</tbody>
@@ -137,9 +236,79 @@
 			</div>
 		</main>
 
-	</div>
+		<!-- Modal -->
+		<div class="modal fade" id="itemReturnModal" tabindex="-1" aria-labelledby="itemReturnModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="itemReturnModalLabel">Confirm Return</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form id="submit" method="post">
+							<div class="row flex-wrap">
+								<div class="col-12 col-md mb-3">
+									<div data-mdb-input-init class="form-outline">
+										<label class="form-label" for="PTAG">PTag</label>
+										<input type="text" name="PTag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput" value="<?php echo htmlspecialchars($PTag); ?>">
+									</div>
+								</div>
+							</div>
+
+							<div class="row flex-wrap">
+								<div class="col-12 col-md mb-3">
+									<div data-mdb-input-init class="form-outline">
+										<label class="form-label" for="Description">Description</label>
+										<input type="text" name="Description" id="Description" class="form-control fs-4" aria-describedby="Description" value="<?php echo htmlspecialchars($Description); ?>">
+									</div>
+								</div>
+							</div>
+
+							<div class="row flex-wrap">
+								<div class="col-12 col-md mb-3">
+									<div data-mdb-input-init class="form-outline">
+										<label for="comments" class="form-label">Comments</label>
+										<textarea class="form-control" id="comments" name="Comments" rows="3"><?php echo htmlspecialchars($Comments); ?></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class="row flex-wrap">
+								<div class="col-12 col-md mb-3">
+									<div data-mdb-input-init class="form-outline">
+										<label class="form-label" for="Condition">Condition</label>
+										<div data-mdb-input-init class="form-outline">
+											<input type="hidden" id="condition" name="condition" value="Good">
+											<div class="dropdown-center mb-3">
+												<button id="conditionDropdownButton" class="btn btn-primary btn-lg dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+													Good
+												</button>
+												<ul class="dropdown-menu" id="conditionDropdownMenu">
+													<li><a class='dropdown-item'>Good</a></li>
+													<li><a class='dropdown-item'>Damaged</a></li>
+													<li><a class='dropdown-item'>Incomplete</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+								<button type="submit" class="btn btn-success" id="confirmDeleteBtn">Confirm</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="../../js/loans-index.js"></script>
 	<script src="../../js/app.js"></script>
 	<script src="../../js/inventory.js"></script>
 </body>

@@ -75,7 +75,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <h1 class="mt-1 mb-3">17</h1>
+                            <?php
+                            include '../../db/config.php';
+
+                            $query = "SELECT COUNT(*) AS TotalItems FROM returns";
+                            $result = $connection->query($query);
+
+                            if ($result) {
+                                $row = $result->fetch_assoc();
+                                $totalItems = $row['TotalItems'];
+                            } else {
+                                die("Invalid query: " . $connection->error);
+                            }
+                            echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+                            ?>
                             <div class="mb-0">
                                 <a class="btn btn-lg btn-success mb-2" href="../returns/index.php" style="background-color: #00973c !important;">View Returns</a>
                             </div>

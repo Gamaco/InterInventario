@@ -50,7 +50,6 @@
 									<tr>
 										<th>Description</th>
 										<th>PTag</th>
-										<th>Student ID</th>
 										<th>Condition</th>
 										<th>Comments</th>
 										<th>Options</th>
@@ -80,8 +79,7 @@
 										echo "
         									<tr>
             								<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
-            								<td data-label='PTag'>" . htmlspecialchars($equipo['Ptag'] ?? 'N/A') . "</td>
-           									<td data-label='Student ID'>" . htmlspecialchars($equipo['Student_ID'] ?? 'N/A') . "</td>
+            								<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
             								<td data-label='Condition'>" . htmlspecialchars($equipo['Item_Cond'] ?? 'N/A') . "</td>
             								<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
             								<td>

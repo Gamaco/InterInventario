@@ -105,14 +105,14 @@
                         <div class="card flex-fill">
                             <div class="card-header">
                                 <div class="row mt-3">
-                                    <span class="badge badge-dark responsive-badge fs-5 p-2" id="displayedRowCount"></span>
+                                    <span class="badge badge-secondary responsive-badge fs-5 p-2" id="displayedRowCount"></span>
                                 </div>
 
                             </div>
 
 
                             <div class="table-container">
-                                <table id="InventoryTable" class="table my-0 border-secondary">
+                                <table id="InventoryTable" class="table my-0 table-hover border-secondary">
                                     <thead>
                                         <tr>
                                             <th>Category</th>
@@ -225,7 +225,7 @@
     <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
     <script>
         var itemDeletionModal = document.getElementById('itemDeletionModal');
-        itemDeletionModal.addEventListener('show.bs.modal', function(event) {
+            itemDeletionModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget; // Button that triggered the modal
             var itemId = button.getAttribute('data-item-id'); // Extract info from data-* attributes
             var modal = this;
