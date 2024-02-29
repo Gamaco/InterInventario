@@ -77,16 +77,17 @@
 									// Output the results
 									while ($equipo = $equipos->fetch_assoc()) {
 										echo "
-        									<tr>
-            								<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
-            								<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
-            								<td data-label='Condition'>" . htmlspecialchars($equipo['Item_Cond'] ?? 'N/A') . "</td>
-            								<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
-            								<td>
-                							<a class='btn btn-primary btn-lg' data-bs-toggle='modal' data-bs-target='#itemCompletionModal' data-item-id='" . htmlspecialchars($equipo['id']) . "'>Complete</a>
-            								</td>
-        									</tr>";
+											<tr>
+												<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
+												<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
+												<td data-label='Condition'>" . htmlspecialchars($equipo['Item_Cond'] ?? 'N/A') . "</td>
+												<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
+												<td>
+													<a class='btn btn-primary btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
+												</td>							
+											</tr>";
 									}
+									
 
 									// Close the connection
 									$statement->close();

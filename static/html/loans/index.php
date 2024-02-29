@@ -6,71 +6,78 @@ $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	// Validate and sanitize user inputs
-	$PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
+    // Validate and sanitize user inputs
+    $PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
 
-	do {
-		// Add a new item to the database using prepared statements
-		$queryInsert = "INSERT INTO returns (Description, PTag, Item_Cond, Comments) VALUES (?, ?, ?, ?)";
+    if ($Condition !== 'Good') {
+        // Proceed with insertion only if condition is not 'Good'
 
-		// Prepare the statement
-		$stmtInsert = $connection->prepare($queryInsert);
+        do {
+            // Add a new item to the database using prepared statements
+            $queryInsert = "INSERT INTO returns (Description, PTag, Item_Cond, Comments) VALUES (?, ?, ?, ?)";
 
-		if (!$stmtInsert) {
-			$errorMessage = "Error preparing statement: " . $connection->error;
-			break;
-		}
+            // Prepare the statement
+            $stmtInsert = $connection->prepare($queryInsert);
 
-		// Bind parameters
-		$stmtInsert->bind_param("ssss", $Description, $PTag, $Condition, $Comments);
+            if (!$stmtInsert) {
+                $errorMessage = "Error preparing statement: " . $connection->error;
+                break;
+            }
 
-		// Execute the statement
-		$resultInsert = $stmtInsert->execute();
+            // Bind parameters
+            $stmtInsert->bind_param("ssss", $Description, $PTag, $Condition, $Comments);
 
-		if (!$resultInsert) {
-			$errorMessage = "Error executing statement: " . $stmtInsert->error;
-			break;
-		}
+            // Execute the statement
+            $resultInsert = $stmtInsert->execute();
 
-		// Close the statement
-		$stmtInsert->close();
+            if (!$resultInsert) {
+                $errorMessage = "Error executing statement: " . $stmtInsert->error;
+                break;
+            }
 
-		// Delete the row from the prestamos table
-		$queryDelete = "DELETE FROM prestamos WHERE PTag = ?";
+            // Close the statement
+            $stmtInsert->close();
+        } while (false);
+    }
 
-		// Prepare the statement
-		$stmtDelete = $connection->prepare($queryDelete);
+    // Delete the row from the prestamos table
+    $queryDelete = "DELETE FROM prestamos WHERE PTag = ?";
 
-		if (!$stmtDelete) {
-			$errorMessage = "Error preparing statement: " . $connection->error;
-			break;
-		}
+    // Prepare the statement
+    $stmtDelete = $connection->prepare($queryDelete);
 
-		// Bind parameter
-		$stmtDelete->bind_param("s", $PTag);
+    if (!$stmtDelete) {
+        $errorMessage = "Error preparing statement: " . $connection->error;
+    } else {
+        // Bind parameter
+        $stmtDelete->bind_param("s", $PTag);
 
-		// Execute the statement
-		$resultDelete = $stmtDelete->execute();
+        // Execute the statement
+        $resultDelete = $stmtDelete->execute();
 
-		if (!$resultDelete) {
-			$errorMessage = "Error executing statement: " . $stmtDelete->error;
-			break;
-		}
+        if (!$resultDelete) {
+            $errorMessage = "Error executing statement: " . $stmtDelete->error;
+        }
 
-		// Close the statement
-		$stmtDelete->close();
+        // Close the statement
+        $stmtDelete->close();
+    }
 
-		// Close the connection
-		$connection->close();
+    // Close the connection
+    $connection->close();
 
-		header("location: ../loans/index.php");
-		exit;
-	} while (false);
+    if (!empty($errorMessage)) {
+        // Handle error
+    } else {
+        header("location: ../loans/index.php");
+        exit;
+    }
 }
 ?>
+
 
 
 
