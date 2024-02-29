@@ -58,7 +58,7 @@
                             echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
                             ?>
                             <div class="mb-0">
-                                <a class="btn btn-lg btn-success mb-2" href="../loans/index.php" style="background-color: #00973c !important;">View Loans</a>
+                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../loans/index.php" style="background-color: #00973c !important;">View Loans</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                             echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
                             ?>
                             <div class="mb-0">
-                                <a class="btn btn-lg btn-success mb-2" href="../returns/index.php" style="background-color: #00973c !important;">View Returns</a>
+                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../returns/index.php" style="background-color: #00973c !important;">View Returns</a>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                             echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
                             ?>
                             <div class="mb-0">
-                                <a class="btn btn-lg btn-success mb-2" href="../inventory/index.php" style="background-color: #00973c !important;">View Inventory</a>
+                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../inventory/index.php" style="background-color: #00973c !important;">View Inventory</a>
                             </div>
                         </div>
                     </div>

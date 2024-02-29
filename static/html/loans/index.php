@@ -6,75 +6,75 @@ $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // Validate and sanitize user inputs
-    $PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
+	// Validate and sanitize user inputs
+	$PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
 
-    if ($Condition !== 'Good') {
-        // Proceed with insertion only if condition is not 'Good'
+	if ($Condition !== 'Good') {
+		// Proceed with insertion only if condition is not 'Good'
 
-        do {
-            // Add a new item to the database using prepared statements
-            $queryInsert = "INSERT INTO returns (Description, PTag, Item_Cond, Comments) VALUES (?, ?, ?, ?)";
+		do {
+			// Add a new item to the database using prepared statements
+			$queryInsert = "INSERT INTO returns (Description, PTag, Item_Cond, Comments) VALUES (?, ?, ?, ?)";
 
-            // Prepare the statement
-            $stmtInsert = $connection->prepare($queryInsert);
+			// Prepare the statement
+			$stmtInsert = $connection->prepare($queryInsert);
 
-            if (!$stmtInsert) {
-                $errorMessage = "Error preparing statement: " . $connection->error;
-                break;
-            }
+			if (!$stmtInsert) {
+				$errorMessage = "Error preparing statement: " . $connection->error;
+				break;
+			}
 
-            // Bind parameters
-            $stmtInsert->bind_param("ssss", $Description, $PTag, $Condition, $Comments);
+			// Bind parameters
+			$stmtInsert->bind_param("ssss", $Description, $PTag, $Condition, $Comments);
 
-            // Execute the statement
-            $resultInsert = $stmtInsert->execute();
+			// Execute the statement
+			$resultInsert = $stmtInsert->execute();
 
-            if (!$resultInsert) {
-                $errorMessage = "Error executing statement: " . $stmtInsert->error;
-                break;
-            }
+			if (!$resultInsert) {
+				$errorMessage = "Error executing statement: " . $stmtInsert->error;
+				break;
+			}
 
-            // Close the statement
-            $stmtInsert->close();
-        } while (false);
-    }
+			// Close the statement
+			$stmtInsert->close();
+		} while (false);
+	}
 
-    // Delete the row from the prestamos table
-    $queryDelete = "DELETE FROM prestamos WHERE PTag = ?";
+	// Delete the row from the prestamos table
+	$queryDelete = "DELETE FROM prestamos WHERE PTag = ?";
 
-    // Prepare the statement
-    $stmtDelete = $connection->prepare($queryDelete);
+	// Prepare the statement
+	$stmtDelete = $connection->prepare($queryDelete);
 
-    if (!$stmtDelete) {
-        $errorMessage = "Error preparing statement: " . $connection->error;
-    } else {
-        // Bind parameter
-        $stmtDelete->bind_param("s", $PTag);
+	if (!$stmtDelete) {
+		$errorMessage = "Error preparing statement: " . $connection->error;
+	} else {
+		// Bind parameter
+		$stmtDelete->bind_param("s", $PTag);
 
-        // Execute the statement
-        $resultDelete = $stmtDelete->execute();
+		// Execute the statement
+		$resultDelete = $stmtDelete->execute();
 
-        if (!$resultDelete) {
-            $errorMessage = "Error executing statement: " . $stmtDelete->error;
-        }
+		if (!$resultDelete) {
+			$errorMessage = "Error executing statement: " . $stmtDelete->error;
+		}
 
-        // Close the statement
-        $stmtDelete->close();
-    }
+		// Close the statement
+		$stmtDelete->close();
+	}
 
-    // Close the connection
-    $connection->close();
+	// Close the connection
+	$connection->close();
 
-    if (!empty($errorMessage)) {
-        // Handle error
-    } else {
-        header("location: ../loans/index.php");
-        exit;
-    }
+	if (!empty($errorMessage)) {
+		// Handle error
+	} else {
+		header("location: ../loans/index.php");
+		exit;
+	}
 }
 ?>
 
@@ -157,8 +157,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										</div>
 									</div>
 									<?php
-							if (!empty($errorMessage)) {
-								echo "
+									if (!empty($errorMessage)) {
+										echo "
                                     <div class='container-fluid bg-danger mt-1 mb-1 bg-opacity-10'>
                                         <div class='alert text-danger alert-dismissible fs-4 fade show mb-5 d-flex justify-content-between' role='alert'>
                                         <strong> $errorMessage </strong>
@@ -167,8 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </div>
 
                                     ";
-							}
-							?>
+									}
+									?>
 									<div class="row mt-3">
 										<span class="badge badge-secondary responsive-badge fs-5" id="displayedRowCount"></span>
 									</div>
@@ -193,9 +193,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 									// Query to fetch loan details with item description
 									$query = "SELECT prestamos.*, inventario.Description AS ItemDescription
-          									  FROM prestamos
-         									  LEFT JOIN inventario ON prestamos.Ptag = inventario.Ptag
-          									  ORDER BY prestamos.id DESC";
+          							FROM prestamos
+          							LEFT JOIN inventario ON prestamos.Ptag = inventario.Ptag
+          							ORDER BY prestamos.id DESC";
 
 									// Prepare the SQL statement
 									$stmt = $connection->prepare($query);
@@ -213,21 +213,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 									// Output the loan details
 									while ($prestamo = $prestamos->fetch_assoc()) {
+										$startDate = strtotime($prestamo['START_DATE']);
+										$endDate = strtotime($prestamo['END_DATE']);
+										$currentDate = strtotime(date("Y-m-d")); // Get current date
+
+										// Check if the current date is past the end date or equal to it
+										if ($currentDate > $endDate || ($currentDate == $endDate && date("H:i:s") >= "23:59:59")) {
+											$status = "<span class='badge bg-danger'>Overdue</span>";
+										} else {
+											$status = "<span class='badge bg-warning'>In Progress</span>";
+										}
+
 										echo "
-        									<tr>
+        								<tr>
             								<td data-label='Description'>" . htmlspecialchars($prestamo['ItemDescription'] ?? 'N/A') . "</td>
             								<td data-label='Loan To'>" . htmlspecialchars($prestamo['LOAN_TO'] ?? 'N/A') . "</td>
             								<td data-label='Loaner Auth'>" . htmlspecialchars($prestamo['LOANER_AUTH'] ?? 'N/A') . "</td>
             								<td data-label='PTag'>" . htmlspecialchars($prestamo['PTag'] ?? 'N/A') . "</td>
-            								<td data-label='Status'>
-                								<span class='badge bg-warning'>In Progress</span>
-            								</td>
+           								    <td data-label='Status'>" . $status . "</td>
             								<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
             								<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
-           									<td data-label='Options'>
-											<a class='btn btn-primary' style='width: 80px;' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='$prestamo[PTag]' data-item-description='$prestamo[ItemDescription]'>Return</a>
-           									</td>
-       										</tr>";
+            								<td data-label='Options'>
+                								<a class='btn btn-primary rounded-5 btn-lg' style='width: 80px;' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'>Return</a>
+            								</td>
+        								</tr>";
 									}
 
 									// Close the statement and connection
