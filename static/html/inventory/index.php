@@ -173,9 +173,9 @@
                                                <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
                                                <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
                                                <td>
-                                                   <a class='btn btn-primary mb-lg-1 rounded-5 btn-lg' style='width: 100px;' href=./edit.php?id=$equipo[id]><i class='fa fa-pencil' aria-hidden='true'></i> Edit
+                                                   <a class='btn btn-primary mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href=./edit.php?id=$equipo[id]><i class='fa fa-pencil' aria-hidden='true'></i> Edit
                                                        </div></a>
-                                                   <a class='btn btn-danger rounded-5 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                                   <a class='btn btn-danger rounded-3 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                                 </td>
                                            </tr>
                                                ";
