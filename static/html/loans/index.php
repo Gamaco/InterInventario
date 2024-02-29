@@ -122,12 +122,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<div class="card-header">
 								<div class="d-flex mt-3 mb-3">
 									<div class="input-group">
-										<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
+										<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+										<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
 									</div>
 								</div>
 								<div class="col-auto text-center text-md-start">
 									<div class="d-flex mt-4">
-										<a class="btn btn-primary btn-lg me-2" href="./create.php">Create New Loan</a></td>
+										<a class="btn btn-primary btn-lg me-2" href="./create.php"><i class="fa fa-plus" aria-hidden="true"></i> Create Loan</a></td>
 										<!-- Dropdown for categories -->
 										<div class="dropdown-center">
 											<button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c;">

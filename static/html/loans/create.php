@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<div class="row">
 					<div class="card mx-auto my-5 col-12 col-md-6 p-0">
 						<div class="card-header bg-success w-100" style="background-color: #00973c !important;">
-							<h5 class="h5 mb-0 text-white"><i>New Loan</i></h5>
+							<h5 class="h5 mb-0 text-white"><i><i class="fa fa-cloud" aria-hidden="true"></i> New Loan</i></h5>
 						</div>
 						<div class="card-body">
 							<?php
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="justify-content-center">
 									<div class="row">
 										<!-- Submit button -->
-										<button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
+										<button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit <i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
 									</div>
 									<div class="row">
 										<!-- Cancel button -->
@@ -248,7 +248,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<div class="modal-body">
 					<div class="d-flex flex-column justify-content-between align-items-center flex-wrap">
 						<div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
-							<input type="text" id="searchInput" class="form-control me-2 fs-4" placeholder="Search e.g. Y00109987">
+							<div class="input-group">
+								<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+								<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+							</div>
 						</div>
 						<div class="d-flex mt-4 justify-content-center">
 							<div class="dropdown-center mb-3">
@@ -294,7 +297,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<?php
 								include '../../db/config.php';
 
-								$query = "SELECT * FROM inventario ORDER BY id DESC";
+								// Query to fetch inventory items excluding those already returned or on loan
+								$query = "SELECT inventario.*
+								FROM inventario
+								LEFT JOIN prestamos ON inventario.PTag = prestamos.PTag
+								LEFT JOIN returns ON inventario.PTag = returns.PTag
+								WHERE prestamos.PTag IS NULL AND returns.PTag IS NULL
+								ORDER BY inventario.id DESC";
+
 								$equipos = $connection->query($query);
 
 								// In case the query failed

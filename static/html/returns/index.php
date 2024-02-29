@@ -39,9 +39,10 @@
 							<div class="card-header">
 								<div class="col-auto text-center text-md-start">
 									<div class="d-flex mt-3">
-										<div class="input-group mb-3">
-											<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
-										</div>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+                                    </div>
 									</div>
 								</div>
 							</div>

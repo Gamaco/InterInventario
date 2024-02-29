@@ -41,7 +41,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="../user/login.php">
-                        <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log out</span>
+                        <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Sign out</span>
                     </a>
                 </li>
         </div>

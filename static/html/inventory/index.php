@@ -45,10 +45,10 @@
                                 <h5 class="card-title mb-2">Options</h5>
                                 <div class="row mt-0">
                                     <div class="col-6 col-sm-auto">
-                                        <a class="btn btn-primary btn-lg btn-block mb-2 mb-sm-0" href="../inventory/create.php" style="width: 160px" ;>Add New Item</a>
+                                        <a class="btn btn-primary btn-lg btn-block mb-2 mb-sm-0" href="../inventory/create.php" style="width: 160px" ;><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
                                     </div>
                                     <div class="col-6 col-sm-auto">
-                                        <a class="btn btn-lg btn-primary btn-block" href="../inventory/create-category.php" style="width: 160px" ;>Add New Category</a>
+                                        <a class="btn btn-lg btn-primary btn-block" href="../inventory/create-category.php" style="width: 160px" ;><i class="fa fa-plus" aria-hidden="true"></i> Add Category</a>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,10 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                            <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+                                        </div>
                                     </div>
                                     <div class="col-sm-6 d-flex justify-content-center justify-content-sm-end">
                                         <div class="dropdown-center">
@@ -146,8 +149,6 @@
                                             die("Invalid query: " . $$connection->error);
                                         }
 
-
-
                                         // Reads data and also checks if the field value is empty.
                                         // In case the field is empty, it'll display N/A on the table,
                                         // to avoid having empty spaces on the table. 
@@ -172,9 +173,9 @@
                                                <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
                                                <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
                                                <td>
-                                                   <a class='btn btn-primary mb-lg-1 rounded-5 btn-lg' style='width: 80px;' href=./edit.php?id=$equipo[id]>Edit
+                                                   <a class='btn btn-primary mb-lg-1 rounded-5 btn-lg' style='width: 100px;' href=./edit.php?id=$equipo[id]><i class='fa fa-pencil' aria-hidden='true'></i> Edit
                                                        </div></a>
-                                                   <a class='btn btn-danger rounded-5 btn-lg' style='width: 80px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'>Delete</a>
+                                                   <a class='btn btn-danger rounded-5 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                                 </td>
                                            </tr>
                                                ";
@@ -225,7 +226,7 @@
     <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
     <script>
         var itemDeletionModal = document.getElementById('itemDeletionModal');
-            itemDeletionModal.addEventListener('show.bs.modal', function(event) {
+        itemDeletionModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget; // Button that triggered the modal
             var itemId = button.getAttribute('data-item-id'); // Extract info from data-* attributes
             var modal = this;
