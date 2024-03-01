@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="PTAG">PTAG</label>
+											<label class="form-label" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTAG</label>
 											<div class="input-group mb-3">
 												<button class="btn btn-primary btn-outline-secondary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
 												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="LOAN_TO">LOAN TO</label>
+											<label class="form-label" for="LOAN_TO"><i class="fa fa-user" aria-hidden="true"></i> LOAN TO</label>
 											<div data-mdb-input-init class="form-outline">
 												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo htmlspecialchars($LOAN_TO); ?>" />
 											</div>
@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="LOANER_AUTH">LOANER AUTH</label>
+											<label class="form-label" for="LOANER_AUTH"><i class="fa fa-user" aria-hidden="true"></i> LOANER AUTH</label>
 											<div data-mdb-input-init class="form-outline">
 												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo htmlspecialchars($LOANER_AUTH); ?>" />
 											</div>
@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="START_DATE">START DATE</label>
+											<label class="form-label" for="START_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> START DATE</label>
 											<div class="mb-3">
 												<input type="date" name="START_DATE" id="START_DATE" class="form-control" value="<?php echo htmlspecialchars($START_DATE); ?>">
 											</div>
@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="END_DATE">END DATE</label>
+											<label class="form-label" for="END_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> END DATE</label>
 											<div class="mb-3">
 												<input type="date" name="END_DATE" id="END_DATE" class="form-control" value="<?php echo htmlspecialchars($END_DATE); ?>">
 											</div>
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="justify-content-center">
 									<div class="row">
 										<!-- Submit button -->
-										<button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit <i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+										<button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
 									</div>
 									<div class="row">
 										<!-- Cancel button -->
