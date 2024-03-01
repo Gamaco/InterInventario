@@ -77,7 +77,7 @@
                                             </button>
                                             <ul class="dropdown-menu" id="categoryDropdown">
                                                 <?php
-                                                include '../../db/config.inc';
+                                                include '../../db/config.php';
 
                                                 $query = "SELECT * FROM categories";
                                                 $categories = $connection->query($query);
@@ -139,7 +139,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../db/config.inc';
+                                        include '../../db/config.php';
 
                                         $query = "SELECT * FROM inventario ORDER BY id DESC";
                                         $equipos = $connection->query($query);

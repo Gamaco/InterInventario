@@ -1,5 +1,5 @@
 <?php
-include '../../db/config.inc';
+include '../../db/config.php';
 
 $PTag = $Description = $Comments = $Condition = "";
 $errorMessage = "";
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 											</button>
 											<ul class="dropdown-menu" id="categoryDropdown">
 												<?php
-												include '../../db/config.inc';
+												include '../../db/config.php';
 
 												$query = "SELECT * FROM categories";
 												$categories = $connection->query($query);
@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								</thead>
 								<tbody>
 									<?php
-									include '../../db/config.inc';
+									include '../../db/config.php';
 
 									// Query to fetch loan details with item description
 									$query = "SELECT prestamos.*, inventario.Description AS ItemDescription

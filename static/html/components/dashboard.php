@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <?php
-                            include '../../db/config.inc';
+                            include '../../db/config.php';
 
                             $query = "SELECT COUNT(*) AS TotalItems FROM prestamos";
                             $result = $connection->query($query);
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <?php
-                            include '../../db/config.inc';
+                            include '../../db/config.php';
 
                             $query = "SELECT COUNT(*) AS TotalItems FROM returns";
                             $result = $connection->query($query);
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
                             <?php
-                            include '../../db/config.inc';
+                            include '../../db/config.php';
 
                             $query = "SELECT COUNT(*) AS TotalItems FROM inventario";
                             $result = $connection->query($query);
@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                             <?php
-                            include '../../db/config.inc';
+                            include '../../db/config.php';
 
                             $query = "SELECT COUNT(*) AS TotalItems FROM categories";
                             $result = $connection->query($query);

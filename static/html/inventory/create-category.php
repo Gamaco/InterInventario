@@ -1,6 +1,6 @@
 <?php
 
-include '../../db/config.inc';
+include '../../db/config.php';
 
 // Initialize variables
 $Category = "";
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                                 <ul class="list-group mb-3">
                                     <?php
-                                    include '../../db/config.inc';
+                                    include '../../db/config.php';
 
                                     $query = "SELECT * FROM categories";
                                     $categories = $connection->query($query);

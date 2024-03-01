@@ -1,5 +1,5 @@
 <?php
-include '../../db/config.inc';
+include '../../db/config.php';
 
 // Initialize variables
 $Ptag = $LOAN_TO = $LOANER_AUTH = $START_DATE = $END_DATE = "";
@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								</button>
 								<ul class="dropdown-menu" id="categoryDropdown">
 									<?php
-									include '../../db/config.inc';
+									include '../../db/config.php';
 
 									$query = "SELECT * FROM categories";
 									$categories = $connection->query($query);
@@ -295,7 +295,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							</thead>
 							<tbody>
 								<?php
-								include '../../db/config.inc';
+								include '../../db/config.php';
 
 								// Query to fetch inventory items excluding those already returned or on loan
 								$query = "SELECT inventario.*
