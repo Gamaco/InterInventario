@@ -1,54 +1,3 @@
-<?php
-include '../../db/config.php';
-
-$PTag = $Description = $Comments = $Condition = "";
-$errorMessage = "";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Validate and sanitize user inputs
-    $PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
-
-    // Call the stored procedure
-    $query = "CALL ProcessReturn(?, ?, ?, ?)";
-    $stmt = $connection->prepare($query);
-
-    if (!$stmt) {
-        $errorMessage = "Error preparing statement: " . $connection->error;
-    } else {
-        // Bind parameters
-        $stmt->bind_param("ssss", $PTag, $Description, $Comments, $Condition);
-
-        // Execute the statement
-        $stmt->execute();
-
-        // Check for errors
-        if ($stmt->errno) {
-            $errorMessage = "Error executing statement: " . $stmt->error;
-        }
-
-        // Close the statement
-        $stmt->close();
-    }
-
-    // Close the connection
-    $connection->close();
-
-    if (!empty($errorMessage)) {
-        // Handle error
-    } else {
-        header("location: ../loans/index.php");
-        exit;
-    }
-}
-?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -230,12 +179,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form id="submit" method="post">
+						<form id="submit" method="post" action="./delete.php">
 							<div class="row flex-wrap">
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
 										<label class="form-label" for="PTAG">PTag</label>
-										<input type="text" name="PTag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput" value="<?php echo htmlspecialchars($PTag); ?>">
+										<input type="text" name="PTag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput">
 									</div>
 								</div>
 							</div>
@@ -244,7 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
 										<label class="form-label" for="Description">Description</label>
-										<input type="text" name="Description" id="Description" class="form-control fs-4" aria-describedby="Description" value="<?php echo htmlspecialchars($Description); ?>">
+										<input type="text" name="Description" id="Description" class="form-control fs-4" aria-describedby="Description">
 									</div>
 								</div>
 							</div>
@@ -253,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
 										<label for="comments" class="form-label">Comments</label>
-										<textarea class="form-control" id="comments" name="Comments" rows="3"><?php echo htmlspecialchars($Comments); ?></textarea>
+										<textarea class="form-control" id="comments" name="Comments" rows="3"></textarea>
 									</div>
 								</div>
 							</div>
