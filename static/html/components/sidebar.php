@@ -25,7 +25,7 @@
 
                 <li class="sidebar-item <?php echo ($activePage == 'returns') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../returns/index.php">
-                        <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Returns</span>
+                        <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Reviews</span>
                     </a>
                 </li>
 

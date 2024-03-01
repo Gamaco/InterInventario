@@ -31,7 +31,7 @@
 		<main class="content">
 			<div class="container-fluid p-0">
 
-				<h1 class="h3 mb-3"><strong>Returned</strong> Item Reviews</h1>
+				<h1 class="h3 mb-3"><strong>Equipment</strong> returned and awaiting review</h1>
 
 				<div class="row">
 					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
@@ -39,10 +39,10 @@
 							<div class="card-header">
 								<div class="col-auto text-center text-md-start">
 									<div class="d-flex mt-3">
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                        <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
-                                    </div>
+										<div class="input-group">
+											<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+											<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+										</div>
 									</div>
 								</div>
 							</div>
@@ -77,23 +77,33 @@
 
 									// Output the results
 									while ($equipo = $equipos->fetch_assoc()) {
+										// Calculate status based on condition
+										$status = '';
+										if ($equipo['Item_Cond'] === 'Damaged') {
+											$status = "<span class='badge bg-danger'>Damaged</span>";
+										} elseif ($equipo['Item_Cond'] === 'Incomplete') {
+											$status = "<span class='badge bg-warning'>Incomplete</span>";
+										}
+
+										// Output table row with badge
 										echo "
-											<tr>
-												<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
-												<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
-												<td data-label='Condition'>" . htmlspecialchars($equipo['Item_Cond'] ?? 'N/A') . "</td>
-												<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
-												<td>
-													<a class='btn btn-primary rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
-												</td>							
-											</tr>";
+        									<tr>
+            									<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
+            									<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
+            									<td data-label='Condition'>" . $status . "</td>
+            									<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
+            									<td>
+                									<a class='btn btn-primary rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
+           										</td>							
+        									</tr>";
 									}
-									
 
 									// Close the connection
 									$statement->close();
 									$connection->close();
 									?>
+
+
 
 
 								</tbody>

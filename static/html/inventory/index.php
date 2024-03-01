@@ -118,7 +118,7 @@
                                 <table id="InventoryTable" class="table my-0 table-hover border-secondary">
                                     <thead>
                                         <tr>
-                                            <th>Category</th>
+                                            <th>Description</th>
                                             <th>PTag</th>
                                             <th>GN</th>
                                             <th>Model</th>

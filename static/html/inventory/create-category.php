@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="justify-content-center">
                                         <div class="row">
                                             <!-- Submit button -->
-                                            <button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit <i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+                                            <button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
                                         </div>
                                         <div class="row">
                                             <!-- Cancel button -->
