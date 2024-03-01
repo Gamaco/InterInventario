@@ -1,5 +1,5 @@
 <?php
-include '../../db/config.php';
+include '../../db/config.inc';
 
 // Initialize variables
 $gn = $description = $model = $Serial_No = $Fund = $AC = $CL = $F = $AQU = $ST = $Acquisition = $Received = $DocNo = $Amt = $Location = "";

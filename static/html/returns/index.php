@@ -58,7 +58,7 @@
 								</thead>
 								<tbody>
 									<?php
-									include '../../db/config.php';
+									include '../../db/config.inc';
 
 									// Prepare the SQL statement
 									$query = "SELECT * FROM returns ORDER BY id DESC";

@@ -2,7 +2,7 @@
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 
-    include '../../db/config.php';
+    include '../../db/config.inc';
 
     // Sanitize the ID to prevent SQL injection
     $id = $connection->real_escape_string($id);
