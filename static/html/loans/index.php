@@ -171,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									}
 									?>
 									<div class="row mt-3">
-										<span class="badge badge-secondary responsive-badge fs-5" id="displayedRowCount"></span>
+										<span class="badge badge-secondary responsive-badge fs-5 p-4" id="displayedRowCount"></span>
 									</div>
 								</div>
 							</div>

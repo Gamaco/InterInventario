@@ -108,7 +108,7 @@
                         <div class="card flex-fill">
                             <div class="card-header">
                                 <div class="row mt-3">
-                                    <span class="badge badge-secondary responsive-badge fs-5 p-2" id="displayedRowCount"></span>
+                                    <span class="badge badge-secondary responsive-badge fs-5 p-4" id="displayedRowCount"></span>
                                 </div>
 
                             </div>
