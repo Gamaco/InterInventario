@@ -10,7 +10,7 @@
     <meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="img/icons/interlogo3.png" />
+    <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
     <title>Dashboard - IELS</title>
     <!-- Font Awesome CSS -->
@@ -66,7 +66,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col mt-0">
-                                    <h5 class="card-title">Returned Equipment Reviews</h5>
+                                    <h5 class="card-title">Equipment returned and awaiting review</h5>
                                 </div>
 
                                 <div class="col-auto">
@@ -128,7 +128,40 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mt-0">
+                                    <h5 class="card-title">Total Equipment Categories</h5>
+                                </div>
+
+                                <div class="col-auto">
+                                    <div class="stat text-primary">
+                                        <i class="align-middle" data-feather="database"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                            include '../../db/config.php';
+
+                            $query = "SELECT COUNT(*) AS TotalItems FROM categories";
+                            $result = $connection->query($query);
+
+                            if ($result) {
+                                $row = $result->fetch_assoc();
+                                $totalItems = $row['TotalItems'];
+                            } else {
+                                die("Invalid query: " . $connection->error);
+                            }
+                            echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+                            ?>
+                            <div class="mb-0">
+                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../inventory/create-category.php" style="background-color: #00973c !important;">View Categories</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
     </div>
     </div>

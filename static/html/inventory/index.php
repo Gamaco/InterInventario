@@ -44,11 +44,11 @@
                             <div class="card-body mt-0">
                                 <h5 class="card-title mb-2">Options</h5>
                                 <div class="row mt-0">
-                                    <div class="col-6 col-sm-auto">
-                                        <a class="btn btn-primary btn-lg btn-block mb-2 mb-sm-0" href="../inventory/create.php" style="width: 160px" ;><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
+                                    <div class="col-md-auto mb-2 mb-md-0">
+                                        <a class="btn btn-primary btn-lg fs-5 btn-block" href="../inventory/create.php" style="width: 150px;"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
                                     </div>
-                                    <div class="col-6 col-sm-auto">
-                                        <a class="btn btn-lg btn-primary btn-block" href="../inventory/create-category.php" style="width: 160px" ;><i class="fa fa-plus" aria-hidden="true"></i> Add Category</a>
+                                    <div class="col-md-auto">
+                                        <a class="btn btn-lg fs-5 btn-success btn-block" href="../inventory/create-category.php" style="width: 180px; background-color: #00973c;"><i class="fa fa-code" aria-hidden="true"></i> Manage Categories</a>
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                 </div>
             </div>
         </main>
-        <!-- Modal -->
+        <!-- item Deletion Modal -->
         <div class="modal fade" id="itemDeletionModal" tabindex="-1" aria-labelledby="itemDeletionModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

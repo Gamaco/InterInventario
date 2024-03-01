@@ -6059,6 +6059,10 @@ fieldset:disabled .btn {
     vertical-align: text-top !important
 }
 
+.float-right {
+    float: right !important;
+}
+
 .float-start {
     float: left !important
 }
