@@ -102,10 +102,7 @@
 									$statement->close();
 									$connection->close();
 									?>
-
-
-
-
+									
 								</tbody>
 							</table>
 						</div>
