@@ -194,12 +194,6 @@
     <!-- Local JS -->
     <script src="../../js/app.js"></script>
     <script src="../../js/inventory.js"></script>
-
-    <!-- Custom -->
-    <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-    </script>
 </body>
 
 </html>
