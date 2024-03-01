@@ -6,16 +6,6 @@ $Ptag = $LOAN_TO = $LOANER_AUTH = $START_DATE = $END_DATE = "";
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-	/*  FYI
-        FILTER_SANITIZE_SPECIAL_CHARS is a filter constant in PHP used for sanitizing input data 
-        by converting special characters to HTML entities. This is particularly useful when you want 
-        to prevent cross-site scripting (XSS) attacks by ensuring that user-supplied data doesn't contain 
-        characters that could be interpreted as HTML or JavaScript.
-
-        En otras palabras, para limpiar los datos de caracteres especiales.
-    */
-
 	// Validate and sanitize user inputs
 	$Ptag = filter_var($_POST["Ptag"], FILTER_SANITIZE_SPECIAL_CHARS);
 	$LOAN_TO = filter_var($_POST["LOAN_TO"], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -29,26 +19,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			break;
 		}
 		if (empty($LOAN_TO)) {
-			$errorMessage = "Missing 'LOAN_TO'.";
+			$errorMessage = "Missing 'LOAN TO'.";
 			break;
 		}
-		if (empty($Ptag)) {
-			$errorMessage = "Missing 'LOANER_AUTH'.";
+		if (empty($LOANER_AUTH)) {
+			$errorMessage = "Missing 'LOANER AUTH'.";
 			break;
 		}
-		if (empty($Ptag)) {
-			$errorMessage = "Missing 'START_DATE'.";
+		if (empty($START_DATE)) {
+			$errorMessage = "Missing 'START DATE'.";
 			break;
 		}
-		if (empty($Ptag)) {
-			$errorMessage = "Missing 'END_DATE'.";
+		if (empty($END_DATE)) {
+			$errorMessage = "Missing 'END DATE'.";
 			break;
 		}
 
-		// Add a new item to the database using prepared statements
-		$query = "INSERT INTO prestamos 
-        (Ptag, LOAN_TO, LOANER_AUTH, START_DATE, END_DATE) 
-        VALUES (?, ?, ?, ?, ?)";
+		// Call the stored procedure to insert loan data
+		$query = "CALL InsertLoan(?, ?, ?, ?, ?)";
 
 		// Prepare the statement
 		$stmt = $connection->prepare($query);
@@ -77,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	} while (false);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -297,39 +286,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<?php
 								include '../../db/config.php';
 
-								// Query to fetch inventory items excluding those already returned or on loan
-								$query = "SELECT inventario.*
-								FROM inventario
-								LEFT JOIN prestamos ON inventario.PTag = prestamos.PTag
-								LEFT JOIN returns ON inventario.PTag = returns.PTag
-								WHERE prestamos.PTag IS NULL AND returns.PTag IS NULL
-								ORDER BY inventario.id DESC";
-
+								// Call the stored procedure to fetch available inventory items
+								$query = "CALL GetAvailableInventory()";
 								$equipos = $connection->query($query);
 
 								// In case the query failed
 								if (!$equipos) {
-									die("Invalid query: " . $$connection->error);
+									die("Invalid query: " . $connection->error);
 								}
 
 								// Read data
 								while ($equipo = $equipos->fetch_assoc()) {
 									echo "
-                                               <tr>
-											   <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
-                                               <td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
-                                               <td data-label='Serial_No'>" . ($equipo['Serial_No'] ? $equipo['Serial_No'] : 'N/A') . "</td>
-                                               <td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
-                                               <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
-											   <td>
-											   <a class='btn btn-primary mb-1' onclick='getPTagFromModal(\"" . $equipo['Ptag'] . "\")'>Select</a>
-										   	   </td>
-                                           </tr>
-                                               ";
+										<tr>
+											<td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
+											<td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
+											<td data-label='Serial_No'>" . ($equipo['Serial_No'] ? $equipo['Serial_No'] : 'N/A') . "</td>
+											<td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
+											<td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
+											<td>
+												<a class='btn btn-primary mb-1' onclick='getPTagFromModal(\"" . $equipo['Ptag'] . "\")'>Select</a>
+											</td>
+										</tr>";
 								}
 
 								$connection->close();
 								?>
+
 							</tbody>
 						</table>
 					</div>

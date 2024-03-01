@@ -5,78 +5,46 @@ $PTag = $Description = $Comments = $Condition = "";
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validate and sanitize user inputs
+    $PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
 
-	// Validate and sanitize user inputs
-	$PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
-	$Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
+    // Call the stored procedure
+    $query = "CALL ProcessReturn(?, ?, ?, ?)";
+    $stmt = $connection->prepare($query);
 
-	if ($Condition !== 'Good') {
-		// Proceed with insertion only if condition is not 'Good'
+    if (!$stmt) {
+        $errorMessage = "Error preparing statement: " . $connection->error;
+    } else {
+        // Bind parameters
+        $stmt->bind_param("ssss", $PTag, $Description, $Comments, $Condition);
 
-		do {
-			// Add a new item to the database using prepared statements
-			$queryInsert = "INSERT INTO returns (Description, PTag, Item_Cond, Comments) VALUES (?, ?, ?, ?)";
+        // Execute the statement
+        $stmt->execute();
 
-			// Prepare the statement
-			$stmtInsert = $connection->prepare($queryInsert);
+        // Check for errors
+        if ($stmt->errno) {
+            $errorMessage = "Error executing statement: " . $stmt->error;
+        }
 
-			if (!$stmtInsert) {
-				$errorMessage = "Error preparing statement: " . $connection->error;
-				break;
-			}
+        // Close the statement
+        $stmt->close();
+    }
 
-			// Bind parameters
-			$stmtInsert->bind_param("ssss", $Description, $PTag, $Condition, $Comments);
+    // Close the connection
+    $connection->close();
 
-			// Execute the statement
-			$resultInsert = $stmtInsert->execute();
-
-			if (!$resultInsert) {
-				$errorMessage = "Error executing statement: " . $stmtInsert->error;
-				break;
-			}
-
-			// Close the statement
-			$stmtInsert->close();
-		} while (false);
-	}
-
-	// Delete the row from the prestamos table
-	$queryDelete = "DELETE FROM prestamos WHERE PTag = ?";
-
-	// Prepare the statement
-	$stmtDelete = $connection->prepare($queryDelete);
-
-	if (!$stmtDelete) {
-		$errorMessage = "Error preparing statement: " . $connection->error;
-	} else {
-		// Bind parameter
-		$stmtDelete->bind_param("s", $PTag);
-
-		// Execute the statement
-		$resultDelete = $stmtDelete->execute();
-
-		if (!$resultDelete) {
-			$errorMessage = "Error executing statement: " . $stmtDelete->error;
-		}
-
-		// Close the statement
-		$stmtDelete->close();
-	}
-
-	// Close the connection
-	$connection->close();
-
-	if (!empty($errorMessage)) {
-		// Handle error
-	} else {
-		header("location: ../loans/index.php");
-		exit;
-	}
+    if (!empty($errorMessage)) {
+        // Handle error
+    } else {
+        header("location: ../loans/index.php");
+        exit;
+    }
 }
 ?>
+
 
 
 
@@ -123,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="d-flex mt-3 mb-3">
 									<div class="input-group">
 										<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-										<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+										<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
 									</div>
 								</div>
 								<div class="col-auto text-center text-md-start">

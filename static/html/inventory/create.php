@@ -7,15 +7,6 @@ $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    /*  FYI
-        FILTER_SANITIZE_SPECIAL_CHARS is a filter constant in PHP used for sanitizing input data 
-        by converting special characters to HTML entities. This is particularly useful when you want 
-        to prevent cross-site scripting (XSS) attacks by ensuring that user-supplied data doesn't contain 
-        characters that could be interpreted as HTML or JavaScript.
-
-        En otras palabras, para limpiar los datos de caracteres especiales.
-    */
-
     // Validate and sanitize user inputs
     $gn = filter_var($_POST["gn"], FILTER_SANITIZE_SPECIAL_CHARS);
     $description = filter_var($_POST["description"], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -51,11 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
         }
 
-        // Add a new item to the database using prepared statements
-        $query = "INSERT INTO inventario 
-        (gn, `description`, model, Serial_No, Fund, AC, CL, F,
-        AQU, ST, Acquisition, Received, DocNo, Amt, Location) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        // Call the stored procedure for inserting data
+        $query = "CALL InsertInventory(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Prepare the statement
         $stmt = $connection->prepare($query);

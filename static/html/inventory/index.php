@@ -67,7 +67,7 @@
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                            <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+                                            <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 d-flex justify-content-center justify-content-sm-end">
@@ -79,20 +79,30 @@
                                                 <?php
                                                 include '../../db/config.php';
 
-                                                $query = "SELECT * FROM categories";
-                                                $categories = $connection->query($query);
+                                                $query = "CALL GetCategories()"; // Calling the stored procedure to fetch categories
 
-                                                // In case the query failed
-                                                if (!$categories) {
-                                                    die("Invalid query: " . $$connection->error);
+                                                $stmt = $connection->prepare($query);
+
+                                                if (!$stmt) {
+                                                    die("Error preparing statement: " . $connection->error);
                                                 }
 
-                                                while ($category = $categories->fetch_assoc()) {
-                                                    echo "
-                                                        <li><a class='dropdown-item'>" . $category["Category"] . "</a></li>
-                                                ";
+                                                $result = $stmt->execute();
+
+                                                if (!$result) {
+                                                    die("Error executing statement: " . $stmt->error);
                                                 }
+
+                                                $stmt->bind_result($id, $category);
+
+                                                while ($stmt->fetch()) {
+                                                    echo "<li><a class='dropdown-item'>" . $category . "</a></li>";
+                                                }
+
+                                                $stmt->close();
+                                                $connection->close();
                                                 ?>
+
                                             </ul>
                                         </div>
                                     </div>
@@ -141,48 +151,48 @@
                                         <?php
                                         include '../../db/config.php';
 
-                                        $query = "SELECT * FROM inventario ORDER BY id DESC";
+                                        $query = "CALL GetAllEquipos()"; // Calling the stored procedure to fetch inventory data
+
                                         $equipos = $connection->query($query);
 
                                         // In case the query failed
                                         if (!$equipos) {
-                                            die("Invalid query: " . $$connection->error);
+                                            die("Invalid query: " . $connection->error);
                                         }
 
                                         // Reads data and also checks if the field value is empty.
                                         // In case the field is empty, it'll display N/A on the table,
-                                        // to avoid having empty spaces on the table. 
+                                        // to avoid having empty spaces on the table.
                                         // Empty spaces make the table collapse/wrap a field into another.
                                         while ($equipo = $equipos->fetch_assoc()) {
                                             echo "
-                                               <tr>
-                                               <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
-                                               <td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
-                                               <td data-label='gn'>" . ($equipo['gn'] ? $equipo['gn'] : 'N/A') . "</td>
-                                               <td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
-                                               <td data-label='Serial_No'>" . ($equipo['Serial_No'] ? $equipo['Serial_No'] : 'N/A') . "</td>
-                                               <td data-label='Fund'>" . ($equipo['Fund'] ? $equipo['Fund'] : 'N/A') . "</td>
-                                               <td data-label='AC'>" . ($equipo['AC'] ? $equipo['AC'] : 'N/A') . "</td>
-                                               <td data-label='CL'>" . ($equipo['CL'] ? $equipo['CL'] : 'N/A') . "</td>
-                                               <td data-label='F'>" . ($equipo['F'] ? $equipo['F'] : 'N/A') . "</td>
-                                               <td data-label='AQU'>" . ($equipo['AQU'] ? $equipo['AQU'] : 'N/A') . "</td>
-                                               <td data-label='ST'>" . ($equipo['ST'] ? $equipo['ST'] : 'N/A') . "</td>
-                                               <td data-label='Acquisition'>" . ($equipo['Acquisition'] ? $equipo['Acquisition'] : 'N/A') . "</td>
-                                               <td data-label='Received'>" . ($equipo['Received'] ? $equipo['Received'] : 'N/A') . "</td>
-                                               <td data-label='Doc No'>" . ($equipo['DocNo'] ? $equipo['DocNo'] : 'N/A') . "</td>
-                                               <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
-                                               <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
-                                               <td>
-                                                   <a class='btn btn-primary mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href=./edit.php?id=$equipo[id]><i class='fa fa-pencil' aria-hidden='true'></i> Edit
-                                                       </div></a>
-                                                   <a class='btn btn-danger rounded-3 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                            <tr>
+                                                <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
+                                                <td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
+                                                <td data-label='gn'>" . ($equipo['gn'] ? $equipo['gn'] : 'N/A') . "</td>
+                                                <td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
+                                                <td data-label='Serial_No'>" . ($equipo['Serial_No'] ? $equipo['Serial_No'] : 'N/A') . "</td>
+                                                <td data-label='Fund'>" . ($equipo['Fund'] ? $equipo['Fund'] : 'N/A') . "</td>
+                                                <td data-label='AC'>" . ($equipo['AC'] ? $equipo['AC'] : 'N/A') . "</td>
+                                                <td data-label='CL'>" . ($equipo['CL'] ? $equipo['CL'] : 'N/A') . "</td>
+                                                <td data-label='F'>" . ($equipo['F'] ? $equipo['F'] : 'N/A') . "</td>
+                                                <td data-label='AQU'>" . ($equipo['AQU'] ? $equipo['AQU'] : 'N/A') . "</td>
+                                                <td data-label='ST'>" . ($equipo['ST'] ? $equipo['ST'] : 'N/A') . "</td>
+                                                <td data-label='Acquisition'>" . ($equipo['Acquisition'] ? $equipo['Acquisition'] : 'N/A') . "</td>
+                                                <td data-label='Received'>" . ($equipo['Received'] ? $equipo['Received'] : 'N/A') . "</td>
+                                                <td data-label='Doc No'>" . ($equipo['DocNo'] ? $equipo['DocNo'] : 'N/A') . "</td>
+                                                <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
+                                                <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
+                                                <td>
+                                                    <a class='btn btn-primary mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href='./edit.php?id=$equipo[id]'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
+                                                    <a class='btn btn-danger rounded-3 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                                 </td>
-                                           </tr>
-                                               ";
+                                            </tr>";
                                         }
 
                                         $connection->close();
                                         ?>
+
                                     </tbody>
                                 </table>
                             </div>

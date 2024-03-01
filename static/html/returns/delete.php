@@ -7,9 +7,9 @@ if (isset($_GET["id"])) {
     // Sanitize the ID to prevent SQL injection
     $id = $connection->real_escape_string($id);
 
-    $query = "DELETE FROM returns WHERE id = $id";
+    // Call the stored procedure
+    $query = "CALL DeleteReturn($id)";
 
-    // Execute the DELETE query
     if ($connection->query($query) === TRUE) {
         echo "Record deleted successfully";
     } else {
@@ -20,7 +20,7 @@ if (isset($_GET["id"])) {
     $connection->close();
 }
 
-// Redirect to inventory.php
+// Redirect to returns.php
 header("location: ../returns/index.php");
 exit;
 ?>

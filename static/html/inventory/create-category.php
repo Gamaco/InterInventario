@@ -8,15 +8,6 @@ $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    /*  FYI
-        FILTER_SANITIZE_SPECIAL_CHARS is a filter constant in PHP used for sanitizing input data 
-        by converting special characters to HTML entities. This is particularly useful when you want 
-        to prevent cross-site scripting (XSS) attacks by ensuring that user-supplied data doesn't contain 
-        characters that could be interpreted as HTML or JavaScript.
-
-        En otras palabras, para limpiar los datos de caracteres especiales.
-    */
-
     // Validate and sanitize user inputs
     $Category = filter_var($_POST["Category"], FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -26,10 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             break;
         }
 
-        // Add a new item to the database using prepared statements
-        $query = "INSERT INTO categories 
-        (Category) 
-        VALUES (?)";
+        // Call the stored procedure
+        $query = "CALL InsertCategory(?)";
 
         // Prepare the statement
         $stmt = $connection->prepare($query);
@@ -133,23 +122,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <?php
                                     include '../../db/config.php';
 
-                                    $query = "SELECT * FROM categories";
-                                    $categories = $connection->query($query);
+                                    // Call the stored procedure for fetching categories
+                                    $query = "CALL GetCategories()";
 
-                                    // In case the query failed
-                                    if (!$categories) {
-                                        die("Invalid query: " . $connection->error);
+                                    // Prepare the statement
+                                    $stmt = $connection->prepare($query);
+
+                                    if (!$stmt) {
+                                        die("Error preparing statement: " . $connection->error);
                                     }
 
-                                    while ($category = $categories->fetch_assoc()) {
+                                    // Execute the statement
+                                    $result = $stmt->execute();
+
+                                    if (!$result) {
+                                        die("Error executing statement: " . $stmt->error);
+                                    }
+
+                                    // Bind result variables
+                                    $stmt->bind_result($id, $category);
+
+                                    // Fetch categories
+                                    while ($stmt->fetch()) {
                                         echo "
-                                            <li class='list-group-item list-group-item-light'>
-                                            " . $category['Category'] . "
-                                            <a class='btn btn-danger btn-lg float-right' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$category[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                            <li class='list-group-item list-group-item-light'> " . $category . "
+                                            <a class='btn btn-danger btn-lg float-right' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$id'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                             </li>
                                             ";
                                     }
 
+                                    $stmt->close();
                                     $connection->close();
                                     ?>
 
@@ -203,8 +205,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </script>
 
-        <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
-        <script>
+    <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
+    <script>
         var itemDeletionModal = document.getElementById('itemDeletionModal');
         itemDeletionModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget; // Button that triggered the modal

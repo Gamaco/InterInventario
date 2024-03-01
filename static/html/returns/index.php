@@ -41,7 +41,7 @@
 									<div class="d-flex mt-3">
 										<div class="input-group">
 											<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-											<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+											<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
 										</div>
 									</div>
 								</div>
@@ -60,17 +60,12 @@
 									<?php
 									include '../../db/config.php';
 
-									// Prepare the SQL statement
-									$query = "SELECT * FROM returns ORDER BY id DESC";
+									// Call the stored procedure to retrieve return records
+									$query = "CALL GetReturns()";
 									$statement = $connection->prepare($query);
-
-									// Execute the statement
 									$statement->execute();
-
-									// Get the result set
 									$equipos = $statement->get_result();
 
-									// Check for errors
 									if (!$equipos) {
 										die("Invalid query: " . $connection->error);
 									}
@@ -87,22 +82,22 @@
 
 										// Output table row with badge
 										echo "
-        									<tr>
-            									<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
-            									<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
-            									<td data-label='Condition'>" . $status . "</td>
-            									<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
-            									<td>
-                									<a class='btn btn-primary rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
-           										</td>							
-        									</tr>";
+											<tr>
+												<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
+												<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
+												<td data-label='Condition'>" . $status . "</td>
+												<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
+												<td>
+													<a class='btn btn-primary rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
+												</td>							
+											</tr>";
 									}
 
-									// Close the connection
+									// Close the statement
 									$statement->close();
 									$connection->close();
 									?>
-									
+
 								</tbody>
 							</table>
 						</div>

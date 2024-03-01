@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $id = $_GET["id"];
 
-    // Use prepared statement for SELECT
-    $query = "SELECT * FROM inventario WHERE id = ?";
+    // Call the stored procedure to fetch an item by ID
+    $query = "CALL GetItemById(?)";
     $stmt = $connection->prepare($query);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -62,15 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $Location = filter_var($_POST["Location"], FILTER_SANITIZE_SPECIAL_CHARS);
 
     do {
-
-        // Use prepared statement for UPDATE
-        $query = "UPDATE inventario " .
-            "SET gn = ?, description = ?, model = ?, Serial_No = ?,
-            Fund = ?, AC = ?, CL = ?, F = ?, AQU = ?, ST = ?, Acquisition = ?,
-            Received = ?, DocNo = ?, Amt = ?, Location = ? " .
-            "WHERE id = ?";
-
-        // Prepare the statement
+        // Call the stored procedure to update an item
+        $query = "CALL UpdateItem(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $connection->prepare($query);
 
         if (!$stmt) {
@@ -96,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     } while (false);
 }
 ?>
+
 
 
 <!DOCTYPE html>

@@ -7,16 +7,30 @@ if (isset($_GET["id"])) {
     // Sanitize the ID to prevent SQL injection
     $id = $connection->real_escape_string($id);
 
-    $query = "DELETE FROM inventario WHERE id = $id";
+    // Call the stored procedure for deleting a record
+    $query = "CALL DeleteRecord(?)";
 
-    // Execute the DELETE query
-    if ($connection->query($query) === TRUE) {
-        echo "Record deleted successfully";
-    } else {
-        echo "Error deleting record: " . $connection->error;
+    // Prepare the statement
+    $stmt = $connection->prepare($query);
+
+    if (!$stmt) {
+        die("Error preparing statement: " . $connection->error);
     }
 
-    // Close the connection
+    // Bind parameters
+    $stmt->bind_param("i", $id);
+
+    // Execute the statement
+    $result = $stmt->execute();
+
+    if ($result) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $stmt->error;
+    }
+
+    // Close the statement
+    $stmt->close();
     $connection->close();
 }
 

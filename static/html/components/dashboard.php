@@ -22,7 +22,8 @@
 </head>
 
 <body draggable="false">
-    <?php $activePage = 'dashboard'; include './sidebar.php'; ?>
+    <?php $activePage = 'dashboard';
+    include './sidebar.php'; ?>
 
     <div class="main">
         <?php include './navbar.php'; ?>
@@ -46,17 +47,22 @@
                             <?php
                             include '../../db/config.php';
 
-                            $query = "SELECT COUNT(*) AS TotalItems FROM prestamos";
+                            // Call the stored procedure to get the total number of items
+                            $query = "CALL GetTotalItems()";
                             $result = $connection->query($query);
 
                             if ($result) {
                                 $row = $result->fetch_assoc();
                                 $totalItems = $row['TotalItems'];
+                                echo "<h1 class='mt-1 mb-3'>$totalItems</h1>";
                             } else {
                                 die("Invalid query: " . $connection->error);
                             }
-                            echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+
+                            // Close the connection
+                            $connection->close();
                             ?>
+
                             <div class="mb-0">
                                 <a class="btn rounded-5 btn-lg btn-success mb-2" href="../loans/index.php" style="background-color: #00973c !important;">View Loans</a>
                             </div>
@@ -78,17 +84,22 @@
                             <?php
                             include '../../db/config.php';
 
-                            $query = "SELECT COUNT(*) AS TotalItems FROM returns";
+                            // Call the stored procedure to get the total number of items
+                            $query = "CALL GetTotalReturnItems()";
                             $result = $connection->query($query);
 
                             if ($result) {
                                 $row = $result->fetch_assoc();
                                 $totalItems = $row['TotalItems'];
+                                echo "<h1 class='mt-1 mb-3'>$totalItems</h1>";
                             } else {
                                 die("Invalid query: " . $connection->error);
                             }
-                            echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+
+                            // Close the connection
+                            $connection->close();
                             ?>
+
                             <div class="mb-0">
                                 <a class="btn rounded-5 btn-lg btn-success mb-2" href="../returns/index.php" style="background-color: #00973c !important;">View Returns</a>
                             </div>
@@ -112,17 +123,22 @@
                             <?php
                             include '../../db/config.php';
 
-                            $query = "SELECT COUNT(*) AS TotalItems FROM inventario";
+                            // Call the stored procedure to get the total number of items
+                            $query = "CALL GetTotalInventarioItems()";
                             $result = $connection->query($query);
 
                             if ($result) {
                                 $row = $result->fetch_assoc();
                                 $totalItems = $row['TotalItems'];
+                                echo "<h1 class='mt-1 mb-3'>$totalItems</h1>";
                             } else {
                                 die("Invalid query: " . $connection->error);
                             }
-                            echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+
+                            // Close the connection
+                            $connection->close();
                             ?>
+
                             <div class="mb-0">
                                 <a class="btn rounded-5 btn-lg btn-success mb-2" href="../inventory/index.php" style="background-color: #00973c !important;">View Inventory</a>
                             </div>
@@ -144,24 +160,29 @@
                             <?php
                             include '../../db/config.php';
 
-                            $query = "SELECT COUNT(*) AS TotalItems FROM categories";
+                            // Call the stored procedure to get the total number of items
+                            $query = "CALL GetTotalCategoriesItems()";
                             $result = $connection->query($query);
 
                             if ($result) {
                                 $row = $result->fetch_assoc();
                                 $totalItems = $row['TotalItems'];
+                                echo "<h1 class='mt-1 mb-3'>$totalItems</h1>";
                             } else {
                                 die("Invalid query: " . $connection->error);
                             }
-                            echo "<h1 class='mt-1 mb-3'>$totalItems</h1>"
+
+                            // Close the connection
+                            $connection->close();
                             ?>
+
                             <div class="mb-0">
                                 <a class="btn rounded-5 btn-lg btn-success mb-2" href="../inventory/create-category.php" style="background-color: #00973c !important;">View Categories</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
     </div>
     </div>
