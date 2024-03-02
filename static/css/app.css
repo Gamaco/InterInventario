@@ -36,7 +36,7 @@
     --bs-dark: #212529;
     --bs-primary-rgb: 59, 125, 221;
     --bs-secondary-rgb: 108, 117, 125;
-    --bs-success-rgb: 28, 187, 140;
+    --bs-success-rgb: 0, 151, 60;
     --bs-info-rgb: 23, 162, 184;
     --bs-warning-rgb: 252, 185, 44;
     --bs-danger-rgb: 220, 53, 69;
@@ -5645,7 +5645,7 @@ fieldset:disabled .btn {
 }
 
 .text-bg-success {
-    background-color: RGBA(28, 187, 140, var(--bs-bg-opacity, 1)) !important;
+    background-color: RGBA(0, 151, 60, var(--bs-bg-opacity, 1)) !important;
     color: #000 !important
 }
 
@@ -14271,7 +14271,7 @@ fieldset:disabled .btn {
 }
 
 .card-title {
-    color: #939ba2;
+    color: #939ba2 !important;
     font-size: .925rem;
     font-weight: 600
 }
@@ -14287,6 +14287,10 @@ fieldset:disabled .btn {
     max-width: 100%
 }
 
+#qr-code-container {
+    width: 200px !important; 
+    height: 200px !important; 
+}
 @media (-ms-high-contrast:none) {
 
     .card-img,
