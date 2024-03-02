@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <!-- Close window button -->
                                             <a type="button" class="btn btn-light btn-lg mb-2" href="../inventory/index.php">Close</a>
                                             <!-- Submit button -->
-                                            <button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-lg mb-2">Submit</button>
                                         </div>
                                     </div>
                                 </div>

@@ -64,7 +64,7 @@
                             ?>
 
                             <div class="mb-0">
-                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../loans/index.php" style="background-color: #00973c !important;">View Loans</a>
+                                <a class="btn btn-primary rounded-5 btn-lg mb-2" href="../loans/index.php">View Loans</a>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                             ?>
 
                             <div class="mb-0">
-                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../returns/index.php" style="background-color: #00973c !important;">View Returns</a>
+                                <a class="btn rounded-5 btn-lg btn-primary mb-2" href="../returns/index.php">View Returns</a>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                             ?>
 
                             <div class="mb-0">
-                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../inventory/index.php" style="background-color: #00973c !important;">View Inventory</a>
+                                <a class="btn rounded-5 btn-lg btn-primary mb-2" href="../inventory/index.php">View Inventory</a>
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                             ?>
 
                             <div class="mb-0">
-                                <a class="btn rounded-5 btn-lg btn-success mb-2" href="../inventory/create-category.php" style="background-color: #00973c !important;">View Categories</a>
+                                <a class="btn rounded-5 btn-lg btn-primary mb-2" href="../inventory/create-category.php">View Categories</a>
                             </div>
                         </div>
                     </div>

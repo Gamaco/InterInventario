@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTAG</label>
 											<div class="input-group mb-3">
-												<button class="btn btn-primary btn-outline-secondary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
+												<button class="btn btn-primary btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
 												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
 											</div>
 										</div>
@@ -239,12 +239,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
 							<div class="input-group">
 								<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-								<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search e.g. Y00109987">
+								<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
 							</div>
 						</div>
 						<div class="d-flex mt-4 justify-content-center">
 							<div class="dropdown-center mb-3">
-								<button class="btn btn-primary btn-lg dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<button class="btn btn-secondary text-dark btn-lg dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Categories
 								</button>
 								<ul class="dropdown-menu" id="categoryDropdown">

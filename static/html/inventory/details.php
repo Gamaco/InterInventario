@@ -139,9 +139,9 @@
                     <div class="row justify-content-center">
                         <div class="col-9 col-lg-3 col-xxl-5"> <!-- Adjust column width for different screen sizes -->
                             <div class="d-flex justify-content-center"> <!-- Center the card horizontally -->
-                                <div class="card" style="width: 250px;"> <!-- Set fixed width -->
-                                    <div class="card-body mt-0 text-center">
-                                        <h5 class="card-title mb-2">QR Code</h5>
+                                <div class="card gradient-box" style="width: 240px;"> <!-- Set fixed width -->
+                                    <div class="card-body gradient-box mt-0 text-center">
+                                        <h5 class="card-title mb-2" style="color: white !important">QR Code</h5>
                                         <div id="qr-code-container" class="d-flex justify-content-center align-items-center" style="height: 300px;"> <!-- Center the content horizontally and vertically -->
                                             <!-- QR code will be appended here -->
                                         </div>

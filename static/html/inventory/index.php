@@ -48,7 +48,7 @@
                                         <a class="btn btn-primary btn-lg fs-5 btn-block" href="../inventory/create.php" style="width: 150px;"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
                                     </div>
                                     <div class="col-md-auto">
-                                        <a class="btn btn-lg fs-5 btn-success btn-block" href="../inventory/create-category.php" style="width: 180px; background-color: #00973c;"><i class="fa fa-code" aria-hidden="true"></i> Manage Categories</a>
+                                        <a class="btn btn-lg fs-5 text-dark btn-secondary btn-block" href="../inventory/create-category.php"><i class="fa fa-code" aria-hidden="true"></i> Manage Categories</a>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="col-sm-6 d-flex justify-content-center justify-content-sm-end">
                                         <div class="dropdown-center">
-                                            <button class="btn btn-success btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00973c;">
+                                            <button class="btn btn-secondary text-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Categories
                                             </button>
                                             <ul class="dropdown-menu" id="categoryDropdown">
