@@ -166,10 +166,10 @@
 
             // Function to run when the DOM is ready
             document.addEventListener('DOMContentLoaded', function() {
-                var itemId = "<?php echo $itemId; ?>"; // Get the item ID from PHP
+                var itemId = "<?php echo $itemId; ?>"; 
                 var baseURL = "http://192.168.0.7/InterInventario/static/html/inventory/details.php";
                 var itemURL = baseURL + "?id=" + itemId;
-                console.log("Item URL: ", itemURL); // Check the constructed item URL
+                console.log("Item URL: ", itemURL); 
                 generateQRCode(itemURL);
             });
         </script>
