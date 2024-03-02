@@ -212,7 +212,7 @@
                         <input type="hidden" id="itemIdToDelete" name="deleteItemId">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Confirm</button>
                     </div>
                 </div>

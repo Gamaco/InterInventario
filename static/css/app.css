@@ -14700,10 +14700,7 @@ screen and (-ms-high-contrast:active) {
 .sidebar,
 .sidebar-content {
     position: relative;
-    /* background: rgb(43, 45, 49);
-    background-color: rgba(43, 45, 49, 1); */
     background: rgb(43,45,49);
-    background: linear-gradient(180deg, rgba(43,45,49,1) 65%, rgba(32,67,52,1) 94%);
 
     /* Add a background image at the bottom */
     &::before {
@@ -14715,10 +14712,10 @@ screen and (-ms-high-contrast:active) {
         height: 330px;
         background-position: center;
         background-repeat: no-repeat;
-        z-index: -1; /* Place the background image below the content */
+        z-index: -1;
     }
 
-    transition: margin-left .10s ease-in-out, left .10s ease-in-out, margin-right .10s ease-in-out, right .10s ease-in-out
+    transition: margin-left .25s ease-in-out, left .25s ease-in-out, margin-right .25s ease-in-out, right .25s ease-in-out
 }
 
 .js-simplebar,
