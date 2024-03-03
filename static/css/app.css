@@ -7944,8 +7944,7 @@ fieldset:disabled .btn {
 }
 
 .gradient-box {
-    background: rgb(43,45,49);
-    background: linear-gradient(180deg, rgb(0, 139, 23) 85%, rgb(255, 230, 0) 105%);
+    background: rgb(0, 139, 23);
     border-radius: 50px;
 }
   
