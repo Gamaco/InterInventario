@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     // Fetch categories
                                     while ($stmt->fetch()) {
                                         echo "
-                                            <li class='list-group-item list-group-item-light'> " . $category . "
+                                            <li class='list-group-item fs-5 list-group-item-light'> " . $category . "
                                             <a class='btn btn-danger btn-lg float-right' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$id'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                             </li>
                                             ";
