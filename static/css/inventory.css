@@ -45,7 +45,7 @@ td {
 
   /* Add the following style for "ID" td on small screens */
   table tbody td[data-label="Description"] {
-    background-color: #00973c !important; /* Dark background color for "ID" td */
+    background-color: #949494 !important; /* Dark background color for "ID" td */
     color: #ffffff !important; /* White text color for better visibility */
   }
 }

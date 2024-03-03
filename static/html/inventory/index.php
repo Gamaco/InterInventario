@@ -102,17 +102,20 @@
 
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-14 col-xxl-12 d-flex">
+                    <span class="badge badge-secondary fs-5 p-4 mb-3 responsive-badge" id="displayedRowCount"></span>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-12 col-lg-14 col-xxl-12 d-flex">
                     <div class="card flex-fill">
-                        <div class="card-header">
-                            <div class="row mt-3">
-                                <span class="badge badge-secondary responsive-badge fs-5 p-4" id="displayedRowCount"></span>
-                            </div>
-
+                        <div class="card-header bg-success d-flex justify-content-between">
+                            <h4 class="text-white"><strong>Available</strong></h4>
+                            <button id="minimizeButton" class="btn btn-lg fs-5 text-white btn-success"><i class="fa fa-eye" aria-hidden="true"></i> Hide</button>
                         </div>
-
-
                         <div class="table-container">
                             <table id="InventoryTable" class="table my-0 table-hover border-secondary">
                                 <thead>
@@ -140,7 +143,7 @@
                                     <?php
                                     include '../../db/config.php';
 
-                                    $query = "CALL GetAllEquipos()"; // Calling the stored procedure to fetch inventory data
+                                    $query = "CALL GetAvailableInventory()";
 
                                     $equipos = $connection->query($query);
 
@@ -184,9 +187,98 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="card-footer"></div>
                     </div>
                 </div>
             </div>
+
+
+            <div class="mb-5"></div>
+
+
+            <div class="row">
+                <div class="col-12 col-lg-14 col-xxl-12 d-flex">
+                    <div class="card flex-fill">
+                        <div class="card-header bg-warning d-flex justify-content-between">
+                            <h4 class="text-white"><strong>Unavailable</strong></h4>
+                        </div>
+                        <div class="table-container">
+                            <table id="InventoryTable-OutOfStock" class="table my-0 table-hover border-secondary">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>PTag</th>
+                                        <th>GN</th>
+                                        <th>Model</th>
+                                        <th>Serial No</th>
+                                        <th>Fund</th>
+                                        <th>AC</th>
+                                        <th>CL</th>
+                                        <th>F</th>
+                                        <th>AQU</th>
+                                        <th>ST</th>
+                                        <th>Acquisition</th>
+                                        <th>Received</th>
+                                        <th>Doc No</th>
+                                        <th>Amt</th>
+                                        <th>Location</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    include '../../db/config.php';
+
+                                    $query = "CALL GetUnavailableInventory()";
+
+                                    $equipos = $connection->query($query);
+
+                                    // In case the query failed
+                                    if (!$equipos) {
+                                        die("Invalid query: " . $connection->error);
+                                    }
+
+                                    // Reads data and also checks if the field value is empty.
+                                    // In case the field is empty, it'll display N/A on the table,
+                                    // to avoid having empty spaces on the table.
+                                    // Empty spaces make the table collapse/wrap a field into another.
+                                    while ($equipo = $equipos->fetch_assoc()) {
+                                        echo "
+                                            <tr>
+                                                <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
+                                                <td data-label='PTag'>" . ($equipo['Ptag'] ? $equipo['Ptag'] : 'N/A') . "</td>
+                                                <td data-label='gn'>" . ($equipo['gn'] ? $equipo['gn'] : 'N/A') . "</td>
+                                                <td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
+                                                <td data-label='Serial_No'>" . ($equipo['Serial_No'] ? $equipo['Serial_No'] : 'N/A') . "</td>
+                                                <td data-label='Fund'>" . ($equipo['Fund'] ? $equipo['Fund'] : 'N/A') . "</td>
+                                                <td data-label='AC'>" . ($equipo['AC'] ? $equipo['AC'] : 'N/A') . "</td>
+                                                <td data-label='CL'>" . ($equipo['CL'] ? $equipo['CL'] : 'N/A') . "</td>
+                                                <td data-label='F'>" . ($equipo['F'] ? $equipo['F'] : 'N/A') . "</td>
+                                                <td data-label='AQU'>" . ($equipo['AQU'] ? $equipo['AQU'] : 'N/A') . "</td>
+                                                <td data-label='ST'>" . ($equipo['ST'] ? $equipo['ST'] : 'N/A') . "</td>
+                                                <td data-label='Acquisition'>" . ($equipo['Acquisition'] ? $equipo['Acquisition'] : 'N/A') . "</td>
+                                                <td data-label='Received'>" . ($equipo['Received'] ? $equipo['Received'] : 'N/A') . "</td>
+                                                <td data-label='Doc No'>" . ($equipo['DocNo'] ? $equipo['DocNo'] : 'N/A') . "</td>
+                                                <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
+                                                <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
+                                                <td>
+                                                    <a class='btn btn-primary mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href='./edit.php?id=$equipo[id]'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
+                                                    <a class='btn btn-danger rounded-3 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                                </td>
+                                            </tr>";
+                                    }
+
+                                    $connection->close();
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer"></div>
+                    </div>
+                </div>
+            </div>
+
+
         </main>
     </div>
     <!-- item Deletion Modal -->
@@ -235,6 +327,27 @@
             });
         });
     </script>
+
+    <!-- Minimize button functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var table = document.getElementById('InventoryTable');
+            var button = document.getElementById('minimizeButton');
+            var isTableMinimized = false;
+
+            button.addEventListener('click', function() {
+                if (!isTableMinimized) {
+                    table.style.display = 'none';
+                    button.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i> Show';
+                } else {
+                    table.style.display = 'table';
+                    button.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Hide';
+                }
+                isTableMinimized = !isTableMinimized;
+            });
+        });
+    </script>
+
 
 </body>
 
