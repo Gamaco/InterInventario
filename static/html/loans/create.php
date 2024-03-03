@@ -314,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 											<td data-label='Model'>" . ($equipo['Model'] ? $equipo['Model'] : 'N/A') . "</td>
 											<td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
 											<td>
-												<a class='btn btn-primary mb-1' onclick='getPTagFromModal(\"" . $equipo['Ptag'] . "\")'>Select</a>
+												<a class='btn btn-primary btn-lg mb-1' onclick='getPTagFromModal(\"" . $equipo['Ptag'] . "\")'>Select</a>
 											</td>
 										</tr>";
 								}

@@ -27,6 +27,7 @@ var categoryDropdown = document.getElementById('categoryDropdown');
 
 // Add event listener to the dropdown items
 categoryDropdown.addEventListener('click', function(event) {
+  event.preventDefault();
   // Check if a dropdown item was clicked
   if (event.target.classList.contains('dropdown-item')) {
 

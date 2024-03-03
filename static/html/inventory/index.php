@@ -25,12 +25,6 @@
         .table-container {
             overflow-x: auto;
         }
-
-        @media (max-width: 991.98px) {
-            .btn-wrap {
-                margin-top: 10px;
-            }
-        }
     </style>
     </style>
 </head>
@@ -45,14 +39,14 @@
         <main class="content">
             <div class="container-fluid">
                 <h1 class="h3 mb-3"><strong>Inventory</strong> List</h1>
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
                         <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
                         <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="fa fa-code" aria-hidden="true"></i> Manage Categories</a>
                     </div>
                 </div>
             </div>
-        </main>
+
 
         <div class="row">
             <div class="col-12 col-lg-14 col-xxl-12 d-flex">
@@ -187,7 +181,7 @@
 
                                 $connection->close();
                                 ?>
-
+        </main>
                             </tbody>
                         </table>
                     </div>

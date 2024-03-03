@@ -3843,7 +3843,6 @@ fieldset:disabled .btn {
     font-size: var(--bs-dropdown-font-size);
     list-style: none;
     margin: 0;
-    max-height: 300px;
     overflow-y: scroll;
     min-width: var(--bs-dropdown-min-width);
     padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);
@@ -7566,6 +7565,32 @@ fieldset:disabled .btn {
 
 .font-monospace {
     font-family: var(--bs-font-monospace) !important
+}
+
+@media (max-width: 991.98px) {
+    .btn-wrap {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+#categoryDropdown {
+    width: 100vw;
+    height: 400px;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    border-radius: 0;
+    font-size: 1.09375rem;
+}
+}
+
+@media (min-width: 768px) {
+#categoryDropdown {
+    height: 400px;
+    overflow-y: auto;
+}
 }
 
 .fs-1 {
