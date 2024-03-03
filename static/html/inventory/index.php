@@ -29,7 +29,6 @@
         @media (max-width: 991.98px) {
             .btn-wrap {
                 margin-top: 10px;
-                /* Adjust margin as needed */
             }
         }
     </style>
@@ -82,7 +81,7 @@
                                                 <?php
                                                 include '../../db/config.php';
 
-                                                $query = "CALL GetCategories()"; // Calling the stored procedure to fetch categories
+                                                $query = "CALL GetCategories()";
 
                                                 $stmt = $connection->prepare($query);
 
