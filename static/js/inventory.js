@@ -1,24 +1,45 @@
-
 document.getElementById('searchInput').addEventListener('input', function () {
   const searchText = this.value.trim().toLowerCase();
-  const tableRows = document.querySelectorAll('#InventoryTable tbody tr');
-  let displayedRowCount = 0; // Initialize counter for displayed rows
+  
+  // Filter InventoryTable if it exists
+  const inventoryTable = document.getElementById('InventoryTable');
+  if (inventoryTable) {
+    const inventoryTableRows = inventoryTable.querySelectorAll('tbody tr');
+    let inventoryDisplayedRowCount = 0; // Initialize counter for displayed rows
 
-  tableRows.forEach(row => {
-    const rowData = row.textContent.trim().toLowerCase();
-    row.style.display = rowData.includes(searchText) ? '' : 'none';
-    if (row.style.display !== 'none') {
-      displayedRowCount++; // Increment the counter for displayed rows
-    }
-  });
+    inventoryTableRows.forEach(row => {
+      const rowData = row.textContent.trim().toLowerCase();
+      row.style.display = rowData.includes(searchText) ? '' : 'none';
+      if (row.style.display !== 'none') {
+        inventoryDisplayedRowCount++; // Increment the counter for displayed rows
+      }
+    });
+  }
 
+  // Filter InventoryTable-OutOfStock if it exists
+  const outOfStockTable = document.getElementById('InventoryTable-OutOfStock');
+  if (outOfStockTable) {
+    const outOfStockTableRows = outOfStockTable.querySelectorAll('tbody tr');
+    let outOfStockDisplayedRowCount = 0; // Initialize counter for displayed rows
+
+    outOfStockTableRows.forEach(row => {
+      const rowData = row.textContent.trim().toLowerCase();
+      row.style.display = rowData.includes(searchText) ? '' : 'none';
+      if (row.style.display !== 'none') {
+        outOfStockDisplayedRowCount++; // Increment the counter for displayed rows
+      }
+    });
+
+  }
+
+  // Update the counter element in your HTML
   if (!searchText == "") {
-    // Update the counter element in your HTML
-    document.getElementById('displayedRowCount').textContent = displayedRowCount + " items found for \'" + searchText.toUpperCase() + "'";
+    document.getElementById('displayedRowCount').textContent = "Items found for \'" + searchText.toUpperCase() + "'";
   } else {
     document.getElementById('displayedRowCount').textContent = "";
   }
 });
+
 
 
 
@@ -44,34 +65,65 @@ categoryDropdown.addEventListener('click', function(event) {
 
 
 function filterTable(filterText) {
-  const tableRows = document.querySelectorAll('#InventoryTable tbody tr');
-  let displayedRowCount = 0; // Initialize counter for displayed rows
+  // Filter InventoryTable if it exists
+  const inventoryTable = document.getElementById('InventoryTable');
+  const outOfStockTable = document.getElementById('InventoryTable-OutOfStock');
 
-  tableRows.forEach(row => {
-    const descriptionCell = row.cells[0];
+  let inventoryDisplayedRowCount = 0; // Initialize counter for displayed rows in InventoryTable
+  let outOfStockDisplayedRowCount = 0; // Initialize counter for displayed rows in InventoryTable-OutOfStock
 
-    if (filterText === 'all categories' || !descriptionCell) {
-      // Display all rows when "All Categories" is selected or if there's no description column
-      row.style.display = '';
-      displayedRowCount++; // Increment the counter for displayed rows
-    } else {
+  if (inventoryTable) {
+    const inventoryTableRows = inventoryTable.querySelectorAll('tbody tr');
+
+    inventoryTableRows.forEach(row => {
+      const descriptionCell = row.cells[0];
       const descriptionText = descriptionCell.textContent.trim().toLowerCase();
 
-      // Display the row if filterText exists in the description
-      if (descriptionText.includes(filterText.toLowerCase())) {
+      if (filterText === 'all categories' || descriptionText.includes(filterText.toLowerCase())) {
         row.style.display = '';
-        displayedRowCount++; // Increment the counter for displayed rows
+        inventoryDisplayedRowCount++; // Increment the counter for displayed rows
       } else {
         row.style.display = 'none';
       }
-    }
-  });
+    });
 
-  if (!(filterText == "all categories")) {
-    // Update the counter element in your HTML
-    document.getElementById('displayedRowCount').textContent = displayedRowCount + " items found for \'" + filterText.toUpperCase() + "'";
+    // Update the count of displayed rows for InventoryTable
+    console.log(`Displayed rows in InventoryTable: ${inventoryDisplayedRowCount}`);
+  }
+
+  if (outOfStockTable) {
+    const outOfStockTableRows = outOfStockTable.querySelectorAll('tbody tr');
+
+    outOfStockTableRows.forEach(row => {
+      const descriptionCell = row.cells[0];
+      const descriptionText = descriptionCell.textContent.trim().toLowerCase();
+
+      if (filterText === 'all categories' || descriptionText.includes(filterText.toLowerCase())) {
+        row.style.display = '';
+        outOfStockDisplayedRowCount++; // Increment the counter for displayed rows
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    // Update the count of displayed rows for InventoryTable-OutOfStock
+    console.log(`Displayed rows in InventoryTable-OutOfStock: ${outOfStockDisplayedRowCount}`);
+  }
+
+  // Update the counter element in your HTML
+  if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount > 0) {
+    document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + outOfStockDisplayedRowCount + " Items found for \'" + filterText.toUpperCase() + "'";
+  } else if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount === 0) {
+    document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + " Items found for \'" + filterText.toUpperCase() + "'";
+    //outOfStockTable.style.display = 'none'; // Hide InventoryTable-OutOfStock
+  } else if (inventoryDisplayedRowCount === 0 && outOfStockDisplayedRowCount > 0) {
+    document.getElementById('displayedRowCount').textContent = outOfStockDisplayedRowCount + " Items found for \'" + filterText.toUpperCase() + "'";
+    //inventoryTable.style.display = 'none'; // Hide InventoryTable
   } else {
     document.getElementById('displayedRowCount').textContent = "";
   }
 }
+
+
+
 
