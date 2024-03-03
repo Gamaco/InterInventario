@@ -251,19 +251,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<?php
 									include '../../db/config.php';
 
-									$query = "SELECT * FROM categories";
-									$categories = $connection->query($query);
+									$query = "CALL GetCategories()"; // Calling the stored procedure to fetch categories
 
-									// In case the query failed
-									if (!$categories) {
-										die("Invalid query: " . $connection->error);
+									$stmt = $connection->prepare($query);
+
+									if (!$stmt) {
+										die("Error preparing statement: " . $connection->error);
 									}
 
-									while ($category = $categories->fetch_assoc()) {
-										echo "
-                        					<li><a class='dropdown-item'>" . $category["Category"] . "</a></li>
-                    					";
+									$result = $stmt->execute();
+
+									if (!$result) {
+										die("Error executing statement: " . $stmt->error);
 									}
+
+									$stmt->bind_result($id, $category);
+
+									while ($stmt->fetch()) {
+										echo "<li><a class='dropdown-item'>" . $category . "</a></li>";
+									}
+
+									$stmt->close();
+									$connection->close();
 									?>
 								</ul>
 							</div>

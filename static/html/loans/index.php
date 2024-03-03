@@ -109,14 +109,8 @@
 									<?php
 									include '../../db/config.php';
 
-									// Query to fetch loan details with item description
-									$query = "SELECT prestamos.*, inventario.Description AS ItemDescription
-          							FROM prestamos
-          							LEFT JOIN inventario ON prestamos.Ptag = inventario.Ptag
-          							ORDER BY prestamos.id DESC";
-
-									// Prepare the SQL statement
-									$stmt = $connection->prepare($query);
+									// Prepare the SQL statement to call the stored procedure
+									$stmt = $connection->prepare("CALL GetLoanDetails()");
 
 									// Execute the statement
 									$stmt->execute();
@@ -143,24 +137,25 @@
 										}
 
 										echo "
-        								<tr>
-            								<td data-label='Description'>" . htmlspecialchars($prestamo['ItemDescription'] ?? 'N/A') . "</td>
-            								<td data-label='Loan To'>" . htmlspecialchars($prestamo['LOAN_TO'] ?? 'N/A') . "</td>
-            								<td data-label='Loaner Auth'>" . htmlspecialchars($prestamo['LOANER_AUTH'] ?? 'N/A') . "</td>
-            								<td data-label='PTag'>" . htmlspecialchars($prestamo['PTag'] ?? 'N/A') . "</td>
-           								    <td data-label='Status'>" . $status . "</td>
-            								<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
-            								<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
-            								<td data-label='Options'>
-                								<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'>Return</a>
-            								</td>
-        								</tr>";
+											<tr>
+												<td data-label='Description'>" . htmlspecialchars($prestamo['ItemDescription'] ?? 'N/A') . "</td>
+												<td data-label='Loan To'>" . htmlspecialchars($prestamo['LOAN_TO'] ?? 'N/A') . "</td>
+												<td data-label='Loaner Auth'>" . htmlspecialchars($prestamo['LOANER_AUTH'] ?? 'N/A') . "</td>
+												<td data-label='PTag'>" . htmlspecialchars($prestamo['PTag'] ?? 'N/A') . "</td>
+												<td data-label='Status'>" . $status . "</td>
+												<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
+												<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
+												<td data-label='Options'>
+													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'>Return</a>
+												</td>
+											</tr>";
 									}
 
 									// Close the statement and connection
 									$stmt->close();
 									$connection->close();
 									?>
+
 								</tbody>
 							</table>
 						</div>
