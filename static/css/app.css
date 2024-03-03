@@ -3724,8 +3724,8 @@ fieldset:disabled .btn {
 
 .btn-group-lg>.btn,
 .btn-lg {
-    --bs-btn-padding-y: 0.4rem;
-    --bs-btn-padding-x: 1rem;
+    --bs-btn-padding-y: 0.6rem;
+    --bs-btn-padding-x: 1.2rem;
     --bs-btn-font-size: 0.925rem;
     --bs-btn-border-radius: var(--bs-border-radius-lg)
 }

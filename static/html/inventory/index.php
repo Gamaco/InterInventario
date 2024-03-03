@@ -25,6 +25,14 @@
         .table-container {
             overflow-x: auto;
         }
+
+        @media (max-width: 991.98px) {
+            .btn-wrap {
+                margin-top: 10px;
+                /* Adjust margin as needed */
+            }
+        }
+    </style>
     </style>
 </head>
 
@@ -44,11 +52,9 @@
                             <div class="card-body mt-0">
                                 <h5 class="card-title mb-2">Options</h5>
                                 <div class="row mt-0">
-                                    <div class="col-md-auto mb-2 mb-md-0">
-                                        <a class="btn btn-primary btn-lg fs-5 btn-block" href="../inventory/create.php" style="width: 150px;"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
-                                    </div>
-                                    <div class="col-md-auto">
-                                        <a class="btn btn-lg fs-5 text-dark btn-secondary btn-block" href="../inventory/create-category.php"><i class="fa fa-code" aria-hidden="true"></i> Manage Categories</a>
+                                    <div class="col-md-auto mb-2 mb-md-0 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                                        <a class="btn btn-primary btn-lg fs-5 me-md-2 mb-2 mb-md-0" href="../inventory/create.php"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
+                                        <a class="btn btn-lg fs-5 text-dark btn-secondary me-md-2" href="../inventory/create-category.php"><i class="fa fa-code" aria-hidden="true"></i> Manage Categories</a>
                                     </div>
                                 </div>
                             </div>
