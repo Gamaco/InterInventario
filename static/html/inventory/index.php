@@ -338,10 +338,10 @@
             button.addEventListener('click', function() {
                 if (!isTableMinimized) {
                     table.style.display = 'none';
-                    button.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i> Show';
+                    button.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Show';
                 } else {
                     table.style.display = 'table';
-                    button.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Hide';
+                    button.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i> Hide';
                 }
                 isTableMinimized = !isTableMinimized;
             });

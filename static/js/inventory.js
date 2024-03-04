@@ -32,9 +32,15 @@ document.getElementById('searchInput').addEventListener('input', function () {
 
   }
 
-  // Update the counter element in your HTML
-  if (!searchText == "") {
-    document.getElementById('displayedRowCount').textContent = "Items found for \'" + searchText.toUpperCase() + "'";
+  // Update the counter element in HTML
+  if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount > 0) {
+    document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
+  } else if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount === 0) {
+    document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
+    //outOfStockTable.style.display = 'none'; // Hide InventoryTable-OutOfStock
+  } else if (inventoryDisplayedRowCount === 0 && outOfStockDisplayedRowCount > 0) {
+    document.getElementById('displayedRowCount').textContent = outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
+    //inventoryTable.style.display = 'none'; // Hide InventoryTable
   } else {
     document.getElementById('displayedRowCount').textContent = "";
   }
@@ -110,7 +116,7 @@ function filterTable(filterText) {
     console.log(`Displayed rows in InventoryTable-OutOfStock: ${outOfStockDisplayedRowCount}`);
   }
 
-  // Update the counter element in your HTML
+  // Update the counter element in HTML
   if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount > 0) {
     document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + outOfStockDisplayedRowCount + " Items found for \'" + filterText.toUpperCase() + "'";
   } else if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount === 0) {
