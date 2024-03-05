@@ -76,8 +76,10 @@
 										$status = '';
 										if ($equipo['Item_Cond'] === 'Damaged') {
 											$status = "<span class='badge bg-danger'>Damaged</span>";
-										} elseif ($equipo['Item_Cond'] === 'Incomplete') {
+										} else if ($equipo['Item_Cond'] === 'Incomplete') {
 											$status = "<span class='badge bg-warning'>Incomplete</span>";
+										} else if ($equipo['Item_Cond'] === 'WIP') {
+											$status = "<span class='badge bg-success'>WIP</span>";
 										}
 
 										// Output table row with badge
@@ -88,7 +90,8 @@
 												<td data-label='Condition'>" . $status . "</td>
 												<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
 												<td>
-													<a class='btn btn-primary rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
+												<a class='btn btn-secondary text-dark mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=$equipo[id]'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
+												<a class='btn btn-primary mt-1 mb-lg-1 rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-check' aria-hidden='true'></i> Complete</a>
 												</td>							
 											</tr>";
 									}
