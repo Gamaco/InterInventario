@@ -146,7 +146,7 @@
 												<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
 												<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
 												<td data-label='Options'>
-													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'>Return</a>
+													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'><i class='fa fa-reply-all' aria-hidden='true'></i> Return</a>
 												</td>
 											</tr>";
 									}
@@ -197,7 +197,8 @@
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
 										<label for="comments" class="form-label">Comments</label>
-										<textarea class="form-control" id="comments" name="Comments" rows="3"></textarea>
+										<textarea class="form-control" id="comments" name="Comments" rows="2" maxlength="80"></textarea>
+                                    	<small class="form-text text-muted" id="charCount">0/80 characters</small>
 									</div>
 								</div>
 							</div>
@@ -240,6 +241,22 @@
 	<script src="../../js/loans-index.js"></script>
 	<script src="../../js/app.js"></script>
 	<script src="../../js/inventory.js"></script>
+
+	<script>
+        // Add event listener to the textarea
+        document.getElementById('comments').addEventListener('input', function() {
+            // Get the current character count
+            var charCount = this.value.length;
+            // Get the maximum character limit
+            var maxLength = parseInt(this.getAttribute('maxlength'));
+            // Update the character count display
+            document.getElementById('charCount').textContent = charCount + '/' + maxLength + ' characters';
+            // Trim the text if it exceeds the limit
+            if (charCount > maxLength) {
+                this.value = this.value.substring(0, maxLength);
+            }
+        });
+    </script>
 </body>
 
 </html>
