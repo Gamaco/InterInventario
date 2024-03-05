@@ -284,11 +284,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							<thead>
 								<tr>
 									<th>Description</th>
-									<th>Options</th>
 									<th>PTag</th>
 									<th>Serial No</th>
 									<th>Model</th>
 									<th>Location</th>
+									<th>Options</th>
 								</tr>
 							</thead>
 							<tbody>
