@@ -95,7 +95,7 @@
 							<table id="InventoryTable" class="table table-hover my-0">
 								<thead>
 									<tr>
-										<th>Description</th>
+										<th>DESCRIPTION</th>
 										<th>LOAN TO</th>
 										<th>LOANER AUTH</th>
 										<th>PTAG</th>
@@ -165,7 +165,7 @@
 			</div>
 		</main>
 
-		<!-- Modal -->
+		<!-- Confirm Return Modal -->
 		<div class="modal fade" id="itemReturnModal" tabindex="-1" aria-labelledby="itemReturnModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -174,12 +174,12 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form id="submit" method="post" action="./delete.php">
+						<form id="submit" method="post" action="./delete.php" onsubmit="enableInputs()">
 							<div class="row flex-wrap">
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
 										<label class="form-label" for="PTAG">PTag</label>
-										<input type="text" name="PTag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput">
+										<input type="text" name="PTag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput" disabled>
 									</div>
 								</div>
 							</div>
@@ -188,7 +188,7 @@
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
 										<label class="form-label" for="Description">Description</label>
-										<input type="text" name="Description" id="Description" class="form-control fs-4" aria-describedby="Description">
+										<input type="text" name="Description" id="Description" class="form-control fs-4" aria-describedby="Description" disabled>
 									</div>
 								</div>
 							</div>
@@ -242,6 +242,7 @@
 	<script src="../../js/app.js"></script>
 	<script src="../../js/inventory.js"></script>
 
+	<!-- Display characters count and the limit. -->
 	<script>
         // Add event listener to the textarea
         document.getElementById('comments').addEventListener('input', function() {
@@ -257,6 +258,15 @@
             }
         });
     </script>
-</body>
 
+<!-- Enables disabled inputs so that the data can be sent serverside. -->
+<script>
+    function enableInputs() {
+        document.getElementById("PTAG").disabled = false;
+        document.getElementById("Description").disabled = false;
+        // Add more lines to enable other input fields if needed
+    }
+</script>
+
+</body>
 </html>
