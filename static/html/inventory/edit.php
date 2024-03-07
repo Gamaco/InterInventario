@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     <title>Edit - IELS</title>
     <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">

@@ -14,7 +14,7 @@
 
     <title>Dashboard - IELS</title>
     <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
@@ -188,12 +188,8 @@
     </div>
     </div>
 
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.7.0.js'></script>
-
     <!-- Local JS -->
     <script src="../../js/app.js"></script>
-    <script src="../../js/inventory.js"></script>
 </body>
 
 </html>

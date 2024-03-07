@@ -11,27 +11,29 @@
                     Menu
                 </li>
 
+                <!--  -->
+
                 <li class="sidebar-item <?php echo ($activePage == 'dashboard') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../components/dashboard.php">
-                        <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Dashboard</span>
+                         <span class="align-middle"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item <?php echo ($activePage == 'loans') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../loans/index.php">
-                        <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Loans</span>
+                        <span class="align-middle"><i class="fa fa-file-text-o" aria-hidden="true"></i> Loans</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item <?php echo ($activePage == 'returns') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../returns/index.php">
-                        <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Reviews</span>
+                        <span class="align-middle"><i class="fa fa-check-square-o" aria-hidden="true"></i> Reviews</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item <?php echo ($activePage == 'inventory') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../inventory/index.php">
-                        <i class="align-middle" data-feather="database"></i> <span class="align-middle">Inventory</span>
+                        <span class="align-middle"><i class="fa fa-database" aria-hidden="true"></i> Inventory</span>
                     </a>
                 </li>
 
@@ -41,7 +43,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="../user/login.php">
-                        <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Sign out</span>
+                        <span class="align-middle"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</span>
                     </a>
                 </li>
         </div>
