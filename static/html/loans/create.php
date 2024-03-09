@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-	<title>Create - IELS</title>
+	<title>Create | IELS</title>
 	<!-- Custom CSS specifically for this page -->
 	<link rel="stylesheet" , href="../../css/inventory.css">
 	<link rel="stylesheet" , href="../../css/loans-create.css">

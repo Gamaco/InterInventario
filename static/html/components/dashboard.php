@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-    <title>Dashboard - IELS</title>
+    <title>Dashboard | IELS</title>
     <!-- Font Awesome CSS -->
     <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 

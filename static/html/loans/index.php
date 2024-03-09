@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-	<title>Loans - IELS</title>
+	<title>Loans | IELS</title>
 	<link rel="stylesheet" , href="../../css/loans.css">
 	<!-- Font Awesome CSS -->
 	<link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
@@ -200,9 +200,9 @@
 							<div class="row flex-wrap">
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
-										<label for="comments" class="form-label">Issue Description</label>
-										<textarea class="form-control" id="comments" name="Comments" rows="2" maxlength="80"></textarea>
-										<small class="form-text text-muted" id="charCount">0/80 characters</small>
+										<label for="Fault" class="form-label">Fault Description</label>
+										<textarea class="form-control" id="Fault" name="Fault" rows="2" maxlength="50"></textarea>
+										<small class="form-text text-muted" id="charCount">0/50 characters</small>
 									</div>
 								</div>
 							</div>

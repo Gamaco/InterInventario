@@ -1,14 +1,14 @@
 <?php
 include '../../db/config.php';
 
-$PTag = $Description = $Comments = $Condition = "";
+$PTag = $Description = $Fault = $Condition = "";
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validate and sanitize user inputs
     $PTag = filter_var($_POST["PTag"], FILTER_SANITIZE_SPECIAL_CHARS);
     $Description = filter_var($_POST["Description"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Fault = filter_var($_POST["Fault"], FILTER_SANITIZE_SPECIAL_CHARS);
     $Condition = filter_var($_POST["condition"], FILTER_SANITIZE_SPECIAL_CHARS);
 
     // Call the stored procedure
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errorMessage = "Error preparing statement: " . $connection->error;
     } else {
         // Bind parameters
-        $stmt->bind_param("ssss", $PTag, $Description, $Comments, $Condition);
+        $stmt->bind_param("ssss", $PTag, $Description, $Fault, $Condition);
 
         // Execute the statement
         $stmt->execute();

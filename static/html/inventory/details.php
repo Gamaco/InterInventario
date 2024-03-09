@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-    <title>Index - IELS</title>
+    <title>Index | IELS</title>
     <link rel="stylesheet" , href="../../css/inventory.css">
     <!-- Font Awesome CSS -->
     <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>

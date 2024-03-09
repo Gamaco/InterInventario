@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 
 // Add event listener to the textarea
-document.getElementById('comments').addEventListener('input', function () {
+document.getElementById('Fault').addEventListener('input', function () {
     // Get the current character count
     var charCount = this.value.length;
     // Get the maximum character limit

@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 // Display characters count and the limit.
     // Add event listener to the textarea
-    document.getElementById('comments').addEventListener('input', function() {
+    document.getElementById('Fault').addEventListener('input', function() {
         // Get the current character count
         var charCount = this.value.length;
         // Get the maximum character limit

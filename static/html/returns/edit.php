@@ -30,12 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $description = $returns["Description"];
     $ptag = $returns["PTag"];
     $condition = $returns["Item_Cond"];
-    $comments = $returns["Comments"];
+    $Fault = $returns["Fault"];
 } else {
     // Validate and sanitize user inputs
     $id = filter_var($_POST["id"], FILTER_SANITIZE_SPECIAL_CHARS);
     $condition = filter_var($_POST["Item_Cond"], FILTER_SANITIZE_SPECIAL_CHARS);
-    $comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Fault = filter_var($_POST["Fault"], FILTER_SANITIZE_SPECIAL_CHARS);
 
     do {
         // Call the stored procedure to update an item
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
 
         // Bind parameters
-        $stmt->bind_param("ssi", $condition, $comments, $id);
+        $stmt->bind_param("ssi", $condition, $Fault, $id);
 
         // Execute the statement
         $result = $stmt->execute();
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-    <title>Edit - IELS</title>
+    <title>Edit | IELS</title>
     <!-- Font Awesome CSS -->
     <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
@@ -144,9 +144,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <div class="row flex-wrap">
                                     <div class="col-12 col-md mb-3">
                                         <div data-mdb-input-init class="form-outline">
-                                            <label for="comments" class="form-label">Issue Description</label>
-                                            <textarea class="form-control" id="comments" name="Comments" rows="2" maxlength="80"><?php echo $comments ?></textarea>
-                                            <small class="form-text text-muted" id="charCount">0/80 characters</small>
+                                            <label for="Fault" class="form-label">Fault Description</label>
+                                            <textarea class="form-control" id="Fault" name="Fault" rows="2" maxlength="50"><?php echo $Fault ?></textarea>
+                                            <small class="form-text text-muted" id="charCount">0/50 characters</small>
                                         </div>
                                     </div>
                                 </div>
