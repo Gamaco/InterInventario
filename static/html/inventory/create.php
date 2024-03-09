@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
     <meta name="description" content="Sistema de Inventario">
     <meta name="author" content="Inter Bayamon">
     <meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
@@ -131,8 +131,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="row flex-wrap">
                                         <div class="col-12 col-md mb-3">
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="description" id="description" class="form-control" value="<?php echo $description; ?>" />
-                                                <label class="form-label" for="description">Description</label>
+                                            <label class="form-label fs-4" for="description">Description <i class="text-danger">*</i></label>
+                                                <input type="text" name="description" id="description" class="form-control form-control-lg" value="<?php echo $description; ?>" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -140,31 +140,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="gn" id="gn" class="form-control" value="<?php echo $gn; ?>" />
-                                                <label class="form-label" for="gn">GN</label>
+                                            <label class="form-label fs-4" for="gn">GN</label>
+                                                <input type="text" name="gn" id="gn" class="form-control form-control-lg" value="<?php echo $gn; ?>"/>    
                                             </div>
                                         </div>
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="model" id="model" class="form-control" value="<?php echo $model; ?>" />
-                                                <label class="form-label" for="model">Model</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="Serial_No" id="Serial_No" class="form-control" value="<?php echo $Serial_No; ?>" />
-                                                <label class="form-label" for="description">Serial No</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="Fund" id="Fund" class="form-control" value="<?php echo $Fund; ?>" />
-                                                <label class="form-label" for="model">Fund</label>
+                                            <label class="form-label fs-4" for="model">Model <i class="text-danger">*</i></label>
+                                                <input type="text" name="model" id="model" class="form-control form-control-lg" value="<?php echo $model; ?>" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -172,31 +156,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="AC" id="AC" class="form-control" value="<?php echo $AC ?>" />
-                                                <label class="form-label" for="AC">AC</label>
+                                            <label class="form-label fs-4" for="description">Serial No</label>
+                                                <input type="text" name="Serial_No" id="Serial_No" class="form-control form-control-lg" value="<?php echo $Serial_No; ?>" />
                                             </div>
                                         </div>
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="CL" id="CL" class="form-control" value="<?php echo $CL; ?>" />
-                                                <label class="form-label" for="CL">CL</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="F" id="F" class="form-control" value="<?php echo $F; ?>" />
-                                                <label class="form-label" for="F">F</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="AQU" id="AQU" class="form-control" value="<?php echo $AQU; ?>" />
-                                                <label class="form-label" for="AQU">AQU</label>
+                                            <label class="form-label fs-4" for="model">Fund</label>
+                                                <input type="text" name="Fund" id="Fund" class="form-control form-control-lg" value="<?php echo $Fund; ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -204,31 +172,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="ST" id="ST" class="form-control" value="<?php echo $ST; ?>" />
-                                                <label class="form-label" for="ST">ST</label>
+                                            <label class="form-label fs-4" for="AC">AC</label>
+                                                <input type="text" name="AC" id="AC" class="form-control form-control-lg" value="<?php echo $AC ?>" />
                                             </div>
                                         </div>
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="Acquisition" id="Acquisition" class="form-control" value="<?php echo $Acquisition; ?>" />
-                                                <label class="form-label" for="Acquisition">Acquisition</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="Received" id="Received" class="form-control" value="<?php echo $Received; ?>" />
-                                                <label class="form-label" for="Received">Received</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="DocNo" id="DocNo" class="form-control" value="<?php echo $DocNo; ?>" />
-                                                <label class="form-label" for="DocNo">Doc No</label>
+                                            <label class="form-label fs-4" for="CL">CL</label>
+                                                <input type="text" name="CL" id="CL" class="form-control form-control-lg" value="<?php echo $CL; ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -236,15 +188,63 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="Amt" id="Amt" class="form-control" value="<?php echo $Amt; ?>" />
-                                                <label class="form-label" for="Amt">Amt</label>
+                                            <label class="form-label fs-4" for="F">F</label>
+                                                <input type="text" name="F" id="F" class="form-control form-control-lg" value="<?php echo $F; ?>" />
                                             </div>
                                         </div>
                                         <div class="col-12 col-md mb-3">
                                             <!-- Text input -->
                                             <div data-mdb-input-init class="form-outline">
-                                                <input type="text" name="Location" id="Location" class="form-control" value="<?php echo $Location; ?>" />
-                                                <label class="form-label" for="Location">Location</label>
+                                            <label class="form-label fs-4" for="AQU">AQU</label>
+                                                <input type="text" name="AQU" id="AQU" class="form-control form-control-lg" value="<?php echo $AQU; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
+                                            <!-- Text input -->
+                                            <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label fs-4" for="ST">ST</label>
+                                                <input type="text" name="ST" id="ST" class="form-control form-control-lg" value="<?php echo $ST; ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md mb-3">
+                                            <!-- Text input -->
+                                            <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label fs-4" for="Acquisition">Acquisition</label>
+                                                <input type="text" name="Acquisition" id="Acquisition" class="form-control form-control-lg" value="<?php echo $Acquisition; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
+                                            <!-- Text input -->
+                                            <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label fs-4" for="Received">Received</label>
+                                                <input type="text" name="Received" id="Received" class="form-control form-control-lg" value="<?php echo $Received; ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md mb-3">
+                                            <!-- Text input -->
+                                            <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label fs-4" for="DocNo">Doc No</label>
+                                                <input type="text" name="DocNo" id="DocNo" class="form-control form-control-lg" value="<?php echo $DocNo; ?>" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row flex-wrap">
+                                        <div class="col-12 col-md mb-3">
+                                            <!-- Text input -->
+                                            <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label fs-4" for="Amt">Amt</label>
+                                                <input type="text" name="Amt" id="Amt" class="form-control form-control-lg" value="<?php echo $Amt; ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md mb-3">
+                                            <!-- Text input -->
+                                            <div data-mdb-input-init class="form-outline">
+                                            <label class="form-label fs-4" for="Location">Location <i class="text-danger">*</i></label>
+                                                <input type="text" name="Location" id="Location" class="form-control form-control-lg" value="<?php echo $Location; ?>" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -254,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="justify-content-center">
                                         <div class="row">
                                             <!-- Submit button -->
-                                            <button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
+                                            <button type="submit" class="btn btn-primary btn-lg mb-2">Submit</button>
                                         </div>
                                         <div class="row">
                                             <!-- Cancel button -->

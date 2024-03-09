@@ -2,7 +2,7 @@
 include '../../db/config.php';
 
 // Initialize variables
-$Ptag = $LOAN_TO = $LOANER_AUTH = $START_DATE = $END_DATE = "";
+$Ptag = $LOAN_TO = $LOANER_AUTH = $START_DATE = $END_DATE = $NAME = $AFFILIATION = "";
 $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -153,21 +153,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTAG</label>
-											<div class="input-group mb-3">
+											<label class="form-label fs-4" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTag <i class="text-danger">*</i></label>
+											<div class="input-group">
 												<button class="btn btn-primary btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
-												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
+												<input type="text" name="Ptag" id="PTAG" class="form-control form-control-lg" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
 											</div>
 										</div>
 									</div>
 								</div>
 
+								<hr>
+
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="LOAN_TO"><i class="fa fa-user" aria-hidden="true"></i> LOAN TO</label>
+											<label class="form-label fs-4" for="LOAN_TO"><i class="fa fa-user" aria-hidden="true"></i> Loan To <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control" value="<?php echo htmlspecialchars($LOAN_TO); ?>" />
+												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control form-control-lg" placeholder="e.g. Y00561278" value="<?php echo htmlspecialchars($LOAN_TO); ?>" required/>
 											</div>
 										</div>
 									</div>
@@ -176,9 +178,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="LOANER_AUTH"><i class="fa fa-user" aria-hidden="true"></i> LOANER AUTH</label>
+											<label class="form-label fs-4" for="LOAN_TO">Name <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control" value="<?php echo htmlspecialchars($LOANER_AUTH); ?>" />
+												<input type="text" name="LOAN_TO_NAME" id="LOAN_TO_NAME" class="form-control form-control-lg" placeholder="e.g. John Doe" value="<?php echo htmlspecialchars($NAME); ?>" required/>
 											</div>
 										</div>
 									</div>
@@ -187,9 +189,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="START_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> START DATE</label>
-											<div class="mb-3">
-												<input type="date" name="START_DATE" id="START_DATE" class="form-control" value="<?php echo htmlspecialchars($START_DATE); ?>">
+											<label class="form-label fs-4" for="LOAN_TO">Category <i class="text-danger">*</i></label>
+											<div data-mdb-input-init class="form-outline">
+												<div class="dropdown-center">
+													<button class="btn btn-secondary text-dark dropdown-toggle btn-lg" id="affiliationButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+														Unselected
+													</button>
+													<ul class="dropdown-menu" id="affiliationDropdown">
+														<li><a class='dropdown-item'>Student</a></li>
+														<li><a class='dropdown-item'>Faculty Member</a></li>
+														<li><a class='dropdown-item'>Non-faculty staff</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<hr>
+
+								<div class="row flex-wrap">
+									<div class="col-12 col-md mb-3">
+										<div data-mdb-input-init class="form-outline">
+											<label class="form-label fs-4" for="LOANER_AUTH"><i class="fa fa-user" aria-hidden="true"></i> Loaner Auth <i class="text-danger">*</i></label>
+											<div data-mdb-input-init class="form-outline">
+												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control form-control-lg" value="<?php echo htmlspecialchars($LOANER_AUTH); ?>" required/>
 											</div>
 										</div>
 									</div>
@@ -198,9 +222,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="END_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> END DATE</label>
+											<label class="form-label fs-4" for="START_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> Start Date <i class="text-danger">*</i></label>
 											<div class="mb-3">
-												<input type="date" name="END_DATE" id="END_DATE" class="form-control" value="<?php echo htmlspecialchars($END_DATE); ?>">
+												<input type="date" name="START_DATE" id="START_DATE" class="form-control form-control-lg" value="<?php echo htmlspecialchars($START_DATE); ?>" required>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row flex-wrap">
+									<div class="col-12 col-md mb-3">
+										<div data-mdb-input-init class="form-outline">
+											<label class="form-label fs-4" for="END_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> End Date <i class="text-danger">*</i></label>
+											<div class="mb-3">
+												<input type="date" name="END_DATE" id="END_DATE" class="form-control form-control-lg" value="<?php echo htmlspecialchars($END_DATE); ?>" required>
 											</div>
 										</div>
 									</div>
@@ -210,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="justify-content-center">
 									<div class="row">
 										<!-- Submit button -->
-										<button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
+										<button type="submit" class="btn btn-primary text-white btn-lg mb-2">Submit</button>
 									</div>
 									<div class="row">
 										<!-- Cancel button -->
@@ -275,6 +310,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									$connection->close();
 									?>
 								</ul>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12 col-lg-14 col-xxl-12 d-flex">
+								<span class="badge badge-secondary fs-5 p-4 mb-3 responsive-badge" id="displayedRowCount"></span>
 							</div>
 						</div>
 					</div>

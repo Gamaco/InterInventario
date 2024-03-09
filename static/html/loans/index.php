@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-	<title>Index - IELS</title>
+	<title>Loans - IELS</title>
 	<link rel="stylesheet" , href="../../css/inventory.css">
 	<!-- Font Awesome CSS -->
 	<link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
@@ -40,7 +40,7 @@
 								<div class="d-flex mt-3 mb-3">
 									<div class="input-group">
 										<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-										<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
+										<input type="text" id="searchInput" class="form-control fs-4 form-control-lg" placeholder="Search">
 									</div>
 								</div>
 								<div class="col-auto text-center text-md-start">
@@ -96,6 +96,8 @@
 								<thead>
 									<tr>
 										<th>DESCRIPTION</th>
+										<th>NAME</th>
+										<th>AFFILIATION</th>
 										<th>LOAN TO</th>
 										<th>LOANER AUTH</th>
 										<th>PTAG</th>
@@ -139,6 +141,8 @@
 										echo "
 											<tr>
 												<td data-label='Description'>" . htmlspecialchars($prestamo['ItemDescription'] ?? 'N/A') . "</td>
+												<td data-label='Name'>" . htmlspecialchars($prestamo['LOAN_TO_NAME'] ?? 'N/A') . "</td>
+												<td data-label='Affiliation'>" . htmlspecialchars($prestamo['LOAN_TO_AFFILIATION'] ?? 'N/A') . "</td>
 												<td data-label='Loan To'>" . htmlspecialchars($prestamo['LOAN_TO'] ?? 'N/A') . "</td>
 												<td data-label='Loaner Auth'>" . htmlspecialchars($prestamo['LOANER_AUTH'] ?? 'N/A') . "</td>
 												<td data-label='PTag'>" . htmlspecialchars($prestamo['PTag'] ?? 'N/A') . "</td>

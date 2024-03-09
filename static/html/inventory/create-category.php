@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="row flex-wrap">
                                     <div class="col-12 col-md mb-3">
                                         <div data-mdb-input-init class="form-outline">
-                                            <input type="text" name="Category" id="Category" class="form-control fs-4" value="<?php echo $Category; ?>" />
+                                            <input type="text" name="Category" id="Category" class="form-control fs-4 form-control-lg" value="<?php echo $Category; ?>" />
                                             <label class="form-label" for="Category">New Category</label>
                                         </div>
                                         <div>

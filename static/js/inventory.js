@@ -33,20 +33,32 @@ document.getElementById('searchInput').addEventListener('input', function () {
   }
 
   // Update the counter element in HTML
-  if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount > 0) {
-    document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
-  } else if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount === 0) {
-    document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
-    //outOfStockTable.style.display = 'none'; // Hide InventoryTable-OutOfStock
-  } else if (inventoryDisplayedRowCount === 0 && outOfStockDisplayedRowCount > 0) {
-    document.getElementById('displayedRowCount').textContent = outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
-    //inventoryTable.style.display = 'none'; // Hide InventoryTable
-  } else {
-    document.getElementById('displayedRowCount').textContent = "";
-  }
+    if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount > 0) {
+      document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
+    } else if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount === 0) {
+      document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
+      //outOfStockTable.style.display = 'none'; // Hide InventoryTable-OutOfStock
+    } else if (inventoryDisplayedRowCount === 0 && outOfStockDisplayedRowCount > 0) {
+      document.getElementById('displayedRowCount').textContent = outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
+      //inventoryTable.style.display = 'none'; // Hide InventoryTable
+    } else {
+      document.getElementById('displayedRowCount').textContent = "";
+    }
 });
 
 
+var affiliationDropdown = document.getElementById('affiliationDropdown');
+
+if (affiliationDropdown) {
+  affiliationDropdown.addEventListener('click', function(event) {
+    event.preventDefault();
+    let affiliationButton = document.getElementById('affiliationButton');
+  
+    if (event.target.classList.contains('dropdown-item')) {
+      affiliationButton.innerText = event.target.innerText.trim();
+    }
+  });
+}
 
 
 var dropdownButton = document.querySelector('.dropdown-toggle');
@@ -92,9 +104,6 @@ function filterTable(filterText) {
         row.style.display = 'none';
       }
     });
-
-    // Update the count of displayed rows for InventoryTable
-    console.log(`Displayed rows in InventoryTable: ${inventoryDisplayedRowCount}`);
   }
 
   if (outOfStockTable) {
@@ -111,9 +120,6 @@ function filterTable(filterText) {
         row.style.display = 'none';
       }
     });
-
-    // Update the count of displayed rows for InventoryTable-OutOfStock
-    console.log(`Displayed rows in InventoryTable-OutOfStock: ${outOfStockDisplayedRowCount}`);
   }
 
   // Update the counter element in HTML

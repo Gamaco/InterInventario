@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
-    <title>Index - IELS</title>
+    <title>Inventory - IELS</title>
     <link rel="stylesheet" , href="../../css/inventory.css">
     <!-- Font Awesome CSS -->
     <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
@@ -56,7 +56,7 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-                                        <input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
+                                        <input type="text" id="searchInput" class="form-control fs-4 form-control-lg" placeholder="Search">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 d-flex justify-content-center justify-content-sm-end">

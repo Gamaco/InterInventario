@@ -41,7 +41,7 @@
 									<div class="d-flex mt-3">
 										<div class="input-group">
 											<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-											<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
+											<input type="text" id="searchInput" class="form-control fs-4 form-control-lg" placeholder="Search">
 										</div>
 									</div>
 								</div>
