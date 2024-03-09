@@ -45,3 +45,24 @@ $(document).ready(function() {
         $("#condition").val(selectedCondition); // Update the hidden input value
     });
 });
+
+// Display characters count and the limit.
+    // Add event listener to the textarea
+    document.getElementById('comments').addEventListener('input', function() {
+        // Get the current character count
+        var charCount = this.value.length;
+        // Get the maximum character limit
+        var maxLength = parseInt(this.getAttribute('maxlength'));
+        // Update the character count display
+        document.getElementById('charCount').textContent = charCount + '/' + maxLength + ' characters';
+        // Trim the text if it exceeds the limit
+        if (charCount > maxLength) {
+            this.value = this.value.substring(0, maxLength);
+        }
+    });
+
+// Enables disabled inputs so that the data can be sent serverside.
+function enableInputs() {
+    document.getElementById("PTAG").disabled = false;
+    document.getElementById("Description").disabled = false;
+}

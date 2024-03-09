@@ -78,8 +78,8 @@
 											$status = "<span class='badge bg-danger'>Damaged</span>";
 										} else if ($equipo['Item_Cond'] === 'Incomplete') {
 											$status = "<span class='badge bg-warning'>Incomplete</span>";
-										} else if ($equipo['Item_Cond'] === 'WIP') {
-											$status = "<span class='badge bg-success'>WIP</span>";
+										} else if ($equipo['Item_Cond'] === 'In Progress') {
+											$status = "<span class='badge bg-success'>In Progress</span>";
 										}
 
 										// Output table row with badge

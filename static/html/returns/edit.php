@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                                         <?php echo $condition ?>
                                                     </button>
                                                     <ul class="dropdown-menu" id="conditionDropdownMenu">
-                                                        <li><a class='dropdown-item'>WIP</a></li>
+                                                        <li><a class='dropdown-item'>In Progress</a></li>
                                                         <li><a class='dropdown-item'>Damaged</a></li>
                                                         <li><a class='dropdown-item'>Incomplete</a></li>
                                                     </ul>

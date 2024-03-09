@@ -47,20 +47,6 @@ document.getElementById('searchInput').addEventListener('input', function () {
 });
 
 
-var affiliationDropdown = document.getElementById('affiliationDropdown');
-
-if (affiliationDropdown) {
-  affiliationDropdown.addEventListener('click', function(event) {
-    event.preventDefault();
-    let affiliationButton = document.getElementById('affiliationButton');
-  
-    if (event.target.classList.contains('dropdown-item')) {
-      affiliationButton.innerText = event.target.innerText.trim();
-    }
-  });
-}
-
-
 var dropdownButton = document.querySelector('.dropdown-toggle');
 var categoryDropdown = document.getElementById('categoryDropdown');
 

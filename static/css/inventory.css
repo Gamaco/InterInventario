@@ -21,6 +21,7 @@ td {
 
 /* Additional styling for small screens */
 @media only screen and (max-width: 767px) {
+
   th,
   td {
     display: block;
@@ -43,9 +44,10 @@ td {
     background-color: inherit !important;
   }
 
-  /* Add the following style for "ID" td on small screens */
   table tbody td[data-label="Description"] {
-    background-color: rgb(43,45,49) !important; /* Dark background color for "ID" td */
-    color: #ffffff !important; /* White text color for better visibility */
+    background-color: rgb(43, 45, 49);
+    /* Dark background color for "ID" td */
+    color: #ffffff;
+    /* White text color for better visibility */
   }
 }

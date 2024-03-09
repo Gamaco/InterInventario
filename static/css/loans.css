@@ -1,0 +1,53 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th,
+  td {
+    display: table-cell;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Additional styling for small screens */
+  @media only screen and (max-width: 767px) {
+  
+    th,
+    td {
+      display: block;
+      text-align: right;
+      border-bottom: 2px solid #ececec !important;
+    }
+  
+    thead {
+      display: none;
+    }
+  
+    td:before,
+    th:before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+    }
+  
+    table tbody tr {
+      background-color: inherit !important;
+    }
+  
+    table tbody td[data-label="Name"] {
+      background-color: rgb(43, 45, 49);
+      /* Dark background color for "ID" td */
+      color: #ffffff;
+      /* White text color for better visibility */
+    }
+  }

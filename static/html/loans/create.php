@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$LOANER_AUTH = filter_var($_POST["LOANER_AUTH"], FILTER_SANITIZE_SPECIAL_CHARS);
 	$START_DATE = filter_var($_POST["START_DATE"], FILTER_SANITIZE_SPECIAL_CHARS);
 	$END_DATE = filter_var($_POST["END_DATE"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$NAME = filter_var($_POST["LOAN_TO_NAME"], FILTER_SANITIZE_SPECIAL_CHARS);
+	$AFFILIATION = filter_var($_POST["AFFILIATION"], FILTER_SANITIZE_SPECIAL_CHARS);
 
 	do {
 		if (empty($Ptag)) {
@@ -34,9 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$errorMessage = "Missing 'END DATE'.";
 			break;
 		}
+		if (empty($NAME)) {
+			$errorMessage = "Missing 'Name'.";
+			break;
+		}
 
 		// Call the stored procedure to insert loan data
-		$query = "CALL InsertLoan(?, ?, ?, ?, ?)";
+		$query = "CALL InsertLoan(?, ?, ?, ?, ?, ?, ?)";
 
 		// Prepare the statement
 		$stmt = $connection->prepare($query);
@@ -47,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		// Bind parameters
-		$stmt->bind_param("sssss", $Ptag, $LOAN_TO, $LOANER_AUTH, $START_DATE, $END_DATE);
+		$stmt->bind_param("sssssss", $Ptag, $LOAN_TO, $LOANER_AUTH, $START_DATE, $END_DATE, $NAME, $AFFILIATION);
 
 		// Execute the statement
 		$result = $stmt->execute();
@@ -149,14 +155,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     ";
 							}
 							?>
-							<form id="submit" method="post">
+							<form id="submit" method="post" onsubmit="return validateLoanCreationInputs()">
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label fs-4" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTag <i class="text-danger">*</i></label>
+											<label class="form-label" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTag <i class="text-danger">*</i></label>
 											<div class="input-group">
 												<button class="btn btn-primary btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
-												<input type="text" name="Ptag" id="PTAG" class="form-control form-control-lg" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
+												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4 form-control-lg" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
 											</div>
 										</div>
 									</div>
@@ -167,9 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label fs-4" for="LOAN_TO"><i class="fa fa-user" aria-hidden="true"></i> Loan To <i class="text-danger">*</i></label>
+											<label class="form-label" for="LOAN_TO"><i class="fa fa-user" aria-hidden="true"></i> Loan To <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control form-control-lg" placeholder="e.g. Y00561278" value="<?php echo htmlspecialchars($LOAN_TO); ?>" required/>
+												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control fs-4 form-control-lg" placeholder="e.g. Y00561278" value="<?php echo htmlspecialchars($LOAN_TO); ?>" required />
 											</div>
 										</div>
 									</div>
@@ -178,9 +184,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label fs-4" for="LOAN_TO">Name <i class="text-danger">*</i></label>
+											<label class="form-label" for="LOAN_TO">Name <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOAN_TO_NAME" id="LOAN_TO_NAME" class="form-control form-control-lg" placeholder="e.g. John Doe" value="<?php echo htmlspecialchars($NAME); ?>" required/>
+												<input type="text" name="LOAN_TO_NAME" id="LOAN_TO_NAME" class="form-control fs-4 form-control-lg" placeholder="e.g. John Doe" value="<?php echo htmlspecialchars($NAME); ?>" required />
 											</div>
 										</div>
 									</div>
@@ -189,11 +195,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label fs-4" for="LOAN_TO">Category <i class="text-danger">*</i></label>
+											<label class="form-label" for="LOAN_TO">Category <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
+												<input type="hidden" id="AFFILIATION" name="AFFILIATION" value="Student" />
 												<div class="dropdown-center">
 													<button class="btn btn-secondary text-dark dropdown-toggle btn-lg" id="affiliationButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-														Unselected
+														Student
 													</button>
 													<ul class="dropdown-menu" id="affiliationDropdown">
 														<li><a class='dropdown-item'>Student</a></li>
@@ -211,9 +218,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label fs-4" for="LOANER_AUTH"><i class="fa fa-user" aria-hidden="true"></i> Loaner Auth <i class="text-danger">*</i></label>
+											<label class="form-label" for="LOANER_AUTH"><i class="fa fa-user" aria-hidden="true"></i> Loaner Auth <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
-												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control form-control-lg" value="<?php echo htmlspecialchars($LOANER_AUTH); ?>" required/>
+												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control fs-4 form-control-lg" value="<?php echo htmlspecialchars($LOANER_AUTH); ?>" required />
 											</div>
 										</div>
 									</div>
@@ -222,9 +229,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label fs-4" for="START_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> Start Date <i class="text-danger">*</i></label>
+											<label class="form-label" for="START_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> Start Date <i class="text-danger">*</i></label>
 											<div class="mb-3">
-												<input type="date" name="START_DATE" id="START_DATE" class="form-control form-control-lg" value="<?php echo htmlspecialchars($START_DATE); ?>" required>
+												<input type="date" name="START_DATE" id="START_DATE" class="form-control fs-4 form-control-lg" value="<?php echo htmlspecialchars($START_DATE); ?>" required>
 											</div>
 										</div>
 									</div>
@@ -233,9 +240,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label fs-4" for="END_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> End Date <i class="text-danger">*</i></label>
+											<label class="form-label" for="END_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> End Date <i class="text-danger">*</i></label>
 											<div class="mb-3">
-												<input type="date" name="END_DATE" id="END_DATE" class="form-control form-control-lg" value="<?php echo htmlspecialchars($END_DATE); ?>" required>
+												<input type="date" name="END_DATE" id="END_DATE" class="form-control fs-4 form-control-lg" value="<?php echo htmlspecialchars($END_DATE); ?>" required>
 											</div>
 										</div>
 									</div>
@@ -274,7 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
 							<div class="input-group">
 								<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-								<input type="text" id="searchInput" class="form-control fs-4" placeholder="Search">
+								<input type="text" id="searchInput" class="form-control fs-4 form-control-lg" placeholder="Search">
 							</div>
 						</div>
 						<div class="d-flex mt-4 justify-content-center">
@@ -390,6 +397,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		document.getElementById('submit').addEventListener('submit', function() {
 			document.getElementById('PTAG').disabled = false;
 		});
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			// Event delegation for handling click on dropdown items
+			$('.dropdown-menu').on('click', '.dropdown-item', function() {
+				// Get the text of the clicked item
+				var selectedText = $(this).text();
+
+				// Update the button text with the selected item text
+				$(this).closest('.dropdown-center').find('.dropdown-toggle').text(selectedText);
+				$('#AFFILIATION').val(selectedText);
+			});
+		});
+	</script>
+
+	<script>
+		function validateLoanCreationInputs() {
+			let ptagSelection = document.getElementById('PTAG');
+			if (ptagSelection.value === '') {
+				alert("Missing field 'PTag.'");
+				return false;
+			}
+			return true;
+		}
 	</script>
 
 </body>

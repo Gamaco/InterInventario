@@ -13,7 +13,7 @@
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
 	<title>Loans - IELS</title>
-	<link rel="stylesheet" , href="../../css/inventory.css">
+	<link rel="stylesheet" , href="../../css/loans.css">
 	<!-- Font Awesome CSS -->
 	<link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 	<!-- Bootstrap added locally -->
@@ -92,15 +92,15 @@
 									</div>
 								</div>
 							</div>
-							<table id="InventoryTable" class="table table-hover my-0">
+							<table id="InventoryTable Loans" class="table table-hover my-0">
 								<thead>
 									<tr>
-										<th>DESCRIPTION</th>
 										<th>NAME</th>
-										<th>AFFILIATION</th>
 										<th>LOAN TO</th>
-										<th>LOANER AUTH</th>
+										<th>CATEGORY</th>
+										<th>DESCRIPTION</th>
 										<th>PTAG</th>
+										<th>LOANER AUTH</th>
 										<th>STATUS</th>
 										<th>START DATE</th>
 										<th>END DATE</th>
@@ -140,12 +140,12 @@
 
 										echo "
 											<tr>
-												<td data-label='Description'>" . htmlspecialchars($prestamo['ItemDescription'] ?? 'N/A') . "</td>
 												<td data-label='Name'>" . htmlspecialchars($prestamo['LOAN_TO_NAME'] ?? 'N/A') . "</td>
-												<td data-label='Affiliation'>" . htmlspecialchars($prestamo['LOAN_TO_AFFILIATION'] ?? 'N/A') . "</td>
 												<td data-label='Loan To'>" . htmlspecialchars($prestamo['LOAN_TO'] ?? 'N/A') . "</td>
-												<td data-label='Loaner Auth'>" . htmlspecialchars($prestamo['LOANER_AUTH'] ?? 'N/A') . "</td>
+												<td data-label='Category'>" . htmlspecialchars($prestamo['LOAN_TO_AFFILIATION'] ?? 'N/A') . "</td>
+												<td data-label='Description'>" . htmlspecialchars($prestamo['ItemDescription'] ?? 'N/A') . "</td>
 												<td data-label='PTag'>" . htmlspecialchars($prestamo['PTag'] ?? 'N/A') . "</td>
+												<td data-label='Loaner Auth'>" . htmlspecialchars($prestamo['LOANER_AUTH'] ?? 'N/A') . "</td>
 												<td data-label='Status'>" . $status . "</td>
 												<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
 												<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
@@ -245,32 +245,6 @@
 	<script src="../../js/loans-index.js"></script>
 	<script src="../../js/app.js"></script>
 	<script src="../../js/inventory.js"></script>
-
-	<!-- Display characters count and the limit. -->
-	<script>
-        // Add event listener to the textarea
-        document.getElementById('comments').addEventListener('input', function() {
-            // Get the current character count
-            var charCount = this.value.length;
-            // Get the maximum character limit
-            var maxLength = parseInt(this.getAttribute('maxlength'));
-            // Update the character count display
-            document.getElementById('charCount').textContent = charCount + '/' + maxLength + ' characters';
-            // Trim the text if it exceeds the limit
-            if (charCount > maxLength) {
-                this.value = this.value.substring(0, maxLength);
-            }
-        });
-    </script>
-
-<!-- Enables disabled inputs so that the data can be sent serverside. -->
-<script>
-    function enableInputs() {
-        document.getElementById("PTAG").disabled = false;
-        document.getElementById("Description").disabled = false;
-        // Add more lines to enable other input fields if needed
-    }
-</script>
 
 </body>
 </html>
