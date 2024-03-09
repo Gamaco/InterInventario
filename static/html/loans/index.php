@@ -202,7 +202,7 @@
 									<div data-mdb-input-init class="form-outline">
 										<label for="comments" class="form-label">Issue Description</label>
 										<textarea class="form-control" id="comments" name="Comments" rows="2" maxlength="80"></textarea>
-                                    	<small class="form-text text-muted" id="charCount">0/80 characters</small>
+										<small class="form-text text-muted" id="charCount">0/80 characters</small>
 									</div>
 								</div>
 							</div>
@@ -247,4 +247,5 @@
 	<script src="../../js/inventory.js"></script>
 
 </body>
+
 </html>

@@ -11,8 +11,6 @@
                     Menu
                 </li>
 
-                <!--  -->
-
                 <li class="sidebar-item <?php echo ($activePage == 'dashboard') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../components/dashboard.php">
                          <span class="align-middle"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</span>

@@ -277,8 +277,6 @@
                     </div>
                 </div>
             </div>
-
-
         </main>
     </div>
     <!-- item Deletion Modal -->
@@ -302,53 +300,13 @@
         </div>
     </div>
 
-    </div>
-    </div>
-    </div>
-
     <!-- jQuery -->
     <script src='https://code.jquery.com/jquery-3.7.0.js'></script>
 
     <!-- Local JS -->
     <script src="../../js/app.js"></script>
     <script src="../../js/inventory.js"></script>
-
-    <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
-    <script>
-        var itemDeletionModal = document.getElementById('itemDeletionModal');
-        itemDeletionModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget; // Button that triggered the modal
-            var itemId = button.getAttribute('data-item-id'); // Extract info from data-* attributes
-            var modal = this;
-            modal.querySelector('#itemIdToDelete').textContent = itemId;
-            modal.querySelector('#confirmDeleteBtn').addEventListener('click', function() {
-                // Perform deletion action here using the itemId
-                window.location.href = './delete.php?id=' + itemId;
-            });
-        });
-    </script>
-
-    <!-- Minimize button functionality -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var table = document.getElementById('InventoryTable');
-            var button = document.getElementById('minimizeButton');
-            var isTableMinimized = false;
-
-            button.addEventListener('click', function() {
-                if (!isTableMinimized) {
-                    table.style.display = 'none';
-                    button.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Show';
-                } else {
-                    table.style.display = 'table';
-                    button.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i> Hide';
-                }
-                isTableMinimized = !isTableMinimized;
-            });
-        });
-    </script>
-
-
+    <script src="../../js/inventory-index.js"></script>
 </body>
 
 </html>

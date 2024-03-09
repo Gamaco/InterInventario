@@ -101,22 +101,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body draggable="false">
-    <?php $activePage = 'inventory'; include '../components/sidebar.php'; ?>
+    <?php $activePage = 'inventory';
+    include '../components/sidebar.php'; ?>
 
-        <div class="main">
+    <div class="main">
         <?php include '../components/navbar.php'; ?>
 
-            <main class="content">
-                <div class="container-fluid p-0 justify-content-center">
-                    <div class="row">
-                        <div class="card mx-auto my-5 col-12 col-md-6 p-0">
-                            <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
-                                <h5 class="h5 mb-0 text-white"><i><i class="fa fa-cloud" aria-hidden="true"></i> New Item</i></h5>
-                            </div>
-                            <div class="card-body">
-                                <?php
-                                if (!empty($errorMessage)) {
-                                    echo "
+        <main class="content">
+            <div class="container-fluid p-0 justify-content-center">
+                <div class="row">
+                    <div class="card mx-auto my-5 col-12 col-md-6 p-0">
+                        <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
+                            <h5 class="h5 mb-0 text-white"><i><i class="fa fa-cloud" aria-hidden="true"></i> New Item</i></h5>
+                        </div>
+                        <div class="card-body">
+                            <?php
+                            if (!empty($errorMessage)) {
+                                echo "
                                     <div class='container-fluid bg-danger mt-1 mb-1 bg-opacity-10'>
                                         <div class='alert text-danger alert-dismissible fs-4 fade show mb-5 d-flex justify-content-between' role='alert'>
                                         <strong> $errorMessage </strong>
@@ -125,152 +126,152 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </div>
 
                                     ";
-                                }
-                                ?>
-                                <form method="post" onsubmit="return validateForm()">
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <div data-mdb-input-init class="form-outline">
+                            }
+                            ?>
+                            <form method="post" onsubmit="return validateForm()">
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="description">Description <i class="text-danger">*</i></label>
-                                                <input type="text" name="description" id="description" class="form-control form-control-lg" value="<?php echo $description; ?>" required/>
-                                            </div>
+                                            <input type="text" name="description" id="description" class="form-control form-control-lg" value="<?php echo $description; ?>" required />
                                         </div>
                                     </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="gn">GN</label>
-                                                <input type="text" name="gn" id="gn" class="form-control form-control-lg" value="<?php echo $gn; ?>"/>    
-                                            </div>
+                                            <input type="text" name="gn" id="gn" class="form-control form-control-lg" value="<?php echo $gn; ?>" />
                                         </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                    </div>
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="model">Model <i class="text-danger">*</i></label>
-                                                <input type="text" name="model" id="model" class="form-control form-control-lg" value="<?php echo $model; ?>" required/>
-                                            </div>
+                                            <input type="text" name="model" id="model" class="form-control form-control-lg" value="<?php echo $model; ?>" required />
                                         </div>
                                     </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="description">Serial No</label>
-                                                <input type="text" name="Serial_No" id="Serial_No" class="form-control form-control-lg" value="<?php echo $Serial_No; ?>" />
-                                            </div>
+                                            <input type="text" name="Serial_No" id="Serial_No" class="form-control form-control-lg" value="<?php echo $Serial_No; ?>" />
                                         </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                    </div>
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="model">Fund</label>
-                                                <input type="text" name="Fund" id="Fund" class="form-control form-control-lg" value="<?php echo $Fund; ?>" />
-                                            </div>
+                                            <input type="text" name="Fund" id="Fund" class="form-control form-control-lg" value="<?php echo $Fund; ?>" />
                                         </div>
                                     </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="AC">AC</label>
-                                                <input type="text" name="AC" id="AC" class="form-control form-control-lg" value="<?php echo $AC ?>" />
-                                            </div>
+                                            <input type="text" name="AC" id="AC" class="form-control form-control-lg" value="<?php echo $AC ?>" />
                                         </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                    </div>
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="CL">CL</label>
-                                                <input type="text" name="CL" id="CL" class="form-control form-control-lg" value="<?php echo $CL; ?>" />
-                                            </div>
+                                            <input type="text" name="CL" id="CL" class="form-control form-control-lg" value="<?php echo $CL; ?>" />
                                         </div>
                                     </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="F">F</label>
-                                                <input type="text" name="F" id="F" class="form-control form-control-lg" value="<?php echo $F; ?>" />
-                                            </div>
+                                            <input type="text" name="F" id="F" class="form-control form-control-lg" value="<?php echo $F; ?>" />
                                         </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                    </div>
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="AQU">AQU</label>
-                                                <input type="text" name="AQU" id="AQU" class="form-control form-control-lg" value="<?php echo $AQU; ?>" />
-                                            </div>
+                                            <input type="text" name="AQU" id="AQU" class="form-control form-control-lg" value="<?php echo $AQU; ?>" />
                                         </div>
                                     </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="ST">ST</label>
-                                                <input type="text" name="ST" id="ST" class="form-control form-control-lg" value="<?php echo $ST; ?>" />
-                                            </div>
+                                            <input type="text" name="ST" id="ST" class="form-control form-control-lg" value="<?php echo $ST; ?>" />
                                         </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                    </div>
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="Acquisition">Acquisition</label>
-                                                <input type="text" name="Acquisition" id="Acquisition" class="form-control form-control-lg" value="<?php echo $Acquisition; ?>" />
-                                            </div>
+                                            <input type="text" name="Acquisition" id="Acquisition" class="form-control form-control-lg" value="<?php echo $Acquisition; ?>" />
                                         </div>
                                     </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="Received">Received</label>
-                                                <input type="text" name="Received" id="Received" class="form-control form-control-lg" value="<?php echo $Received; ?>" />
-                                            </div>
+                                            <input type="text" name="Received" id="Received" class="form-control form-control-lg" value="<?php echo $Received; ?>" />
                                         </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                    </div>
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="DocNo">Doc No</label>
-                                                <input type="text" name="DocNo" id="DocNo" class="form-control form-control-lg" value="<?php echo $DocNo; ?>" />
-                                            </div>
+                                            <input type="text" name="DocNo" id="DocNo" class="form-control form-control-lg" value="<?php echo $DocNo; ?>" />
                                         </div>
                                     </div>
-                                    <div class="row flex-wrap">
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                </div>
+                                <div class="row flex-wrap">
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="Amt">Amt</label>
-                                                <input type="text" name="Amt" id="Amt" class="form-control form-control-lg" value="<?php echo $Amt; ?>" />
-                                            </div>
+                                            <input type="text" name="Amt" id="Amt" class="form-control form-control-lg" value="<?php echo $Amt; ?>" />
                                         </div>
-                                        <div class="col-12 col-md mb-3">
-                                            <!-- Text input -->
-                                            <div data-mdb-input-init class="form-outline">
+                                    </div>
+                                    <div class="col-12 col-md mb-3">
+                                        <!-- Text input -->
+                                        <div data-mdb-input-init class="form-outline">
                                             <label class="form-label fs-4" for="Location">Location <i class="text-danger">*</i></label>
-                                                <input type="text" name="Location" id="Location" class="form-control form-control-lg" value="<?php echo $Location; ?>" required/>
-                                            </div>
+                                            <input type="text" name="Location" id="Location" class="form-control form-control-lg" value="<?php echo $Location; ?>" required />
                                         </div>
                                     </div>
+                                </div>
 
 
-                                    <!-- Button container with centering classes -->
-                                    <div class="justify-content-center">
-                                        <div class="row">
-                                            <!-- Submit button -->
-                                            <button type="submit" class="btn btn-primary btn-lg mb-2">Submit</button>
-                                        </div>
-                                        <div class="row">
-                                            <!-- Cancel button -->
-                                            <a type="button" class="btn btn-light btn-lg mb-2" href="../inventory/index.php">Cancel</a>
-                                        </div>
+                                <!-- Button container with centering classes -->
+                                <div class="justify-content-center">
+                                    <div class="row">
+                                        <!-- Submit button -->
+                                        <button type="submit" class="btn btn-primary btn-lg mb-2">Submit</button>
                                     </div>
+                                    <div class="row">
+                                        <!-- Cancel button -->
+                                        <a type="button" class="btn btn-light btn-lg mb-2" href="../inventory/index.php">Cancel</a>
+                                    </div>
+                                </div>
 
-                                </form>
+                            </form>
 
-                            </div>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
+        </main>
 
-        </div>
+    </div>
     </div>
 
     <script src="../../js/app.js"></script>

@@ -69,7 +69,8 @@
                                         include '../../db/config.php';
 
                                         // Function to fetch item details by ID using a stored procedure
-                                        function getItemDetails($connection, $itemId) {
+                                        function getItemDetails($connection, $itemId)
+                                        {
                                             // Prepare and execute the stored procedure
                                             $stmt = $connection->prepare("CALL GetItemDetails(?)");
                                             $stmt->bind_param("i", $itemId);
@@ -97,7 +98,7 @@
                                             // Check if item details were retrieved
                                             if ($itemDetails) {
                                                 // Output item details
-                                                ?>
+                                        ?>
                                                 <tr>
                                                     <td data-label='Description'><?php echo $itemDetails['Description'] ? $itemDetails['Description'] : 'N/A'; ?></td>
                                                     <td data-label='PTag'><?php echo $itemDetails['Ptag'] ? $itemDetails['Ptag'] : 'N/A'; ?></td>
@@ -116,7 +117,7 @@
                                                     <td data-label='Amt'><?php echo $itemDetails['Amt'] ? $itemDetails['Amt'] : 'N/A'; ?></td>
                                                     <td data-label='Location'><?php echo $itemDetails['Location'] ? $itemDetails['Location'] : 'N/A'; ?></td>
                                                 </tr>
-                                            <?php
+                                        <?php
                                             } else {
                                                 // If no matching item found, redirect or show an error message
                                                 echo "<tr><td colspan='17'>Item not found</td></tr>";
@@ -137,9 +138,9 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-9 col-lg-3 col-xxl-5"> 
-                            <div class="d-flex justify-content-center"> 
-                                <div class="card gradient-box" style="width: 240px;"> 
+                        <div class="col-9 col-lg-3 col-xxl-5">
+                            <div class="d-flex justify-content-center">
+                                <div class="card gradient-box" style="width: 240px;">
                                     <div class="card-body gradient-box mt-0 text-center">
                                         <h5 class="card-title mb-2" style="color: white !important">QR Code</h5>
                                         <div id="qr-code-container" class="d-flex justify-content-center align-items-center" style="height: 300px;">
@@ -166,10 +167,10 @@
 
             // Function to run when the DOM is ready
             document.addEventListener('DOMContentLoaded', function() {
-                var itemId = "<?php echo $itemId; ?>"; 
+                var itemId = "<?php echo $itemId; ?>";
                 var baseURL = "http://192.168.0.7/InterInventario/static/html/inventory/details.php";
                 var itemURL = baseURL + "?id=" + itemId;
-                console.log("Item URL: ", itemURL); 
+                console.log("Item URL: ", itemURL);
                 generateQRCode(itemURL);
             });
         </script>
