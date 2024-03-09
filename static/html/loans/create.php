@@ -82,49 +82,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
 	<meta name="description" content="Sistema de Inventario">
 	<meta name="author" content="Inter Bayamon">
-	<meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, admin, Universidad Interamericana, Bayamon, Inventario de Equipos">
+	<meta name="keywords" content="Inter Bayamon, Inventario, Sistema de Inventario, Universidad Interamericana, Bayamon, Inventario de Equipos">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 
 	<title>Create - IELS</title>
+	<!-- Custom CSS specifically for this page -->
 	<link rel="stylesheet" , href="../../css/inventory.css">
+	<link rel="stylesheet" , href="../../css/loans-create.css">
 	<!-- Font Awesome CSS -->
 	<link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 	<!-- Bootstrap added locally -->
 	<link href="../../css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-	<style>
-		.table-container {
-			overflow-x: auto;
-		}
-
-		.modal-fullscreen {
-			width: 100vw !important;
-			max-width: 100% !important;
-			margin: 1.75rem auto;
-		}
-
-		.modal-fullscreen .modal-dialog {
-			margin: 1.75rem auto;
-			max-width: none;
-			width: 100%;
-		}
-
-		@media (min-width: 576px) {
-			.modal-dialog {
-				max-width: 100%;
-				margin: 1.75rem auto;
-			}
-		}
-
-		@media (min-width: 992px) {
-			.modal-lg {
-				max-width: 100%;
-				margin: 1.75rem auto;
-			}
-		}
-	</style>
 </head>
 
 <body draggable="false">
@@ -382,47 +353,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	</div>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="../../js/app.js"></script>
 	<script src="../../js/inventory.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-	<!-- Get Item PTag and Close Modal -->
-	<script>
-		function getPTagFromModal(Ptag) {
-			var inputField = document.getElementById('PTAG');
-			inputField.value = Ptag;
-			$('#inventoryList').modal('hide');
-		}
-
-		document.getElementById('submit').addEventListener('submit', function() {
-			document.getElementById('PTAG').disabled = false;
-		});
-	</script>
-
-	<script>
-		$(document).ready(function() {
-			// Event delegation for handling click on dropdown items
-			$('.dropdown-menu').on('click', '.dropdown-item', function() {
-				// Get the text of the clicked item
-				var selectedText = $(this).text();
-
-				// Update the button text with the selected item text
-				$(this).closest('.dropdown-center').find('.dropdown-toggle').text(selectedText);
-				$('#AFFILIATION').val(selectedText);
-			});
-		});
-	</script>
-
-	<script>
-		function validateLoanCreationInputs() {
-			let ptagSelection = document.getElementById('PTAG');
-			if (ptagSelection.value === '') {
-				alert("Missing field 'PTag.'");
-				return false;
-			}
-			return true;
-		}
-	</script>
+	<script src="../../js/loans-create.js"></script>
 
 </body>
 

@@ -55,7 +55,7 @@
 												<?php
 												include '../../db/config.php';
 
-												$query = "SELECT * FROM categories";
+												$query = "CALL GetCategories()";
 												$categories = $connection->query($query);
 
 												// In case the query failed
@@ -92,7 +92,7 @@
 									</div>
 								</div>
 							</div>
-							<table id="InventoryTable Loans" class="table table-hover my-0">
+							<table id="InventoryTable" class="table table-hover my-0">
 								<thead>
 									<tr>
 										<th>NAME</th>

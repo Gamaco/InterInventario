@@ -1,0 +1,29 @@
+.table-container {
+    overflow-x: auto;
+}
+
+.modal-fullscreen {
+    width: 100vw !important;
+    max-width: 100% !important;
+    margin: 1.75rem auto;
+}
+
+.modal-fullscreen .modal-dialog {
+    margin: 1.75rem auto;
+    max-width: none;
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 100%;
+        margin: 1.75rem auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-lg {
+        max-width: 100%;
+        margin: 1.75rem auto;
+    }
+}
