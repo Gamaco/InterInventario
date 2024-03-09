@@ -52,6 +52,7 @@
 										<th>Description</th>
 										<th>PTag</th>
 										<th>Condition</th>
+										<th>Issue</th>
 										<th>Comments</th>
 										<th>Options</th>
 									</tr>
@@ -82,13 +83,16 @@
 											$status = "<span class='badge bg-success'>In Progress</span>";
 										}
 
+										// 
+
 										// Output table row with badge
 										echo "
 											<tr>
 												<td data-label='Description'>" . htmlspecialchars($equipo['Description'] ?? 'N/A') . "</td>
 												<td data-label='PTag'>" . htmlspecialchars($equipo['PTag'] ?? 'N/A') . "</td>
 												<td data-label='Condition'>" . $status . "</td>
-												<td data-label='Comments'>" . htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
+												<td data-label='Issue'>". htmlspecialchars($equipo['Comments'] ?? 'N/A') . "</td>
+												<td data-label='Comments'> <a href='https://fontawesome.com/v4/icons/'> View Comments </a> <span class='badge bg-primary rounded-pill'>14</span> </td>
 												<td>
 												<a class='btn btn-secondary text-dark mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=$equipo[id]'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
 												<a class='btn btn-primary mt-1 mb-lg-1 rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-check' aria-hidden='true'></i> Complete</a>

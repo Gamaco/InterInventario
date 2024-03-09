@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <div class="row flex-wrap">
                                     <div class="col-12 col-md mb-3">
                                         <div data-mdb-input-init class="form-outline">
-                                            <label for="comments" class="form-label">Comments</label>
+                                            <label for="comments" class="form-label">Issue Description</label>
                                             <textarea class="form-control" id="comments" name="Comments" rows="2" maxlength="80"><?php echo $comments ?></textarea>
                                             <small class="form-text text-muted" id="charCount">0/80 characters</small>
                                         </div>
