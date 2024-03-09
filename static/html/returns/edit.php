@@ -197,22 +197,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../js/app.js"></script>
     <script src="../../js/returns-edit.js"></script>
-
-    <script>
-        // Add event listener to the textarea
-        document.getElementById('comments').addEventListener('input', function() {
-            // Get the current character count
-            var charCount = this.value.length;
-            // Get the maximum character limit
-            var maxLength = parseInt(this.getAttribute('maxlength'));
-            // Update the character count display
-            document.getElementById('charCount').textContent = charCount + '/' + maxLength + ' characters';
-            // Trim the text if it exceeds the limit
-            if (charCount > maxLength) {
-                this.value = this.value.substring(0, maxLength);
-            }
-        });
-    </script>
 </body>
 
 </html>
