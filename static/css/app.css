@@ -220,6 +220,10 @@ address {
     margin-bottom: 1rem
 }
 
+#commentsText {
+    background-color: #f5f7fb !important;
+}
+
 ol,
 ul {
     padding-left: 2rem

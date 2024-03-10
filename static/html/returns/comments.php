@@ -108,22 +108,21 @@ if ($id === false || $id === null) {
                 <div class="container my-1 py-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
-                            <div class="card text-dark">
-                                <div class="card-body p-4">
+                        <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+                        <div class="card text-dark">
+                        <div class="card-body p-4">
                                     <div class="col-12 col-md mb-3">
                                         <div data-mdb-input-init class="form-outline">
-                                            <label for="comments" class="form-label">New Comments</label>
                                             <form method="post">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <input type="hidden" name="date" id="dateField" value="getCurrentDate()">
-                                                <textarea class="form-control" id="comments" name="Comments" rows="3"></textarea>
-                                                <a id="Close" class="btn btn-secondary text-dark btn-lg mt-2" type="button" href="./index.php">Close</a>
-                                                <button type="submit" class="btn btn-primary btn-lg mt-2">Add Comments</button>
+                                                <textarea class="form-control" id="commentsText" name="Comments" rows="3" placeholder="New Comment"></textarea>
+                                                <button type="submit" class="btn btn-primary btn-lg mt-3">Add Comments</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                <hr class="my-0" />
+                        </div>
                                 <?php
                                 include '../../db/config.php';
 
@@ -148,6 +147,7 @@ if ($id === false || $id === null) {
                                     $Date = $Comment['date'];
 
                                     echo "
+                                    <div class='card text-dark mb-0 mt-2'>
                                     <div class='card-body p-4'>
                                     <div class='d-flex flex-column'>
                                         <!-- Date -->
@@ -157,17 +157,14 @@ if ($id === false || $id === null) {
                                             </p>
                                         </div>
                                         <!-- Paragraph Text -->
-                                        <div class='bg-light p-4 rounded-4'>
                                             <p class='mt-0'>$Cmt</p>
-                                        </div>
                                         <!-- Delete Button -->
                                         <div class='mt-3 text-end'>
-                                            <button type='button' class='btn btn-danger btn-lg'>Delete</button>
+                                            <button type='button' class='btn btn-light btn-lg'>Delete</button>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                    <hr class='my-0' style='height: 1px;' />
+                                </div>
                                 ";
                                 }
 
@@ -175,7 +172,6 @@ if ($id === false || $id === null) {
                                 $stmt->close();
                                 $connection->close();
                                 ?>
-                            </div>
                         </div>
                     </div>
                 </div>

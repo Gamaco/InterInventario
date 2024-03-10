@@ -282,7 +282,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <div class="justify-content-center">
                                     <div class="row">
                                         <!-- Submit button -->
-                                        <button type="submit" class="btn btn-success btn-lg mb-2" style="background-color: #00973c !important;">Submit</button>
+                                        <button type="submit" class="btn btn-primary btn-lg mb-2">Submit</button>
                                     </div>
                                     <div class="row">
                                         <!-- Cancel button -->

@@ -111,8 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <label class="form-label" for="Category">New Category</label>
                                         </div>
                                         <div>
-                                            <!-- Close window button -->
-                                            <a type="button" class="btn btn-light btn-lg mb-2" href="../inventory/index.php">Close</a>
+                                        <a type="button" class="btn btn-light btn-lg mb-2" href="../inventory/index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i> Close</a>
                                             <!-- Submit button -->
                                             <button type="submit" class="btn btn-primary btn-lg mb-2">Submit</button>
                                         </div>

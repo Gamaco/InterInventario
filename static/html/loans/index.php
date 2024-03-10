@@ -229,8 +229,8 @@
 							</div>
 
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" class="btn btn-success" id="confirmDeleteBtn">Confirm</button>
+								<button type="button" class="btn btn-secondary text-dark btn-lg" data-bs-dismiss="modal">Cancel</button>
+								<button type="submit" class="btn btn-primary btn-lg" id="confirmDeleteBtn">Confirm</button>
 							</div>
 						</form>
 
