@@ -12,11 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-// Check if $id is valid
-if ($id === false || $id === null) {
-    header("location: ../components/error_404.php");
-    exit;
-}
+    // Check if $id is valid
+    if ($id === false || $id === null) {
+        header("location: ../components/error_404.php");
+        exit;
+    }
 
     // Call the stored procedure to fetch an item by ID
     $query = "CALL GetReturnById(?)";
@@ -33,7 +33,6 @@ if ($id === false || $id === null) {
         header("location: index.php");
         exit;
     }
-
 } else {
     // Validate and sanitize user inputs
     $id = filter_var($_POST["id"], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -89,11 +88,6 @@ if ($id === false || $id === null) {
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        .table-container {
-            overflow-x: auto;
-        }
-    </style>
 </head>
 
 <body draggable="false">
@@ -108,10 +102,10 @@ if ($id === false || $id === null) {
                 <div class="container my-1 py-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
-                        <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
-                        <div class="card text-dark">
-                        <div class="card-body p-4">
-                                    <div class="col-12 col-md mb-3">
+                            <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+                            <div class="card text-dark mb-0">
+                                <div class="card-body p-4">
+                                    <div class="col-12 col-md">
                                         <div data-mdb-input-init class="form-outline">
                                             <form method="post">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -122,31 +116,32 @@ if ($id === false || $id === null) {
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-                                <?php
-                                include '../../db/config.php';
+                            </div>
+                            <?php
+                            include '../../db/config.php';
 
-                                // Prepare the SQL statement to call the stored procedure
-                                $stmt = $connection->prepare("CALL GetCommentByID(?)");
-                                $stmt->bind_param("i", $id);
+                            // Prepare the SQL statement to call the stored procedure
+                            $stmt = $connection->prepare("CALL GetCommentByID(?)");
+                            $stmt->bind_param("i", $id);
 
-                                // Execute the statement
-                                $stmt->execute();
+                            // Execute the statement
+                            $stmt->execute();
 
-                                // Get the result set
-                                $Comments = $stmt->get_result();
+                            // Get the result set
+                            $Comments = $stmt->get_result();
 
-                                // Check for errors
-                                if (!$Comments) {
-                                    die("Invalid query: " . $connection->error);
-                                }
+                            // Check for errors
+                            if (!$Comments) {
+                                die("Invalid query: " . $connection->error);
+                            }
 
-                                // Output the loan details
-                                while ($Comment = $Comments->fetch_assoc()) {
-                                    $Cmt = $Comment['comment'];
-                                    $Date = $Comment['date'];
+                            // Output the loan details
+                            while ($Comment = $Comments->fetch_assoc()) {
+                                $Cmt = $Comment['comment'];
+                                $Date = $Comment['date'];
+                                $CommentID = $Comment['id'];
 
-                                    echo "
+                                echo "
                                     <div class='card text-dark mb-0 mt-2'>
                                     <div class='card-body p-4'>
                                     <div class='d-flex flex-column'>
@@ -160,25 +155,61 @@ if ($id === false || $id === null) {
                                             <p class='mt-0'>$Cmt</p>
                                         <!-- Delete Button -->
                                         <div class='mt-3 text-end'>
-                                            <button type='button' class='btn btn-light btn-lg'>Delete</button>
+                                            <a type='button' class='btn btn-light btn-lg' data-bs-toggle='modal' data-bs-target='#commentDeletionModal' data-item-id='$CommentID'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                                 ";
-                                }
+                            }
 
-                                // Close the statement and connection
-                                $stmt->close();
-                                $connection->close();
-                                ?>
+                            // Close the statement and connection
+                            $stmt->close();
+                            $connection->close();
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
 
+        <!-- item Deletion Modal -->
+        <div class="modal fade" id="commentDeletionModal" tabindex="-1" aria-labelledby="commentDeletionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="commentDeletionModalLabel">Confirm Deletion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to delete this category. This action cannot be undone.</p>
+                        <p>Are you sure you want to proceed?</p>
+                        <input type="hidden" id="commentIdToDelete" name="deletecommentId">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="commentDeleteBtn">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="../../js/app.js"></script>
+
+        <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
+        <script>
+            var commentDeletionModal = document.getElementById('commentDeletionModal');
+            commentDeletionModal.addEventListener('show.bs.modal', function(event) {
+                var button = event.relatedTarget; // Button that triggered the modal
+                let commentId = button.getAttribute('data-item-id'); // Extract info from data-* attributes
+                var modal = this;
+                modal.querySelector('#commentIdToDelete').textContent = commentId;
+                modal.querySelector('#commentDeleteBtn').addEventListener('click', function() {
+                    // Perform deletion action here using the itemId
+                    window.location.href = './delete-comments.php?id=' + commentId;
+                });
+            });
+        </script>
 
         <script>
             function getCurrentDate() {
