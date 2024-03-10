@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $stmt->close();
 
     if (!$item) {
-        header("location: index.php");
+        header("location: ../components/error_404.php");
         exit;
     }
 

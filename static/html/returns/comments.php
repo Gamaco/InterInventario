@@ -34,7 +34,6 @@ if ($id === false || $id === null) {
         exit;
     }
 
-    $Fault = $returns["Fault"];
 } else {
     // Validate and sanitize user inputs
     $id = filter_var($_POST["id"], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -110,9 +109,6 @@ if ($id === false || $id === null) {
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
                             <div class="card text-dark">
-                                <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
-                                    <h5 class="h5 mb-0 text-white fs-3"><?php echo $Fault; ?></h5>
-                                </div>
                                 <div class="card-body p-4">
                                     <div class="col-12 col-md mb-3">
                                         <div data-mdb-input-init class="form-outline">
@@ -154,14 +150,15 @@ if ($id === false || $id === null) {
                                     echo "
                                     <div class='card-body p-4'>
                                     <div class='d-flex flex-column'>
-                                        <div class='d-flex align-items-center mb-3'>
+                                        <!-- Date -->
+                                        <div class='mb-3'>
                                             <p class='mb-0 fw-bold'>
                                                 $Date
                                             </p>
                                         </div>
                                         <!-- Paragraph Text -->
-                                        <div>
-                                            <p>$Cmt</p>
+                                        <div class='bg-light p-4 rounded-4'>
+                                            <p class='mt-0'>$Cmt</p>
                                         </div>
                                         <!-- Delete Button -->
                                         <div class='mt-3 text-end'>
@@ -169,8 +166,7 @@ if ($id === false || $id === null) {
                                         </div>
                                     </div>
                                 </div>
-                                                                                          
-
+                                
                                     <hr class='my-0' style='height: 1px;' />
                                 ";
                                 }

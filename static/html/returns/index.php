@@ -61,12 +61,16 @@
 									<?php
 									include '../../db/config.php';
 
-									// Call the stored procedure to retrieve return records
-									$query = "CALL GetReturns()";
+									// Prepare the query to retrieve return records along with comment counts
+									$query = "SELECT r.*, COUNT(c.id) AS total_comments
+									FROM returns r
+									LEFT JOIN comments c ON r.id = c.returned_id
+									GROUP BY r.id";
 									$statement = $connection->prepare($query);
 									$statement->execute();
 									$equipos = $statement->get_result();
 
+									// Check if the query was successful
 									if (!$equipos) {
 										die("Invalid query: " . $connection->error);
 									}
@@ -83,8 +87,6 @@
 											$status = "<span class='badge bg-success'>In Progress</span>";
 										}
 
-										// 
-
 										// Output table row with badge
 										echo "
 											<tr>
@@ -93,15 +95,16 @@
 												<td data-label='Condition'>" . $status . "</td>
 												<td data-label='Fault'>" . htmlspecialchars($equipo['Fault'] ?? 'N/A') . "</td>
 												<td data-label='Comments'> 
-													<a href='./comments.php?id=" . htmlspecialchars($equipo['id']) . "'>View Comments</a> <span class='badge bg-primary rounded-pill'>14</span> </td>
+													<a href='./comments.php?id=" . htmlspecialchars($equipo['id']) . "'>View Comments</a> <span class='badge bg-danger rounded-pill'>" . htmlspecialchars($equipo['total_comments']) . "</span> 
+												</td>
 												<td>
-												<a class='btn btn-secondary text-dark mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=". htmlspecialchars($equipo['id']) . "'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
-												<a class='btn btn-primary mt-1 mb-lg-1 rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-check' aria-hidden='true'></i> Complete</a>
+													<a class='btn btn-secondary text-dark mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
+													<a class='btn btn-primary mt-1 mb-lg-1 rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-check' aria-hidden='true'></i> Complete</a>
 												</td>							
 											</tr>";
 									}
 
-									// Close the statement
+									// Close the statement and connection
 									$statement->close();
 									$connection->close();
 									?>

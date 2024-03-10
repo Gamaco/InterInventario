@@ -30,7 +30,7 @@ if ($id === false || $id === null) {
     $stmt->close();
 
     if (!$returns) {
-        header("location: index.php");
+        header("location: ../components/error_404.php");
         exit;
     }
 
