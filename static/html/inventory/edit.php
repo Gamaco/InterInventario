@@ -5,11 +5,17 @@ $errorMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!isset($_GET["id"])) {
-        header("location: inventory.php");
+        header("location: ../components/error_404.php");
         exit;
     }
 
-    $id = $_GET["id"];
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    // Check if $id is valid
+    if ($id === false || $id === null) {
+        header("location: ../components/error_404.php");
+        exit;
+    }
 
     // Call the stored procedure to fetch an item by ID
     $query = "CALL GetItemById(?)";
@@ -23,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $stmt->close();
 
     if (!$item) {
-        header("location: inventory.php");
+        header("location: index.php");
         exit;
     }
 

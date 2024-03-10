@@ -90,7 +90,15 @@
 
                                         // Check if the item ID is provided in the URL
                                         if (isset($_GET['id'])) {
-                                            $itemId = $_GET['id'];
+
+                                            $itemId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+                                            // Check if $id is valid
+                                            if ($id === false || $id === null) {
+                                                // Handle invalid input (e.g., display an error message, redirect the user, etc.)
+                                                echo "Invalid ID input.<br><a style='font-size: xx-large;'>¯\_(ツ)_/¯</a>";
+                                                exit;
+                                            }
 
                                             // Fetch item details by ID
                                             $itemDetails = getItemDetails($connection, $itemId);

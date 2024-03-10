@@ -1,6 +1,14 @@
 <?php
 if (isset($_GET["id"])) {
-    $id = $_GET["id"];
+    
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+    // Check if $id is valid
+    if ($id === false || $id === null) {
+        // Handle invalid input (e.g., display an error message, redirect the user, etc.)
+        header("location: ../components/error_404.php");
+        exit;
+    }
 
     include '../../db/config.php';
 

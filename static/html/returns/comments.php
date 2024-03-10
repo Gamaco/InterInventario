@@ -1,4 +1,74 @@
+<?php
+include '../../db/config.php';
 
+$errorMessage = "";
+
+// Check if $id exists
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (!isset($_GET["id"])) {
+        header("location: ../components/error_404.php");
+        exit;
+    }
+
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+// Check if $id is valid
+if ($id === false || $id === null) {
+    header("location: ../components/error_404.php");
+    exit;
+}
+
+    // Call the stored procedure to fetch an item by ID
+    $query = "CALL GetReturnById(?)";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $returns = $result->fetch_assoc();
+
+    $stmt->close();
+
+    if (!$returns) {
+        header("location: index.php");
+        exit;
+    }
+
+    $Fault = $returns["Fault"];
+} else {
+    // Validate and sanitize user inputs
+    $id = filter_var($_POST["id"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $Date = filter_var($_POST["date"], FILTER_SANITIZE_SPECIAL_CHARS);
+
+    do {
+        // Call the stored procedure to update an item
+        $query = "CALL InsertComment(?, ?, ?);";
+        $stmt = $connection->prepare($query);
+
+        if (!$stmt) {
+            $errorMessage = "Error preparing statement: " . $connection->error;
+            break;
+        }
+
+        // Bind parameters
+        $stmt->bind_param("ssi", $Comments, $Date, $id);
+
+        // Execute the statement
+        $result = $stmt->execute();
+
+        if (!$result) {
+            $errorMessage = "Invalid Input: <br>" . $stmt->error;
+            break;
+        }
+
+        $stmt->close();
+        $connection->close();
+        header("location: ./comments.php?id=$id");
+        exit;
+    } while (false);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,17 +110,20 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
                             <div class="card text-dark">
+                                <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
+                                    <h5 class="h5 mb-0 text-white fs-3"><?php echo $Fault; ?></h5>
+                                </div>
                                 <div class="card-body p-4">
-                                    <div class="card-header bg-success mb-3 w-100" style="background-color: #00973c !important;">
-                                        <h5 class="h5 mb-0 text-white">ewgawrtegreherfagrytergefrgwtyrhtegrwferhyrtgefwrg</h5>
-                                    </div>
-
                                     <div class="col-12 col-md mb-3">
                                         <div data-mdb-input-init class="form-outline">
                                             <label for="comments" class="form-label">New Comments</label>
-                                            <textarea class="form-control" id="comments" name="Comments" rows="3" maxlength="80"></textarea>
-                                            <a id="Close" class="btn btn-secondary text-dark btn-lg mt-2" type="button" href="./index.php">Close</a>
-                                            <a id="NewCommentBtn" class="btn btn-primary btn-lg mt-2" type="submit" href='./edit.php?id=$equipo[id]'>Add Comments</a>
+                                            <form method="post">
+                                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                <input type="hidden" name="date" id="dateField" value="getCurrentDate()">
+                                                <textarea class="form-control" id="comments" name="Comments" rows="3"></textarea>
+                                                <a id="Close" class="btn btn-secondary text-dark btn-lg mt-2" type="button" href="./index.php">Close</a>
+                                                <button type="submit" class="btn btn-primary btn-lg mt-2">Add Comments</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +132,8 @@
                                 include '../../db/config.php';
 
                                 // Prepare the SQL statement to call the stored procedure
-                                $stmt = $connection->prepare("CALL GetAllComments()");
+                                $stmt = $connection->prepare("CALL GetCommentByID(?)");
+                                $stmt->bind_param("i", $id);
 
                                 // Execute the statement
                                 $stmt->execute();
@@ -79,18 +153,23 @@
 
                                     echo "
                                     <div class='card-body p-4'>
-                                        <div class='d-flex flex-start'>
-                                            <div>
-                                                <div class='d-flex align-items-center mb-3'>
-                                                    <p class='mb-0 fw-bold'>
-                                                        $Date
-                                                    </p>
-                                                </div>
-                                                $Cmt
-                                                </p>
-                                            </div>
+                                    <div class='d-flex flex-column'>
+                                        <div class='d-flex align-items-center mb-3'>
+                                            <p class='mb-0 fw-bold'>
+                                                $Date
+                                            </p>
+                                        </div>
+                                        <!-- Paragraph Text -->
+                                        <div>
+                                            <p>$Cmt</p>
+                                        </div>
+                                        <!-- Delete Button -->
+                                        <div class='mt-3 text-end'>
+                                            <button type='button' class='btn btn-danger btn-lg'>Delete</button>
                                         </div>
                                     </div>
+                                </div>
+                                                                                          
 
                                     <hr class='my-0' style='height: 1px;' />
                                 ";
@@ -108,6 +187,31 @@
         </main>
 
         <script src="../../js/app.js"></script>
+
+        <script>
+            function getCurrentDate() {
+                // Create a new Date object to get the current date and time
+                var currentDate = new Date();
+
+                // Get the month name
+                var monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ];
+                var month = monthNames[currentDate.getMonth()];
+
+                // Get the day and year
+                var day = currentDate.getDate();
+                var year = currentDate.getFullYear();
+
+                // Format the date as desired (e.g., "Month Day, Year")
+                var formattedDate = month + " " + day + ", " + year;
+
+                return formattedDate;
+            }
+
+            document.getElementById("dateField").value = getCurrentDate();
+        </script>
+
 </body>
 
 </html>
