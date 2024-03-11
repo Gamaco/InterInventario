@@ -81,6 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../img/icons/app-icon-ios.png">
+    <meta name="apple-mobile-web-app-title" content="Inter Loans">
+    <link rel="manifest" href="../../manifest.json">
 
     <title>Comments | IELS</title>
     <!-- Font Awesome CSS -->
