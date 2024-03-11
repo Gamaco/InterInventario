@@ -32,6 +32,7 @@
         <?php include './navbar.php'; ?>
         <main class="content">
             <h1 class="h3 mb-3">Dashboard</h1>
+
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card">
@@ -193,6 +194,5 @@
 
     <!-- Local JS -->
     <script src="../../js/app.js"></script>
-</body>
 
 </html>

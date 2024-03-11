@@ -8,7 +8,7 @@
         "type": "image/png"
       }
     ],
-    "start_url": "/Static/HTML/index.html",
+    "start_url": "http://192.168.4.26/InterInventario/static/html/user/login.php",
     "display": "standalone",
     "theme_color": "#ffffff",
     "background_color": "#ffffff"
