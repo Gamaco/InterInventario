@@ -52,7 +52,7 @@
 										<!-- Dropdown for categories -->
 										<div class="dropdown-center">
 											<button class="btn btn-secondary text-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-												Categories
+												All Categories
 											</button>
 											<ul class="dropdown-menu" id="categoryDropdown">
 												<?php
@@ -68,7 +68,7 @@
 
 												while ($category = $categories->fetch_assoc()) {
 													echo "
-                                                        <li><a class='dropdown-item'>" . $category["Category"] . "</a></li>
+                                                        <li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>" . $category["Category"] . "</a></li>
                                                 ";
 												}
 

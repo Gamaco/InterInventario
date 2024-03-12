@@ -42,10 +42,54 @@
         <main class="content">
             <div class="container-fluid">
                 <h1 class="h3 mb-3"><strong>Inventory</strong> List</h1>
+
+                <div class="row mb-3">
+                    <div class="col-sm-auto ms-auto">
+                        <div class="dropdown-center">
+                            <button class="btn btn-secondary text-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                All Categories
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-sm-start" id="categoryDropdown">
+                                <li class="disabled"><a class="dropdown-header disabled"><i class="fa fa-filter" aria-hidden="true"></i> Categories</a></li>
+                                <hr class="mt-0 mb-2">
+                                <?php
+                                include '../../db/config.php';
+
+                                $query = "CALL GetCategories()";
+
+                                $stmt = $connection->prepare($query);
+
+                                if (!$stmt) {
+                                    die("Error preparing statement: " . $connection->error);
+                                }
+
+                                $result = $stmt->execute();
+
+                                if (!$result) {
+                                    die("Error executing statement: " . $stmt->error);
+                                }
+
+                                $stmt->bind_result($id, $category);
+
+                                while ($stmt->fetch()) {
+                                    echo "<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>" . $category . "</a></li>";
+                                }
+
+                                $stmt->close();
+                                $connection->close();
+                                ?>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mb-3">
+
                 <div class="row mb-3">
                     <div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
                         <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
-                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="fa fa-code" aria-hidden="true"></i> Manage Categories</a>
+                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="fa fa-cog" aria-hidden="true"></i> Manage Categories</a>
                     </div>
                 </div>
             </div>
@@ -60,42 +104,6 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
                                         <input type="text" id="searchInput" class="form-control fs-4 form-control-lg" placeholder="Search">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 d-flex justify-content-center justify-content-sm-end">
-                                    <div class="dropdown-center">
-                                        <button class="btn btn-secondary text-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Categories
-                                        </button>
-                                        <ul class="dropdown-menu" id="categoryDropdown">
-                                            <?php
-                                            include '../../db/config.php';
-
-                                            $query = "CALL GetCategories()";
-
-                                            $stmt = $connection->prepare($query);
-
-                                            if (!$stmt) {
-                                                die("Error preparing statement: " . $connection->error);
-                                            }
-
-                                            $result = $stmt->execute();
-
-                                            if (!$result) {
-                                                die("Error executing statement: " . $stmt->error);
-                                            }
-
-                                            $stmt->bind_result($id, $category);
-
-                                            while ($stmt->fetch()) {
-                                                echo "<li><a class='dropdown-item'>" . $category . "</a></li>";
-                                            }
-
-                                            $stmt->close();
-                                            $connection->close();
-                                            ?>
-
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -113,12 +121,16 @@
             </div>
 
             <div class="row">
+                <div class="btn-group mb-3 w-25">
+                    <a href="#" class="btn btn-lg btn-primary active" aria-current="page">Available</a>
+                    <a href="#" class="btn btn-lg btn-light">Unavailable</a>
+                </div>
                 <div class="col-12 col-lg-14 col-xxl-12 d-flex">
                     <div class="card flex-fill">
-                        <div class="card-header bg-success d-flex justify-content-between">
+                        <!-- <div class="card-header bg-success d-flex justify-content-between">
                             <h4 class="text-white"><strong>Available</strong></h4>
                             <button id="minimizeButton" class="btn btn-lg fs-5 text-white btn-success"><i class="fa fa-eye" aria-hidden="true"></i> Hide</button>
-                        </div>
+                        </div> -->
                         <div class="table-container">
                             <table id="InventoryTable" class="table my-0 table-hover border-secondary">
                                 <thead>
@@ -179,7 +191,7 @@
                                                 <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
                                                 <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
                                                 <td>
-                                                    <a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href='./edit.php?id=". htmlspecialchars($equipo['id']) . "'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
+                                                    <a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href='./edit.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
                                                     <a class='btn btn-danger mt-1 mb-lg-1 rounded-3 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                                 </td>
                                             </tr>";

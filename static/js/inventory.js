@@ -57,7 +57,7 @@ categoryDropdown.addEventListener('click', function(event) {
   if (event.target.classList.contains('dropdown-item')) {
 
     // Update the button text with the selected item
-    //dropdownButton.innerText = event.target.innerText.trim();
+    dropdownButton.innerText = event.target.innerText.trim();
 
     // Get the selected category
     const selectedCategory = event.target.innerText.trim().toLowerCase();
