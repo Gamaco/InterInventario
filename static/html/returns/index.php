@@ -102,7 +102,7 @@
 												</td>
 												<td>
 													<a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
-													<a class='btn btn-primary mt-1 mb-lg-1 rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-check' aria-hidden='true'></i> Complete</a>
+													<a class='btn btn-primary mt-1 mb-lg-1 rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
 												</td>							
 											</tr>";
 									}

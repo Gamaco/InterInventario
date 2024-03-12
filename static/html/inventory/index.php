@@ -23,13 +23,6 @@
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <style>
-        .table-container {
-            overflow-x: auto;
-        }
-    </style>
-    </style>
 </head>
 
 <body draggable="false">
@@ -45,12 +38,21 @@
 
                 <div class="row mb-3">
                     <div class="col-sm-auto ms-auto">
+                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="fa fa-cog" aria-hidden="true"></i> Manage Categories</a>
+                    </div>
+                </div>
+
+                <hr class="mb-3">
+
+                <div class="row mb-3">
+                    <div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
+                        <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
                         <div class="dropdown-center">
-                            <button class="btn btn-secondary text-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-secondary text-dark fs-5 btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 All Categories
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-sm-start" id="categoryDropdown">
-                                <li class="disabled"><a class="dropdown-header disabled"><i class="fa fa-filter" aria-hidden="true"></i> Categories</a></li>
+                            <ul class="dropdown-menu" id="categoryDropdown">
+                                <li class="disabled"><a class="dropdown-header disabled"><i class="fa fa-filter" aria-hidden="true"></i> Categories | Scroll Down</a></li>
                                 <hr class="mt-0 mb-2">
                                 <?php
                                 include '../../db/config.php';
@@ -78,18 +80,11 @@
                                 $stmt->close();
                                 $connection->close();
                                 ?>
-
+                                <li class="dropdown-arrow">
+                                    <span class="arrow-down"></span>
+                                </li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-
-                <hr class="mb-3">
-
-                <div class="row mb-3">
-                    <div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
-                        <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
-                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="fa fa-cog" aria-hidden="true"></i> Manage Categories</a>
                     </div>
                 </div>
             </div>
@@ -131,7 +126,7 @@
                             <h4 class="text-white"><strong>Available</strong></h4>
                             <button id="minimizeButton" class="btn btn-lg fs-5 text-white btn-success"><i class="fa fa-eye" aria-hidden="true"></i> Hide</button>
                         </div> -->
-                        <div class="table-container">
+                        <div class="table-container" style="overflow-x: auto;">
                             <table id="InventoryTable" class="table my-0 table-hover border-secondary">
                                 <thead>
                                     <tr>

@@ -12,8 +12,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 	<link rel="apple-touch-icon" sizes="180x180" href="../../img/icons/app-icon-ios.png">
-    <meta name="apple-mobile-web-app-title" content="Inter Loans">
-    <link rel="manifest" href="../../manifest.json">
+	<meta name="apple-mobile-web-app-title" content="Inter Loans">
+	<link rel="manifest" href="../../manifest.json">
 
 	<title>Loans | IELS</title>
 	<link rel="stylesheet" , href="../../css/loans.css">
@@ -36,6 +36,39 @@
 
 				<h1 class="h3 mb-3"><strong>Active</strong> Loans</h1>
 
+				<div class="row mb-3">
+					<div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
+						<a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="./create.php"><i class="fa fa-plus" aria-hidden="true"></i> Create Loan</a>
+						<!-- Dropdown for categories -->
+						<div class="dropdown-center">
+							<button class="btn btn-secondary text-dark btn-lg fs-5 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								All Categories
+							</button>
+							<ul class="dropdown-menu" id="categoryDropdown">
+								<?php
+								include '../../db/config.php';
+
+								$query = "CALL GetCategories()";
+								$categories = $connection->query($query);
+
+								// In case the query failed
+								if (!$categories) {
+									die("Invalid query: " . $$connection->error);
+								}
+
+								while ($category = $categories->fetch_assoc()) {
+									echo "
+                                    <li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>" . $category["Category"] . "</a></li>
+                                    ";
+								}
+
+								$connection->close();
+								?>
+							</ul>
+						</div>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
 						<div class="card flex-fill">
@@ -47,36 +80,6 @@
 									</div>
 								</div>
 								<div class="col-auto text-center text-md-start">
-									<div class="d-flex mt-4">
-										<a class="btn btn-primary btn-lg me-2" href="./create.php"><i class="fa fa-plus" aria-hidden="true"></i> Create Loan</a></td>
-										<!-- Dropdown for categories -->
-										<div class="dropdown-center">
-											<button class="btn btn-secondary text-dark btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-												All Categories
-											</button>
-											<ul class="dropdown-menu" id="categoryDropdown">
-												<?php
-												include '../../db/config.php';
-
-												$query = "CALL GetCategories()";
-												$categories = $connection->query($query);
-
-												// In case the query failed
-												if (!$categories) {
-													die("Invalid query: " . $$connection->error);
-												}
-
-												while ($category = $categories->fetch_assoc()) {
-													echo "
-                                                        <li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>" . $category["Category"] . "</a></li>
-                                                ";
-												}
-
-												$connection->close();
-												?>
-											</ul>
-										</div>
-									</div>
 									<?php
 									if (!empty($errorMessage)) {
 										echo "
@@ -95,6 +98,12 @@
 									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
+						<div class="card flex-fill">
 							<table id="InventoryTable" class="table table-hover my-0">
 								<thead>
 									<tr>

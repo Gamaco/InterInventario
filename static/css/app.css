@@ -7582,7 +7582,8 @@ fieldset:disabled .btn {
 @media (max-width: 576px) {
     #categoryDropdown {
     width: 100vw;
-    height: 100vh;
+    height: 400px; /* Adjust as needed */
+    overflow-y: auto;
     left: 0 !important;
     right: 0 !important;
     top: 0 !important;
@@ -7594,7 +7595,7 @@ fieldset:disabled .btn {
 
 @media (min-width: 768px) {
 #categoryDropdown {
-    height: 400px;
+    height: 400px;/* Adjust as needed */
     overflow-y: auto;
 }
 }
