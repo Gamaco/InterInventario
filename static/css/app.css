@@ -16351,10 +16351,16 @@ span.flatpickr-weekday {
     overflow: scroll;
 }
 
-@media (min-width: 576px) {
+.modal-fullscreen {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 576px) {
     .modal-dialog {
-        max-width: 500px;
-        margin: 1.75rem auto;
+        max-width: calc(100% - 3.5rem); /* Adjust the width to fit the screen */
+        margin: 1.75rem auto; /* Center the modal horizontally */
     }
 }
 
