@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                             <form method="post">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <input type="hidden" name="date" id="dateField" value="getCurrentDate()">
-                                                <textarea class="form-control" id="commentsText" name="Comments" rows="3" placeholder="New Comment"></textarea>
+                                                <textarea class="form-control" id="commentsText" name="Comments" rows="3" placeholder="New Comment" required></textarea>
                                                 <button type="submit" class="btn btn-primary btn-lg mt-3">Add Comments</button>
                                             </form>
                                         </div>
@@ -158,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                             <p class='mt-0'>$Cmt</p>
                                         <!-- Delete Button -->
                                         <div class='mt-3 text-end'>
-                                            <a type='button' class='btn btn-light btn-lg' data-bs-toggle='modal' data-bs-target='#commentDeletionModal' data-item-id='$CommentID'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                            <a type='button' class='btn btn-light btn-lg' data-bs-toggle='modal' data-bs-target='#commentDeletionModal' data-comment-id='$CommentID' data-item-id='$id'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +187,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <div class="modal-body">
                         <p>You are about to delete this category. This action cannot be undone.</p>
                         <p>Are you sure you want to proceed?</p>
-                        <input type="hidden" id="commentIdToDelete" name="deletecommentId">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal">Cancel</button>
@@ -202,14 +201,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
         <script>
             var commentDeletionModal = document.getElementById('commentDeletionModal');
-            commentDeletionModal.addEventListener('show.bs.modal', function(event) {
+                commentDeletionModal.addEventListener('show.bs.modal', function(event) {
                 var button = event.relatedTarget; // Button that triggered the modal
-                let commentId = button.getAttribute('data-item-id'); // Extract info from data-* attributes
+                let commentId = button.getAttribute('data-comment-id'); // Extract info from data-* attributes
+                let itemId = button.getAttribute("data-item-id");
                 var modal = this;
-                modal.querySelector('#commentIdToDelete').textContent = commentId;
                 modal.querySelector('#commentDeleteBtn').addEventListener('click', function() {
                     // Perform deletion action here using the itemId
-                    window.location.href = './delete-comments.php?id=' + commentId;
+                    window.location.href = './delete-comments.php?commentId=' + commentId + '&itemId=' + itemId;
                 });
             });
         </script>

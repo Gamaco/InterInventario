@@ -1,9 +1,12 @@
 <?php
-if (isset($_GET["id"])) {
-    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+if (isset($_GET["commentId"]) && isset($_GET["itemId"])) {
+
+    $commentId = filter_input(INPUT_GET, 'commentId', FILTER_VALIDATE_INT);
+    $itemId = filter_input(INPUT_GET, 'itemId', FILTER_VALIDATE_INT);
+
 
     // Check if $id is valid
-    if ($id === false || $id === null) {
+    if ($commentId === false || $commentId === null || $itemId === null || $itemId == false) {
         header("location: ../components/error_404.php");
     exit;
     }
@@ -11,7 +14,8 @@ if (isset($_GET["id"])) {
     include '../../db/config.php';
 
     // Sanitize the ID to prevent SQL injection
-    $id = $connection->real_escape_string($id);
+    $commentId = $connection->real_escape_string($commentId);
+    $itemId = $connection->real_escape_string($itemId);
 
     // Call the stored procedure for deleting a category
     $query = "CALL DeleteCommentByID(?)";
@@ -24,7 +28,7 @@ if (isset($_GET["id"])) {
     }
 
     // Bind parameters
-    $stmt->bind_param("i", $id);
+    $stmt->bind_param("i", $commentId);
 
     // Execute the statement
     $result = $stmt->execute();
@@ -41,7 +45,7 @@ if (isset($_GET["id"])) {
 }
 
 // Redirect
-header("location: ./index.php");
+header("location: ./comments.php?id=" . $itemId);
 exit;
 ?>
 

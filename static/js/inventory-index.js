@@ -12,22 +12,3 @@ itemDeletionModal.addEventListener('show.bs.modal', function (event) {
         window.location.href = './delete.php?id=' + itemId;
     });
 });
-
-
-// <!-- Minimize button functionality -->
-document.addEventListener('DOMContentLoaded', function () {
-    var table = document.getElementById('InventoryTable');
-    var button = document.getElementById('minimizeButton');
-    var isTableMinimized = false;
-
-    button.addEventListener('click', function () {
-        if (!isTableMinimized) {
-            table.style.display = 'none';
-            button.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i> Show';
-        } else {
-            table.style.display = 'table';
-            button.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i> Hide';
-        }
-        isTableMinimized = !isTableMinimized;
-    });
-});
