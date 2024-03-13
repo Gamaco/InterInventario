@@ -30,7 +30,7 @@
                 </li>
 
                 <li class="sidebar-item <?php echo ($activePage == 'inventory') ? 'active' : ''; ?>">
-                    <a class="sidebar-link" href="../inventory/index.php">
+                    <a class="sidebar-link" href="../inventory/available.php">
                         <span class="align-middle"><i class="fa fa-database" aria-hidden="true"></i> Inventory</span>
                     </a>
                 </li>

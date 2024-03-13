@@ -264,6 +264,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									Categories
 								</button>
 								<ul class="dropdown-menu" id="categoryDropdown">
+								<li class="disabled"><a class="dropdown-header disabled"><i class="fa fa-filter" aria-hidden="true"></i> Categories | Scroll Down</a></li>
+                                <hr class="mt-0 mb-2">
 									<?php
 									include '../../db/config.php';
 
@@ -284,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									$stmt->bind_result($id, $category);
 
 									while ($stmt->fetch()) {
-										echo "<li><a class='dropdown-item'>" . $category . "</a></li>";
+										echo "<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>" . $category . "</a></li>";
 									}
 
 									$stmt->close();
