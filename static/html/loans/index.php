@@ -212,7 +212,7 @@
 							<div class="row flex-wrap">
 								<div class="col-12 col-md mb-3">
 									<div data-mdb-input-init class="form-outline">
-										<label for="Fault" class="form-label">Fault Description</label>
+										<label for="Fault" class="form-label">Fault Description (Optional)</label>
 										<textarea class="form-control" id="Fault" name="Fault" rows="2" maxlength="50"></textarea>
 										<small class="form-text text-muted" id="charCount">0/50 characters</small>
 									</div>
@@ -229,11 +229,13 @@
 												<button id="conditionDropdownButton" class="btn btn-primary btn-lg dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 													Good
 												</button>
+												<div class="dropdown-center">
 												<ul class="dropdown-menu" id="conditionDropdownMenu">
-													<li><a class='dropdown-item'>Good</a></li>
-													<li><a class='dropdown-item'>Damaged</a></li>
-													<li><a class='dropdown-item'>Incomplete</a></li>
+													<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Good</a></li>
+													<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Damaged</a></li>
+													<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Incomplete</a></li>
 												</ul>
+												</div>
 											</div>
 										</div>
 									</div>

@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTag <i class="text-danger">*</i></label>
 											<div class="input-group">
-												<button class="btn btn-primary btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
+												<button class="btn btn-primary btn-lg btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
 												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4 form-control-lg" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
 											</div>
 										</div>
@@ -351,7 +351,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondary btn-lg text-dark" data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
