@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function password_match($conn, $id, $pwd)
     {
         // Prepare and execute query
-        $query = "SELECT * FROM users WHERE username = ?";
+        $query = "CALL GetUserByUsername(?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $id);
         $stmt->execute();
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function IDExists($conn, $id)
     {
         // Prepare and execute query
-        $query = "SELECT * FROM users WHERE username = ?";
+        $query = "CALL GetUserByUsername(?)";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("s", $id);
         $stmt->execute();
@@ -158,7 +158,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </div>";
                                                 }
                                                 ?>
-                                                <!-- ************* -->
                                                 <label class="form-label">Identification Number</label>
                                                 <input class="form-control form-control-lg" type="text" name="id" placeholder="Enter your ID" required />
                                             </div>
@@ -167,10 +166,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <input class="form-control form-control-lg" type="password" name="pwd" placeholder="Enter your password" required />
                                             </div>
                                             <div>
-                                                <div class="form-check align-items-center">
+                                                <!-- 
+                                                    Remember me button isn't implemented. 
+                                                    Keeping it here just in case someone else
+                                                    decides to implement it in the future.
+
+                                                    ¯\_(ツ)_/¯ @Profe
+                                                    
+                                                    <div class="form-check align-items-center">
                                                     <input id="customControlInline" type="checkbox" class="form-check-input" value="remember-me" name="remember-me" checked>
                                                     <label class="form-check-label text-small" for="customControlInline">Remember me</label>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="d-grid gap-2 mt-3">
                                                 <button type="submit" name="submit" class="btn btn-lg btn-primary">Log in</button>
@@ -178,9 +184,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="text-center mb-3">
-                                <!-- Don't have an account? <a href="pages-sign-up.html">Sign up</a> -->
                             </div>
                         </div>
                     </div>
@@ -191,7 +194,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     </div>
     <script src="../../js/app.js"></script>
-    <script src="../../js/index.js"></script>
 </body>
 
 </html>
