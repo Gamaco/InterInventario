@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <?php
 
 include '../../db/config.php';

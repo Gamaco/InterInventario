@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

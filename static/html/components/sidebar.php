@@ -40,8 +40,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="../user/login.php">
-                        <span class="align-middle"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</span>
+                    <a class="sidebar-link" href="../user/logout.php">
+                        <span class="align-middle"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</span>
                     </a>
                 </li>
         </div>
