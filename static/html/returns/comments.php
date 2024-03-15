@@ -41,16 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
     $Date = filter_var($_POST["date"], FILTER_SANITIZE_SPECIAL_CHARS);
 
-    do {
-        // Call the stored procedure to update an item
-        $query = "CALL InsertComment(?, ?, ?);";
-        $stmt = $connection->prepare($query);
+    // Call the stored procedure to update an item
+    $query = "CALL InsertComment(?, ?, ?);";
+    $stmt = $connection->prepare($query);
 
-        if (!$stmt) {
-            $errorMessage = "Error preparing statement: " . $connection->error;
-            break;
-        }
-
+    if (!$stmt) {
+        $errorMessage = "Error preparing statement: " . $connection->error;
+    } else {
         // Bind parameters
         $stmt->bind_param("ssi", $Comments, $Date, $id);
 
@@ -59,14 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         if (!$result) {
             $errorMessage = "Invalid Input: <br>" . $stmt->error;
-            break;
+        } else {
+            $stmt->close();
+            $connection->close();
+            header("location: ./comments.php?id=$id");
+            exit;
         }
-
-        $stmt->close();
-        $connection->close();
-        header("location: ./comments.php?id=$id");
-        exit;
-    } while (false);
+    }
 }
 ?>
 
@@ -187,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>You are about to delete this category. This action cannot be undone.</p>
+                        <p>You are about to delete this comment. This action cannot be undone.</p>
                         <p>Are you sure you want to proceed?</p>
                     </div>
                     <div class="modal-footer">

@@ -188,13 +188,12 @@
                         </div>
                     </div>
                 </div>
-
             </div>
     </div>
     </div>
     </div>
-
-    <!-- Local JS -->
-    <script src="../../js/app.js"></script>
+</body>
+<!-- Local JS -->
+<script src="../../js/app.js"></script>
 
 </html>

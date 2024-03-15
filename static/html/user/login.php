@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION["username"] = $id;
 
         // Redirect to dashboard if login successful
-        header("location: ../components/dashboard.php");
+        header("location: ../components/dashboards.php");
         exit();
     }
 
@@ -167,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             </div>
                                             <div>
                                                 <!-- 
-                                                    Remember me button isn't implemented. 
+                                                    'Remember me' button isn't implemented. 
                                                     Keeping it here just in case someone else
                                                     decides to implement it in the future.
 

@@ -25,9 +25,9 @@
                 $user_name = $user['name'];
                 $user_id = $user['username'];
 
-                echo "<span class='text-dark'>" . $user_name . " | <b>" . $user_id . "</b> </span>";
+                echo "<span class='text-white'>" . $user_name . " | <b>" . $user_id . "</b> </span>";
             } else {
-                echo "<span class='text-dark'>User not found</span>";
+                echo "<span class='text-white'>User not found</span>";
             }
 
             // Close query
