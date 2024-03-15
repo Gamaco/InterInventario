@@ -146,7 +146,7 @@
                             ?>
 
                             <div class="mb-0">
-                                <a class="btn rounded-5 btn-lg btn-primary mb-2" href="../inventory/index.php">View Inventory</a>
+                                <a class="btn rounded-5 btn-lg btn-primary mb-2" href="../inventory/available.php">View Inventory</a>
                             </div>
                         </div>
                     </div>
