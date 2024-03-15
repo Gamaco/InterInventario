@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,7 +146,7 @@
                             ?>
 
                             <div class="mb-0">
-                                <a class="btn rounded-5 btn-lg btn-primary mb-2" href="../inventory/index.php">View Inventory</a>
+                                <a class="btn rounded-5 btn-lg btn-primary mb-2" href="../inventory/available.php">View Inventory</a>
                             </div>
                         </div>
                     </div>
@@ -186,13 +188,12 @@
                         </div>
                     </div>
                 </div>
-
             </div>
     </div>
     </div>
     </div>
-
-    <!-- Local JS -->
-    <script src="../../js/app.js"></script>
+</body>
+<!-- Local JS -->
+<script src="../../js/app.js"></script>
 
 </html>

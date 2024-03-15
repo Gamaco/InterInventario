@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,7 +164,7 @@
 												<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
 												<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
 												<td data-label='Options'>
-													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'><i class='fa fa-reply-all' aria-hidden='true'></i> Return</a>
+													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-location='" . $prestamo['Location'] . "' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'><i class='fa fa-reply-all' aria-hidden='true'></i> Return</a>
 												</td>
 											</tr>";
 									}
@@ -205,6 +207,15 @@
 									<div data-mdb-input-init class="form-outline">
 										<label class="form-label" for="Description">Description</label>
 										<input type="text" name="Description" id="Description" class="form-control fs-4" aria-describedby="Description" disabled>
+									</div>
+								</div>
+							</div>
+
+							<div class="row flex-wrap">
+								<div class="col-12 col-md mb-3">
+									<div data-mdb-input-init class="form-outline">
+										<label class="form-label" for="Description">Return Location:</label>
+										<input type="text" name="ReturnLocation" id="ReturnLocation" class="form-control fs-4" aria-describedby="Return Location" disabled>
 									</div>
 								</div>
 							</div>

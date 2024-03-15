@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <?php
 if (isset($_GET["id"])) {
     $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);

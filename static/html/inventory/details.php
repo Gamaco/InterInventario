@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,8 +100,7 @@
 
                                             // Check if $id is valid
                                             if ($id === false || $id === null) {
-                                                // Handle invalid input (e.g., display an error message, redirect the user, etc.)
-                                                echo "Invalid ID input.<br><a style='font-size: xx-large;'>¯\_(ツ)_/¯</a>";
+                                                header("location: ../components/error_404.php");
                                                 exit;
                                             }
 

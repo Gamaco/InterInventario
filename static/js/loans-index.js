@@ -1,12 +1,18 @@
 var returnButtons = document.querySelectorAll('.btn-primary[data-bs-toggle="modal"]');
 returnButtons.forEach(function (button) {
     button.addEventListener('click', function () {
+        //Get elements' value
         var ptagValue = this.getAttribute('data-item-id');
         var descriptionValue = this.getAttribute('data-item-description');
-        var ptagInput = document.getElementById('PTAG');
+        var returnLocValue = this.getAttribute('data-item-location');
+        // Get elements
         var descriptionInput = document.getElementById('Description');
+        var ptagInput = document.getElementById('PTAG');
+        var returnLocation = document.getElementById('ReturnLocation');
+        // Assign value to the elements
         descriptionInput.value = descriptionValue;
         ptagInput.value = ptagValue;
+        returnLocation.value = returnLocValue;
     });
 });
 

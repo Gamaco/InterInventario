@@ -23,7 +23,7 @@
 
 @media (min-width: 992px) {
     .modal-lg {
-        max-width: 100%;
+        max-width: 50%;
         margin: 1.75rem auto;
     }
 }

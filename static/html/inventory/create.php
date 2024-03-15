@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <?php
 include '../../db/config.php';
 
@@ -67,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->close();
         $connection->close();
 
-        header("location: ../inventory/index.php");
+        header("location: ../inventory/available.php");
         exit;
     } while (false);
 }

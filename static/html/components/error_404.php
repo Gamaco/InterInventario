@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +47,7 @@
                     <h1 class="display-1">404</h1>
                     <h2>Page not found</h2>
                     <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-                    <a href="../components/dashboard.php" class="btn btn-primary btn-lg">Home Page</a>
+                    <a href="../components/dashboards.php" class="btn btn-primary btn-lg">Home Page</a>
                 </div>
             </div>
         </main>

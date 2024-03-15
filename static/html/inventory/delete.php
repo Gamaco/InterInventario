@@ -1,3 +1,5 @@
+<?php include '../components/userSessionValidation.php'; ?>
+
 <?php
 if (isset($_GET["id"])) {
     $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
@@ -41,6 +43,6 @@ if (isset($_GET["id"])) {
 }
 
 // Redirect to inventory.php
-header("location: ../inventory/index.php");
+header("location: ../inventory/available.php");
 exit;
 ?>
