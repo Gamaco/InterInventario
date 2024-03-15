@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $stmt->close();
         $connection->close();
-        header("location: ../inventory/index.php");
+        header("location: ../inventory/available.php");
         exit;
     } while (false);
 }
