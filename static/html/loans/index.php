@@ -106,7 +106,7 @@
 				<div class="row">
 					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
 						<div class="card flex-fill">
-							<table id="InventoryTable" class="table table-hover my-0">
+							<table id="LoansTable" class="table table-hover my-0">
 								<thead>
 									<tr>
 										<th>NAME</th>
