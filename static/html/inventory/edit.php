@@ -291,7 +291,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                     </div>
                                     <div class="row">
                                         <!-- Cancel button -->
-                                        <a type="button" class="btn btn-light btn-lg mb-2" href="index.php">Cancel</a>
+                                        <a type="button" class="btn btn-light btn-lg mb-2" href="available.php">Cancel</a>
                                     </div>
                                 </div>
 
