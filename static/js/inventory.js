@@ -1,11 +1,14 @@
 document.getElementById('searchInput').addEventListener('input', function () {
   const searchText = this.value.trim().toLowerCase();
-  
+
+  let inventoryDisplayedRowCount = 0; // Initialize counter for displayed rows
+  let outOfStockDisplayedRowCount = 0; // Initialize counter for displayed rows
+  let loansDisplayedRowCount = 0; // Initialize counter for displayed rows
+
   // Filter InventoryTable if it exists
   const inventoryTable = document.getElementById('InventoryTable');
   if (inventoryTable) {
     const inventoryTableRows = inventoryTable.querySelectorAll('tbody tr');
-    let inventoryDisplayedRowCount = 0; // Initialize counter for displayed rows
 
     inventoryTableRows.forEach(row => {
       const rowData = row.textContent.trim().toLowerCase();
@@ -20,7 +23,6 @@ document.getElementById('searchInput').addEventListener('input', function () {
   const outOfStockTable = document.getElementById('InventoryTable-OutOfStock');
   if (outOfStockTable) {
     const outOfStockTableRows = outOfStockTable.querySelectorAll('tbody tr');
-    let outOfStockDisplayedRowCount = 0; // Initialize counter for displayed rows
 
     outOfStockTableRows.forEach(row => {
       const rowData = row.textContent.trim().toLowerCase();
@@ -31,11 +33,10 @@ document.getElementById('searchInput').addEventListener('input', function () {
     });
   }
 
-    // Filter InventoryTable-OutOfStock if it exists
-    const loansTable = document.getElementById('InventoryTable-OutOfStock');
+    // Filter loans table if it exists
+    const loansTable = document.getElementById('LoansTable');
     if (loansTable) {
-      const loansTableRows = outOfStockTable.querySelectorAll('tbody tr');
-      let loansDisplayedRowCount = 0; // Initialize counter for displayed rows
+      const loansTableRows = loansTable.querySelectorAll('tbody tr');
   
       loansTableRows.forEach(row => {
         const rowData = row.textContent.trim().toLowerCase();
@@ -46,21 +47,22 @@ document.getElementById('searchInput').addEventListener('input', function () {
       });
     }
 
-  // Update the counter element in HTML
+  // Update the counter element in HTML if search input is not empty
+  if (searchText !== "") {
     if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount > 0) {
       document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
     } else if (inventoryDisplayedRowCount > 0 && outOfStockDisplayedRowCount === 0) {
       document.getElementById('displayedRowCount').textContent = inventoryDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
-      //outOfStockTable.style.display = 'none'; // Hide InventoryTable-OutOfStock
     } else if (inventoryDisplayedRowCount === 0 && outOfStockDisplayedRowCount > 0) {
       document.getElementById('displayedRowCount').textContent = outOfStockDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
-      //inventoryTable.style.display = 'none'; // Hide InventoryTable
     } else if (loansDisplayedRowCount > 0) {
       document.getElementById('displayedRowCount').textContent = loansDisplayedRowCount + " Items found for \'" + searchText.toUpperCase() + "'";
     } else {
       document.getElementById('displayedRowCount').textContent = "";
     }
-
+  } else {
+    document.getElementById('displayedRowCount').textContent = "";
+  }
 
 });
 
