@@ -96,7 +96,7 @@ function filterTable(filterText) {
 
   let inventoryDisplayedRowCount = 0; // Initialize counter for displayed rows in InventoryTable
   let outOfStockDisplayedRowCount = 0; // Initialize counter for displayed rows in InventoryTable-OutOfStock
-  let loansDisplayedRowCount = 0; // Initialize counter for displayed rows in InventoryTable-OutOfStock
+  let loansDisplayedRowCount = 0; // Same thing for this table
 
   if (loansTable) {
     const loansTableRows = loansTable.querySelectorAll('tbody tr');
@@ -107,7 +107,7 @@ function filterTable(filterText) {
 
       if (filterText === 'all categories' || descriptionText.includes(filterText.toLowerCase())) {
         row.style.display = '';
-        loansDisplayedRowCount++; // Increment the counter for displayed rows
+        loansDisplayedRowCount++;
       } else {
         row.style.display = 'none';
       }
@@ -123,7 +123,7 @@ function filterTable(filterText) {
 
       if (filterText === 'all categories' || descriptionText.includes(filterText.toLowerCase())) {
         row.style.display = '';
-        inventoryDisplayedRowCount++; // Increment the counter for displayed rows
+        inventoryDisplayedRowCount++;
       } else {
         row.style.display = 'none';
       }
@@ -139,7 +139,7 @@ function filterTable(filterText) {
 
       if (filterText === 'all categories' || descriptionText.includes(filterText.toLowerCase())) {
         row.style.display = '';
-        outOfStockDisplayedRowCount++; // Increment the counter for displayed rows
+        outOfStockDisplayedRowCount++;
       } else {
         row.style.display = 'none';
       }
