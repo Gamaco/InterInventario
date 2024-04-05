@@ -67,7 +67,7 @@ document.getElementById('searchInput').addEventListener('input', function () {
 });
 
 
-var dropdownButton = document.querySelector('.dropdown-toggle');
+var dropdownButton = document.querySelector('#CategoriesButton');
 var categoryDropdown = document.getElementById('categoryDropdown');
 
 // Add event listener to the dropdown items

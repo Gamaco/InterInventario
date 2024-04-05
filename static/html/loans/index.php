@@ -43,7 +43,7 @@
 						<a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="./create.php"><i class="fa fa-plus" aria-hidden="true"></i> Create Loan</a>
 						<!-- Dropdown for categories -->
 						<div class="dropdown-center">
-							<button class="btn btn-secondary text-dark btn-lg fs-5 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<button class="btn btn-secondary text-dark btn-lg fs-5 dropdown-toggle" id="CategoriesButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								All Categories
 							</button>
 							<ul class="dropdown-menu" id="categoryDropdown">

@@ -7,13 +7,10 @@ function getPTagFromModal(Ptag) {
 }
 
 $(document).ready(function () {
-    // Event delegation for handling click on dropdown items
-    $('.dropdown-menu').on('click', '.dropdown-item', function () {
-        // Get the text of the clicked item
+    // Event delegation for handling click on dropdown items for the first dropdown
+    $('#affiliationDropdown').on('click', '.dropdown-item', function () {
         var selectedText = $(this).text();
-
-        // Update the button text with the selected item text
-        $(this).closest('.dropdown-center').find('.dropdown-toggle').text(selectedText);
+        $('#AffiliationButton').text(selectedText);
         $('#AFFILIATION').val(selectedText);
     });
 });

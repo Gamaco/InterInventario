@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 											<div data-mdb-input-init class="form-outline">
 												<input type="hidden" id="AFFILIATION" name="AFFILIATION" value="Student" />
 												<div class="dropdown-center">
-													<button class="btn btn-secondary text-dark dropdown-toggle btn-lg" id="affiliationButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+													<button class="btn btn-secondary text-dark dropdown-toggle btn-lg" id="AffiliationButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 														Student
 													</button>
 													<ul class="dropdown-menu" id="affiliationDropdown">
@@ -262,7 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						</div>
 						<div class="d-flex mt-4 justify-content-center">
 							<div class="dropdown-center mb-3">
-								<button class="btn btn-secondary text-dark btn-lg dropdown-toggle mb-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<button class="btn btn-secondary text-dark btn-lg dropdown-toggle mb-2" id="CategoriesButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									Categories
 								</button>
 								<ul class="dropdown-menu" id="categoryDropdown">
