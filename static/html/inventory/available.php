@@ -149,23 +149,50 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     <?php
+                                    // Include database configuration and establish connection
                                     include '../../db/config.php';
 
-                                    $query = "CALL GetAvailableInventory()";
+                                    // Pagination settings
+                                    $records_per_page = 10; // Number of records to display per page
+                                    $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1; // Current page number, default is 1
+                                    $category = isset($_GET['category']) ? $_GET['category'] : ''; // Selected category filter
 
-                                    $equipos = $connection->query($query);
+                                    // Calculate starting record for the current page
+                                    $start = ($page - 1) * $records_per_page;
 
-                                    // In case the query failed
-                                    if (!$equipos) {
-                                        die("Invalid query: " . $connection->error);
+                                    // Prepare the query to fetch filtered and paginated data
+                                    $query = "CALL GetFilteredInventoryPagination(?, ?, ?, @total_records)";
+                                    $stmt = $connection->prepare($query);
+
+                                    // Bind parameters
+                                    $stmt->bind_param("sii", $category, $start, $records_per_page);
+                                    $stmt->execute();
+
+                                    // Close the statement as we are not fetching any result immediately
+                                    $stmt->close();
+
+                                    // Fetch total count of records
+                                    $total_records_query = "SELECT @total_records as total";
+                                    $total_records_result = $connection->query($total_records_query);
+                                    if (!$total_records_result) {
+                                        die("Error fetching total records: " . $connection->error);
                                     }
+                                    $total_records_row = $total_records_result->fetch_assoc();
+                                    $total_records = $total_records_row['total'];
+                                    $total_pages = ceil($total_records / $records_per_page);
 
-                                    // Reads data and also checks if the field value is empty.
-                                    // In case the field is empty, it'll display N/A on the table,
-                                    // to avoid having empty spaces on the table.
-                                    // Empty spaces make the table collapse/wrap a field into another.
-                                    while ($equipo = $equipos->fetch_assoc()) {
+                                    // Re-execute the stored procedure to get the result set after fetching the total count of records
+                                    $stmt = $connection->prepare($query);
+                                    $stmt->bind_param("sii", $category, $start, $records_per_page);
+                                    $stmt->execute();
+
+                                    // Fetch records
+                                    $result = $stmt->get_result();
+
+                                    // Render table rows
+                                    while ($equipo = $result->fetch_assoc()) {
                                         echo "
                                             <tr>
                                                 <td data-label='Description'>" . ($equipo['Description'] ? $equipo['Description'] : 'N/A') . "</td>
@@ -191,12 +218,27 @@
                                             </tr>";
                                     }
 
+                                    // Close statement and connection
+                                    $stmt->close();
                                     $connection->close();
                                     ?>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer"></div>
+                        <div class="card-footer">
+                            <!-- Pagination controls -->
+                            <div class="pagination">
+                                <?php if ($page > 1) : ?>
+                                    <a href="?page=<?php echo $page - 1; ?>">Previous</a>
+                                <?php endif; ?>
+                                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                                    <a href="?page=<?php echo $i; ?>" <?php if ($i === $page) echo ' class="active"'; ?>><?php echo $i; ?></a>
+                                <?php endfor; ?>
+                                <?php if ($page < $total_pages) : ?>
+                                    <a href="?page=<?php echo $page + 1; ?>">Next</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,8 +270,32 @@
 
     <!-- Local JS -->
     <script src="../../js/app.js"></script>
-    <script src="../../js/inventory.js"></script>
     <script src="../../js/inventory-index.js"></script>
+
+    <script>
+    document.getElementById('categoryDropdown').addEventListener('click', function(event) {
+        if (event.target.classList.contains('dropdown-item')) {
+            var category = event.target.textContent.trim();
+            console.log('Selected category:', category); // Log the selected category
+            fetchFilteredData(category);
+        }
+    });
+
+    function fetchFilteredData(category) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log('Response from server:', this.responseText); // Log the response from the server
+                // Update the table or perform other actions with the response if needed
+            } else {
+                console.error('Error fetching data:', this.status); // Log any errors
+            }
+        };
+        xhttp.open("GET", "filter_data.php?category=" + encodeURIComponent(category), true);
+        xhttp.send();
+    }
+</script>
+
 </body>
 
 </html>
