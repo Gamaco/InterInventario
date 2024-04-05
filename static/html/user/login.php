@@ -120,6 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="apple-touch-icon" sizes="180x180" href="../../img/icons/app-icon-ios.png">
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 
     <title>Login - IELS</title>
 
@@ -158,28 +160,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 </div>";
                                                 }
                                                 ?>
-                                                <label class="form-label">Identification Number</label>
-                                                <input class="form-control form-control-lg" type="text" name="id" placeholder="Enter your ID" required />
+                                                <label class="form-label"><b>Identification Number</b></label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                                                    <input class="form-control fs-4 form-control-lg p-2" type="text" name="id" required />
+                                                </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Password</label>
-                                                <input class="form-control form-control-lg" type="password" name="pwd" placeholder="Enter your password" required />
+                                                <label class="form-label"><b>Password</b></label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                                    <input class="form-control fs-4 form-control-lg p-2" style="border-right: 0;" type="password" name="pwd" id="passwordField" required />
+                                                    <span class="input-group-text fs-4" id="togglePassword" style="border-left: 0 !important;  background-color: white !important;"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                                </div>
                                             </div>
                                             <div>
                                                 <!-- 
                                                     'Remember me' button isn't implemented. 
-                                                    Keeping it here just in case someone else
+                                                    Kept it here just in case someone else
                                                     decides to implement it in the future.
 
                                                     ¯\_(ツ)_/¯ @Profe
                                                     
                                                     <div class="form-check align-items-center">
-                                                    <input id="customControlInline" type="checkbox" class="form-check-input" value="remember-me" name="remember-me" checked>
-                                                    <label class="form-check-label text-small" for="customControlInline">Remember me</label>
-                                                </div> -->
+                                                        <input id="customControlInline" type="checkbox" class="form-check-input" value="remember-me" name="remember-me" checked>
+                                                        <label class="form-check-label text-small" for="customControlInline">Remember me</label>
+                                                    </div> 
+                                                -->
                                             </div>
-                                            <div class="d-grid gap-2 mt-3">
-                                                <button type="submit" name="submit" class="btn btn-lg btn-primary">Log in</button>
+                                            <div class="d-grid gap-2 mt-5 mb-3">
+                                                <button type="submit" name="submit" class="btn btn-lg fs-4 btn-primary">Log in</button>
                                             </div>
                                         </form>
                                     </div>
@@ -194,6 +204,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     </div>
     <script src="../../js/app.js"></script>
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function() {
+            var passwordField = document.getElementById("passwordField");
+            var icon = this.querySelector("i");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -2433,8 +2433,8 @@ progress {
 
 .form-control:focus {
     background-color: #fff;
-    border-color: #9dbeee;
-    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+    /* border-color: #9dbeee; */
+    /* box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25); */
     color: #495057;
     outline: 0
 }
@@ -2648,8 +2648,8 @@ textarea.form-control-lg {
 }
 
 .form-select:focus {
-    border-color: #9dbeee;
-    box-shadow: 0 0 0 .2rem rgba(59, 125, 221, .25);
+    /* border-color: #9dbeee; */
+    /* box-shadow: 0 0 0 .2rem rgba(59, 125, 221, .25); */
     outline: 0
 }
 
@@ -2740,8 +2740,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input:focus {
-    border-color: #9dbeee;
-    box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25);
+    /* border-color: #9dbeee; */
+    /* box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25); */
     outline: 0
 }
 
@@ -2848,11 +2848,11 @@ textarea.form-control-lg {
 }
 
 .form-range:focus::-webkit-slider-thumb {
-    box-shadow: 0 0 0 1px #f5f7fb, 0 0 0 .25rem rgba(59, 125, 221, .25)
+    /* box-shadow: 0 0 0 1px #f5f7fb, 0 0 0 .25rem rgba(59, 125, 221, .25) */
 }
 
 .form-range:focus::-moz-range-thumb {
-    box-shadow: 0 0 0 1px #f5f7fb, 0 0 0 .25rem rgba(59, 125, 221, .25)
+    /* box-shadow: 0 0 0 1px #f5f7fb, 0 0 0 .25rem rgba(59, 125, 221, .25) */
 }
 
 .form-range::-moz-focus-outer {
@@ -2880,7 +2880,7 @@ textarea.form-control-lg {
 }
 
 .form-range::-webkit-slider-thumb:active {
-    background-color: #c4d8f5
+    /* background-color: #c4d8f5 */
 }
 
 .form-range::-webkit-slider-runnable-track {
@@ -2913,7 +2913,7 @@ textarea.form-control-lg {
 }
 
 .form-range::-moz-range-thumb:active {
-    background-color: #c4d8f5
+    /* background-color: #c4d8f5 */
 }
 
 .form-range::-moz-range-track {
@@ -14736,7 +14736,7 @@ screen and (-ms-high-contrast:active) {
 .sidebar,
 .sidebar-content {
     position: relative;
-    background: rgb(43,45,49);
+    background: rgb(34, 34, 34);
 
     /* Add a background image at the bottom */
     &::before {
@@ -14775,7 +14775,7 @@ screen and (-ms-high-contrast:active) {
 
 .sidebar-link,
 a.sidebar-link {
-    background: #2b2d31;
+    background: rbg(34, 34, 34);
     border-left: 3px solid transparent;
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
@@ -14801,7 +14801,7 @@ a.sidebar-link svg {
 }
 
 .sidebar-link:hover {
-    background: #3c3e42;
+    background: rgb(44, 44, 44);
     border-left-color: transparent
 }
 
@@ -14828,7 +14828,7 @@ a.sidebar-link svg {
 /* Tamaño del titulo del sidebar */
 .sidebar-brand {
     color: #ffff;
-    background-color: #2b2d31; /* negro */
+    background-color: rbg(24, 20, 20); /* negro */
     display: block;
     font-size: 1rem;
     font-weight: 600;
