@@ -170,8 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <label class="form-label"><b>Password</b></label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                                    <input class="form-control fs-4 form-control-lg p-2" style="border-right: 0;" type="password" name="pwd" id="passwordField" required />
-                                                    <span class="input-group-text fs-4" id="togglePassword" style="border-left: 0 !important;  background-color: white !important;"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                                    <input class="form-control fs-4 form-control-lg p-2" type="password" name="pwd" id="passwordField" required />
                                                 </div>
                                             </div>
                                             <div>
@@ -204,22 +203,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     </div>
     <script src="../../js/app.js"></script>
-    <script>
-        document.getElementById("togglePassword").addEventListener("click", function() {
-            var passwordField = document.getElementById("passwordField");
-            var icon = this.querySelector("i");
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            } else {
-                passwordField.type = "password";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            }
-        });
-    </script>
 </body>
 
 </html>
