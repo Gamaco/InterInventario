@@ -89,18 +89,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="../../img/icons/interlogo3.png" />
 	<link rel="apple-touch-icon" sizes="180x180" href="../../img/icons/app-icon-ios.png">
-    <meta name="apple-mobile-web-app-title" content="Inter Loans">
-    <link rel="manifest" href="../../manifest.json">
+	<meta name="apple-mobile-web-app-title" content="Inter Loans">
+	<link rel="manifest" href="../../manifest.json">
 
 	<title>Create | IELS</title>
 	<!-- Custom CSS specifically for this page -->
 	<link rel="stylesheet" , href="../../css/inventory.css">
 	<link rel="stylesheet" , href="../../css/loans-create.css">
-	<!-- Font Awesome CSS -->
-	<link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 	<!-- Bootstrap added locally -->
 	<link href="../../css/app.css" rel="stylesheet">
+	<!-- Google font & icons -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
 </head>
 
 <body draggable="false">
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<div class="row">
 					<div class="card mx-auto my-5 col-12 col-md-9 p-0">
 						<div class="card-header bg-success w-100" style="background-color: #00973c !important;">
-							<h5 class="h5 mb-0 text-white"><i><i class="fa fa-cloud" aria-hidden="true"></i> New Loan</i></h5>
+							<h5 class="h5 mb-0 text-white"><i class="material-symbols-outlined" style='vertical-align: middle;'>edit_calendar</i> New Loan</i></h5>
 						</div>
 						<div class="card-body">
 							<?php
@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="PTAG"><i class="fa fa-tag" aria-hidden="true"></i> PTag <i class="text-danger">*</i></label>
+											<label class="form-label" for="PTAG">PTag <i class="text-danger">*</i></label>
 											<div class="input-group">
 												<button class="btn btn-primary btn-lg btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
 												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4 form-control-lg p-2" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="LOAN_TO"><i class="fa fa-user" aria-hidden="true"></i> Loan To <i class="text-danger">*</i></label>
+											<label class="form-label" for="LOAN_TO">Loan To <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
 												<input type="text" name="LOAN_TO" id="LOAN_TO" class="form-control fs-4 form-control-lg" placeholder="e.g. Y00561278" value="<?php echo htmlspecialchars($LOAN_TO); ?>" required />
 											</div>
@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="LOANER_AUTH"><i class="fa fa-user" aria-hidden="true"></i> Loaner Auth <i class="text-danger">*</i></label>
+											<label class="form-label" for="LOANER_AUTH">Loaner Auth <i class="text-danger">*</i></label>
 											<div data-mdb-input-init class="form-outline">
 												<input type="text" name="LOANER_AUTH" id="LOANER_AUTH" class="form-control fs-4 form-control-lg" value="<?php echo htmlspecialchars($LOANER_AUTH); ?>" required />
 											</div>
@@ -205,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="START_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> Start Date <i class="text-danger">*</i></label>
+											<label class="form-label" for="START_DATE">Start Date <i class="text-danger">*</i></label>
 											<div class="mb-3">
 												<input type="date" name="START_DATE" id="START_DATE" class="form-control fs-4 form-control-lg" value="<?php echo htmlspecialchars($START_DATE); ?>" required>
 											</div>
@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<div class="row flex-wrap">
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
-											<label class="form-label" for="END_DATE"><i class="fa fa-clock-o" aria-hidden="true"></i> End Date <i class="text-danger">*</i></label>
+											<label class="form-label" for="END_DATE">End Date <i class="text-danger">*</i></label>
 											<div class="mb-3">
 												<input type="date" name="END_DATE" id="END_DATE" class="form-control fs-4 form-control-lg" value="<?php echo htmlspecialchars($END_DATE); ?>" required>
 											</div>
@@ -256,7 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="d-flex flex-column justify-content-between align-items-center flex-wrap">
 						<div class="d-flex w-100 w-sm-75 mb-2 mb-md-0">
 							<div class="input-group">
-								<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+								<span class="input-group-text" id="basic-addon1"><i class="material-symbols-outlined">search</i></span>
 								<input type="text" id="searchInput" class="form-control fs-4 form-control-lg p-2" placeholder="Search">
 							</div>
 						</div>
@@ -266,8 +266,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									Categories
 								</button>
 								<ul class="dropdown-menu" id="categoryDropdown">
-								<li class="disabled"><a class="dropdown-header disabled"><i class="fa fa-filter" aria-hidden="true"></i> Categories | Scroll Down</a></li>
-                                <hr class="mt-0 mb-2">
+									<li class="disabled"><a class="dropdown-header disabled">Categories | Scroll Down</a></li>
+									<hr class="mt-0 mb-2">
 									<?php
 									include '../../db/config.php';
 

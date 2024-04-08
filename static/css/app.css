@@ -77,8 +77,8 @@
     --bs-body-line-height: 1.5;
     --bs-body-color: #495057;
     --bs-body-color-rgb: 73, 80, 87;
-    --bs-body-bg: #f5f7fb;
-    --bs-body-bg-rgb: 245, 247, 251;
+    --bs-body-bg: #f8f8f8;
+    --bs-body-bg-rgb: rgba(248,248,248,255);
     --bs-emphasis-color: #000;
     --bs-emphasis-color-rgb: 0, 0, 0;
     --bs-secondary-color: rgba(73, 80, 87, .75);
@@ -4450,7 +4450,7 @@ fieldset:disabled .btn {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
-    position: relative
+    position: relative;
 }
 
 .navbar>.container,
@@ -14552,7 +14552,7 @@ a.list-group-item {
 }
 
 .main {
-    background: #f5f7fb;
+    background: var(--bs-body-bg);
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     display: flex;
@@ -14589,7 +14589,7 @@ a.list-group-item {
 }
 
 .navbar-bg {
-    background: #fff
+    background: #f8f8f8;
 }
 
 .navbar-brand {
@@ -14804,6 +14804,8 @@ a.sidebar-link svg {
     background: rgb(44, 44, 44);
     border-left-color: transparent
 }
+
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
 
 .sidebar-link:hover,
 .sidebar-link:hover i,

@@ -13,25 +13,34 @@
 
                 <li class="sidebar-item <?php echo ($activePage == 'dashboard') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../components/dashboards.php">
-                        <span class="align-middle"><i class="fa fa-th-large" aria-hidden="true"></i> Dashboard</span>
+                        <span class="align-middle">
+                            <i class="material-symbols-outlined" style="vertical-align: middle;">bar_chart</i>Dashboard
+                        </span>
                     </a>
                 </li>
 
                 <li class="sidebar-item <?php echo ($activePage == 'loans') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../loans/index.php">
-                        <span class="align-middle"><i class="fa fa-file-text-o" aria-hidden="true"></i> Loans</span>
+                    <span class="align-middle">
+                        <i class="material-symbols-outlined" style="vertical-align: middle;">calendar_clock</i>Loans
+                    </span>
                     </a>
                 </li>
 
                 <li class="sidebar-item <?php echo ($activePage == 'returns') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../returns/index.php">
-                        <span class="align-middle"><i class="fa fa-check-square-o" aria-hidden="true"></i> Reviews</span>
+                        <span class="align-middle">
+                            <i class="material-symbols-outlined" style="vertical-align: middle;">reset_wrench</i>Reviews
+                        </span>
                     </a>
                 </li>
 
                 <li class="sidebar-item <?php echo ($activePage == 'inventory') ? 'active' : ''; ?>">
                     <a class="sidebar-link" href="../inventory/available.php">
-                        <span class="align-middle"><i class="fa fa-database" aria-hidden="true"></i> Inventory</span>
+                        <span class="align-middle">
+                        <i class="material-symbols-outlined" style="vertical-align: middle;">inventory</i>Inventory
+                        </span>
+
                     </a>
                 </li>
 
@@ -40,39 +49,41 @@
                 </li>
                 <li class="sidebar-item">
                     <span class="align-middle">
-                    <?php
-                include '../../db/config.php';
+                        <?php
+                        include '../../db/config.php';
 
-                $userid = $_SESSION["username"];
+                        $userid = $_SESSION["username"];
 
-                // Prepare and execute query
-                $query = "CALL GetUserByUsername(?)";
-                $stmt = $connection->prepare($query);
-                $stmt->bind_param("s", $userid);
-                $stmt->execute();
+                        // Prepare and execute query
+                        $query = "CALL GetUserByUsername(?)";
+                        $stmt = $connection->prepare($query);
+                        $stmt->bind_param("s", $userid);
+                        $stmt->execute();
 
-                // Get data
-                $result = $stmt->get_result();
-                $user = $result->fetch_assoc();
+                        // Get data
+                        $result = $stmt->get_result();
+                        $user = $result->fetch_assoc();
 
-                if ($user) {
-                    $user_name = $user['name'];
-                    $user_id = $user['username'];
-                    $user_email = $user['email'];
-            
-                    echo "<div class='d-block d-sm-none mt-1 ms-4'><span class='text-white fs-6'>". $user_name . " | <b>". $user_id ."</b></span></div>";
-                } else {
-                    echo "<div class='d-block d-sm-none mt-1 ms-4'><span class='text-white fs-6'>User not found</span></div>";
-                }
+                        if ($user) {
+                            $user_name = $user['name'];
+                            $user_id = $user['username'];
+                            $user_email = $user['email'];
 
-                // Close query
-                $stmt->close();
-                ?>
+                            echo "<div class='d-block d-sm-none mt-1 ms-4'><span class='text-white fs-6'>" . $user_name . " | <b>" . $user_id . "</b></span></div>";
+                        } else {
+                            echo "<div class='d-block d-sm-none mt-1 ms-4'><span class='text-white fs-6'>User not found</span></div>";
+                        }
+
+                        // Close query
+                        $stmt->close();
+                        ?>
                     </span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="../user/logout.php">
-                        <span class="align-middle"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</span>
+                        <span class="align-middle">
+                            <i class="material-symbols-outlined" style="vertical-align: middle;">logout</i>Log out
+                        </span>
                     </a>
                 </li>
         </div>

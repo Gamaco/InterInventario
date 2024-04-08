@@ -19,11 +19,11 @@
 
 	<title>Returns | IELS</title>
 	<link rel="stylesheet" , href="../../css/inventory.css">
-	<!-- Font Awesome CSS -->
-	<link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 	<!-- Bootstrap added locally -->
 	<link href="../../css/app.css" rel="stylesheet">
+	<!-- Google font & icons -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
 </head>
 
 <body draggable="false">
@@ -45,7 +45,7 @@
 								<div class="col-auto text-center text-md-start">
 									<div class="d-flex mt-3">
 										<div class="input-group">
-											<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+											<span class="input-group-text" id="basic-addon1"><i class="material-symbols-outlined">search</i></span>
 											<input type="text" id="searchInput" class="form-control fs-4 form-control-lg p-2" placeholder="Search">
 										</div>
 									</div>
@@ -100,10 +100,10 @@
 												<td data-label='Condition'>" . $status . "</td>
 												<td data-label='Fault'>" . htmlspecialchars($equipo['Fault'] ?? 'N/A') . "</td>
 												<td data-label='Comments'> 
-													<a href='./comments.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-comments-o' aria-hidden='true'></i> View Comments</a> <span class='badge bg-danger rounded-pill'>" . htmlspecialchars($equipo['total_comments']) . "</span> 
+													<a href='./comments.php?id=" . htmlspecialchars($equipo['id']) . "'><span class='material-symbols-outlined' style='vertical-align: middle;'>chat</span> View Comments</a> <span class='badge bg-danger rounded-pill'>" . htmlspecialchars($equipo['total_comments']) . "</span> 
 												</td>
 												<td>
-													<a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
+													<a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=" . htmlspecialchars($equipo['id']) . "'>Edit</a>
 													<a class='btn btn-primary mt-1 mb-lg-1 rounded-3 btn-lg' href='delete.php?id=" . htmlspecialchars($equipo['id']) . "'>Complete</a>
 												</td>							
 											</tr>";

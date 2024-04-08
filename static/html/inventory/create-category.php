@@ -68,11 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="manifest" href="../../manifest.json">
 
     <title>Create | IELS</title>
-    <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
+    <!-- Google font & icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
     <style>
         .table-container {
             overflow-x: auto;
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="row">
                     <div class="card mx-auto my-5 col-12 col-md-9 p-0">
                         <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
-                            <h5 class="h5 mb-0 text-white"><i><i class="fa fa-cloud" aria-hidden="true"></i> Categories</i></h5>
+                            <h5 class="h5 mb-0 text-white"><i class="material-symbols-outlined" style='vertical-align: middle;'>rule_settings</i> Categories</i></h5>
                         </div>
                         <div class="card-body">
                             <?php
@@ -112,11 +112,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="row flex-wrap">
                                     <div class="col-12 col-md mb-3">
                                         <div data-mdb-input-init class="form-outline">
-                                            <input type="text" name="Category" id="Category" class="form-control fs-4 form-control-lg" value="<?php echo $Category; ?>" />
-                                            <label class="form-label" for="Category">New Category</label>
+                                        <label class="form-label" for="Category">New Category</label>
+                                            <input type="text" name="Category" id="Category" class="form-control fs-4 form-control-lg mb-3" value="<?php echo $Category; ?>" />
                                         </div>
                                         <div>
-                                        <a type="button" class="btn btn-light btn-lg mb-2" href="../inventory/available.php"><i class="fa fa-arrow-left" aria-hidden="true"></i> Close</a>
+                                            <!-- Close button -->
+                                        <a type="button" class="btn btn-light btn-lg mb-2" href="../inventory/available.php">Close</a>
                                             <!-- Submit button -->
                                             <button type="submit" class="btn btn-primary btn-lg mb-2">Submit</button>
                                         </div>
@@ -150,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     while ($stmt->fetch()) {
                                         echo "
                                             <li class='list-group-item fs-5 list-group-item-light'> " . $category . "
-                                            <a class='btn btn-danger btn-lg float-right' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$id'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                            <a class='btn btn-danger btn-lg float-right' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$id'>Delete</a>
                                             </li>
                                             ";
                                     }

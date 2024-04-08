@@ -20,11 +20,11 @@
 
     <title>Inventory | IELS</title>
     <link rel="stylesheet" , href="../../css/inventory.css">
-    <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
+    <!-- Google font & icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
 </head>
 
 <body draggable="false">
@@ -40,7 +40,7 @@
 
                 <div class="row mb-3">
                     <div class="col-sm-auto ms-auto">
-                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="fa fa-cog" aria-hidden="true"></i> Manage Categories</a>
+                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>rule_settings</i> Manage Categories</a>
                     </div>
                 </div>
 
@@ -48,13 +48,13 @@
 
                 <div class="row mb-3">
                     <div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
-                        <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
+                    <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>add</i> Add Product</a>
                         <div class="dropdown-center">
                             <button class="btn btn-secondary text-dark fs-5 btn-lg dropdown-toggle" id="CategoriesButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 All Categories
                             </button>
                             <ul class="dropdown-menu" id="categoryDropdown">
-                                <li class="disabled"><a class="dropdown-header disabled"><i class="fa fa-filter" aria-hidden="true"></i> Categories | Scroll Down</a></li>
+                                <li class="disabled"><a class="dropdown-header disabled"><i class="material-symbols-outlined" style='vertical-align: middle;'>filter_alt</i> Categories | Scroll Down</a></li>
                                 <hr class="mt-0 mb-2">
                                 <?php
                                 include '../../db/config.php';
@@ -99,7 +99,7 @@
                             <div class="row align-items-center">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        <span class="input-group-text" id="basic-addon1"><i class="material-symbols-outlined">search</i></span>
                                         <input type="text" id="searchInput" class="form-control fs-4 form-control-lg p-2" placeholder="Search">
                                     </div>
                                 </div>
@@ -186,8 +186,8 @@
                                                 <td data-label='Amt'>" . ($equipo['Amt'] ? $equipo['Amt'] : 'N/A') . "</td>
                                                 <td data-label='Location'>" . ($equipo['Location'] ? $equipo['Location'] : 'N/A') . "</td>
                                                 <td>
-                                                    <a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href='./edit.php?id=" . htmlspecialchars($equipo['id']) . "'><i class='fa fa-pencil' aria-hidden='true'></i> Edit</a>
-                                                    <a class='btn btn-danger mt-1 mb-lg-1 rounded-3 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                                    <a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' style='width: 100px;' href='./edit.php?id=" . htmlspecialchars($equipo['id']) . "'>Edit</a>
+                                                    <a class='btn btn-danger mt-1 mb-lg-1 rounded-3 btn-lg' style='width: 100px;' data-bs-toggle='modal' data-bs-target='#itemDeletionModal' data-item-id='$equipo[id]'>Delete</a>
                                                 </td>
                                             </tr>";
                                     }

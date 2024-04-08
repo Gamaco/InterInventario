@@ -19,11 +19,11 @@
 
 	<title>Loans | IELS</title>
 	<link rel="stylesheet" , href="../../css/loans.css">
-	<!-- Font Awesome CSS -->
-	<link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 	<!-- Bootstrap added locally -->
 	<link href="../../css/app.css" rel="stylesheet">
+	<!-- Google font & icons -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
 </head>
 
 <body draggable="false">
@@ -40,7 +40,7 @@
 
 				<div class="row mb-3">
 					<div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
-						<a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="./create.php"><i class="fa fa-plus" aria-hidden="true"></i> Create Loan</a>
+						<a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="./create.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>add</i> Create Loan</a>
 						<!-- Dropdown for categories -->
 						<div class="dropdown-center">
 							<button class="btn btn-secondary text-dark btn-lg fs-5 dropdown-toggle" id="CategoriesButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -77,7 +77,7 @@
 							<div class="card-header">
 								<div class="d-flex mt-3 mb-3">
 									<div class="input-group">
-										<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+										<span class="input-group-text" id="basic-addon1"><i class="material-symbols-outlined">search</i></span>
 										<input type="text" id="searchInput" class="form-control fs-4 form-control-lg p-2" placeholder="Search">
 									</div>
 								</div>
@@ -164,7 +164,7 @@
 												<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
 												<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
 												<td data-label='Options'>
-													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-location='" . $prestamo['Location'] . "' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'><i class='fa fa-reply-all' aria-hidden='true'></i> Return</a>
+													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-location='" . $prestamo['Location'] . "' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'>Return</a>
 												</td>
 											</tr>";
 									}
@@ -241,11 +241,11 @@
 													Good
 												</button>
 												<div class="dropdown-center">
-												<ul class="dropdown-menu" id="conditionDropdownMenu">
-													<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Good</a></li>
-													<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Damaged</a></li>
-													<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Incomplete</a></li>
-												</ul>
+													<ul class="dropdown-menu" id="conditionDropdownMenu">
+														<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Good</a></li>
+														<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Damaged</a></li>
+														<li><a class='dropdown-item border rounded rounded-5 border-light border-1 fs-4 mb-1 mt-1 p-3'>Incomplete</a></li>
+													</ul>
 												</div>
 											</div>
 										</div>

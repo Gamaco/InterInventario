@@ -120,14 +120,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="apple-touch-icon" sizes="180x180" href="../../img/icons/app-icon-ios.png">
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
-    <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
 
     <title>Login - IELS</title>
 
     <link href="../../css/app.css" rel="stylesheet">
     <link href="../../css/login.css" rel="stylesheet">
+    <!-- Google font & icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
 </head>
 
 <body>
@@ -162,14 +162,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 ?>
                                                 <label class="form-label"><b>Identification Number</b></label>
                                                 <div class="input-group">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                                                    <span class="input-group-text" id="basic-addon1"><i class="material-symbols-outlined">person</i></span>
                                                     <input class="form-control fs-4 form-control-lg p-2" type="text" name="id" required />
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label"><b>Password</b></label>
                                                 <div class="input-group">
-                                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                                    <span class="input-group-text" id="basic-addon1"><i class="material-symbols-outlined">key</i></span>
                                                     <input class="form-control fs-4 form-control-lg p-2" type="password" name="pwd" id="passwordField" required />
                                                 </div>
                                             </div>

@@ -84,11 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="manifest" href="../../manifest.json">
 
     <title>Comments | IELS</title>
-    <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
+    <!-- Google font & icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
 </head>
 
 <body draggable="false">
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 <div class="container my-1 py-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
-                            <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+                            <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>arrow_back</i>Back</a>
                             <div class="card text-dark mb-0">
                                 <div class="card-body p-4">
                                     <div class="col-12 col-md">
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                             <p class='mt-0'>$Cmt</p>
                                         <!-- Delete Button -->
                                         <div class='mt-3 text-end'>
-                                            <a type='button' class='btn btn-light btn-lg' data-bs-toggle='modal' data-bs-target='#commentDeletionModal' data-comment-id='$CommentID' data-item-id='$id'><i class='fa fa-trash-o' aria-hidden='true'></i> Delete</a>
+                                            <a type='button' class='btn btn-light btn-lg' data-bs-toggle='modal' data-bs-target='#commentDeletionModal' data-comment-id='$CommentID' data-item-id='$id'>Delete</a>
                                         </div>
                                     </div>
                                 </div>

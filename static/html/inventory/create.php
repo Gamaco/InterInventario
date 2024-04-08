@@ -93,11 +93,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="manifest" href="../../manifest.json">
 
     <title>Create | IELS</title>
-    <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
+    <!-- Google font & icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
     <style>
         .table-container {
             overflow-x: auto;

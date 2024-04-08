@@ -20,11 +20,11 @@
 
     <title>Index | IELS</title>
     <link rel="stylesheet" , href="../../css/inventory.css">
-    <!-- Font Awesome CSS -->
-    <link rel='stylesheet' href='../../css/font-awesome-4.7.0/css/font-awesome.min.css'>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
+    <!-- Google font & icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@250" rel="stylesheet" />
 
     <style>
         .table-container {
@@ -99,7 +99,7 @@
                                             $itemId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
                                             // Check if $id is valid
-                                            if ($id === false || $id === null) {
+                                            if ($itemId === false || $itemId === null) {
                                                 header("location: ../components/error_404.php");
                                                 exit;
                                             }
@@ -169,12 +169,12 @@
 
         <script>
             // Function to generate the QR code
-            function generateQRCode(url) {
-                var qr = qrcode(0, 'L'); // Create QRCode object with error correction level 'L' and size '0'
-                qr.addData(url); // Add the URL data to the QRCode object
-                qr.make(); // Generate QR code data
-                var qrImage = qr.createImgTag(4); // Create image tag with a scaling factor of 4 (adjust as needed)
-                document.getElementById('qr-code-container').innerHTML = qrImage; // Set the QR code image HTML to the qr-code div
+            function generateQRCode(value) {
+            var qr = qrcode(0, 'L'); // Create QRCode object with error correction level 'L' and size '0'
+            qr.addData(value); // Add the input field value to the QRCode object
+            qr.make(); // Generate QR code data
+            var qrImage = qr.createImgTag(4); // Create image tag with a scaling factor of 4 (adjust as needed)
+            document.getElementById('qr-code-container').innerHTML = qrImage; // Set the QR code image HTML to the qr-code div
             }
 
             // Function to run when the DOM is ready
@@ -182,7 +182,6 @@
                 var itemId = "<?php echo $itemId; ?>";
                 var baseURL = "http://192.168.0.7/InterInventario/static/html/inventory/details.php";
                 var itemURL = baseURL + "?id=" + itemId;
-                console.log("Item URL: ", itemURL);
                 generateQRCode(itemURL);
             });
         </script>
