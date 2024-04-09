@@ -180,7 +180,7 @@
             // Function to run when the DOM is ready
             document.addEventListener('DOMContentLoaded', function() {
                 var itemId = "<?php echo $itemId; ?>";
-                var baseURL = "http://192.168.0.7/InterInventario/static/html/inventory/details.php";
+                var baseURL = "http://192.168.4.26/InterInventario/static/html/loans/create.php";
                 var itemURL = baseURL + "?id=" + itemId;
                 generateQRCode(itemURL);
             });

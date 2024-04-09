@@ -71,6 +71,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header("location: ../loans/index.php");
 		exit;
 	} while (false);
+} else {
+	// GET Method - the user is accessing the page from a scanned QR code
+	if (isset($_GET["id"])) {
+		// Sanitize the input
+		$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+		// Check if $id is valid
+		if ($id === false || $id === null) {
+			// Handle invalid input (e.g., display an error message, redirect the user, etc.)
+			header("location: ../components/error_404.php");
+			exit;
+		}
+
+		// Call the stored procedure to get the item based on the ID
+		$query = "CALL GetAvailableSingleItemByItemID(?)";
+
+		// Prepare the statement
+		$stmt = $connection->prepare($query);
+
+		if (!$stmt) {
+			$errorMessage = "Error preparing statement: " . $connection->error;
+		} else {
+			// Bind parameters
+			$stmt->bind_param("i", $id);
+
+			// Execute the statement
+			$result = $stmt->execute();
+
+			if (!$result) {
+				$errorMessage = "Error executing statement: " . $stmt->error;
+			} else {
+				// Fetch the result set as an associative array
+				$item = $stmt->get_result()->fetch_assoc();
+
+				if ($item) {
+					$Ptag = $item['Ptag'];
+				} else {
+					//$errorMessage = "Couldn't find the item you were looking for. ";
+				}
+			}
+
+			// Close statement
+			$stmt->close();
+		}
+
+		// Close connection
+		$connection->close();
+	}
 }
 ?>
 
@@ -137,6 +185,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="PTAG">PTag <i class="text-danger">*</i></label>
 											<div class="input-group">
+												<?php
+
+												?>
 												<button class="btn btn-primary btn-lg btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
 												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4 form-control-lg p-2" aria-describedby="searchInput" value="<?php echo $Ptag; ?>" disabled>
 											</div>
