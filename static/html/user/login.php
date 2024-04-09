@@ -131,7 +131,7 @@ if (isset($_GET['Error'])) {
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
 
-    <title>Login - IELS</title>
+    <title>Login - IRLS</title>
 
     <link href="../../css/app.css" rel="stylesheet">
     <link href="../../css/login.css" rel="stylesheet">

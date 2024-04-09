@@ -3,7 +3,7 @@
         <div class="sidebar-content js-simplebar">
             <a class="sidebar-brand" href="../components/dashboards.php">
                 <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
-                <br><span class="align-middle">Equipment Loan System</span>
+                <br><span class="align-middle">Resource Loan System</span>
             </a>
 
             <ul class="sidebar-nav">

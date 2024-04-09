@@ -17,7 +17,7 @@
 	<meta name="apple-mobile-web-app-title" content="Inter Loans">
 	<link rel="manifest" href="../../manifest.json">
 
-	<title>Loans | IELS</title>
+	<title>Loans | IRLS</title>
 	<link rel="stylesheet" , href="../../css/loans.css">
 	<!-- Bootstrap added locally -->
 	<link href="../../css/app.css" rel="stylesheet">

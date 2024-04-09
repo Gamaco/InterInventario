@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
 
-    <title>Index | IELS</title>
+    <title>Index | IRLS</title>
     <link rel="stylesheet" , href="../../css/inventory.css">
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
@@ -180,7 +180,7 @@
             // Function to run when the DOM is ready
             document.addEventListener('DOMContentLoaded', function() {
                 var itemId = "<?php echo $itemId; ?>";
-                var baseURL = "http://192.168.4.26/InterInventario/static/html/loans/create.php";
+                var baseURL = "http://192.168.4.26/InterInventario/static/html/inventory/details.php";
                 var itemURL = baseURL + "?id=" + itemId;
                 generateQRCode(itemURL);
             });
