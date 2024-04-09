@@ -1,106 +1,116 @@
 <?php
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Include database configuration
+include '../../db/config.php';
 
-    include '../../db/config.php';
+// Function to validate user input
+function emptyInputLogin($id, $pwd)
+{
+    return (empty($id) || empty($pwd));
+}
 
-    $id = $_POST["id"];
-    $pwd = $_POST["pwd"];
-    $conn = $connection;
+// Function to validate password
+function password_match($conn, $id, $pwd)
+{
+    // Prepare and execute query
+    $query = "CALL GetUserByUsername(?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
 
+    // Get data
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
-    // Validate user input
-    function emptyInputLogin($id, $pwd)
-    {
-        $result = (empty($id) || empty($pwd));
-        return $result;
-    }
+    // Close query
+    $stmt->close();
 
-    if (emptyInputLogin($id, $pwd) == true) {
+    // Verify password
+    return ($user && password_verify($pwd, $user['pwd'])) ? true : false;
+}
+
+// Function to verify if the user exists
+function IDExists($conn, $id)
+{
+    // Prepare and execute query
+    $query = "CALL GetUserByUsername(?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+
+    // Get data
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    // Close query
+    $stmt->close();
+
+    return (!$user) ? false : true;
+}
+
+// Function to login user into the system
+function loginUser($conn, $id, $pwd)
+{
+    if (emptyInputLogin($id, $pwd)) {
         header("location: ./login.php?Error=MIF");
         exit();
     }
 
-    // Validate password
-    function password_match($conn, $id, $pwd)
-    {
-        // Prepare and execute query
-        $query = "CALL GetUserByUsername(?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $id);
-        $stmt->execute();
-
-        // Get data
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-
-        // Close query
-        $stmt->close();
-
-        // Verify password
-        return ($user && password_verify($pwd, $user['pwd'])) ? true : false;
-    }
-
-
-    // Verify if the user exists
-    function IDExists($conn, $id)
-    {
-        // Prepare and execute query
-        $query = "CALL GetUserByUsername(?)";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $id);
-        $stmt->execute();
-
-        // Get data
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-
-        // Close query
-        $stmt->close();
-
-        return (!$user) ? false : true;
-    }
-
-    // Login user into the system
-    function loginUser($conn, $id, $pwd)
-    {
-        $IDExists = IDExists($conn, $id);
-        $passwordMatch = password_match($conn, $id, $pwd);
-
-        if ($IDExists === false) {
-            header("location: ./login.php?Error=UDE");
-            exit();
-        } else if ($passwordMatch === false) {
-            header("location: ./login.php?Error=IUP");
-            exit();
-        }
-
-        // Start login session (User is now logged in)
-        session_start();
-        $_SESSION["username"] = $id;
-
-        // Redirect to dashboard if login successful
-        header("location: ../components/dashboards.php");
+    if (!IDExists($conn, $id)) {
+        header("location: ./login.php?Error=UDE");
         exit();
     }
 
-    loginUser($conn, $id, $pwd);
+    if (!password_match($conn, $id, $pwd)) {
+        header("location: ./login.php?Error=IUP");
+        exit();
+    }
 
-    // Close main db connection
-    $connection->close();
-} else {
-    $errorMessage = "";
-    if (isset($_GET['Error'])) {
-        if ($_GET['Error'] == 'MIF') {
-            $errorMessage = "Error: Missing input fields.";
-        } else if ($_GET['Error'] == 'UDE') {
-            $errorMessage = "Error: Username doesn't exist.";
-        } else if ($_GET['Error'] == 'IUP') {
-            $errorMessage = "Error: Incorrect user password.";
-        }
+    // Start login session (User is now logged in)
+    $_SESSION["username"] = $id;
+
+    // Check if redirected from a target page
+    if (isset($_GET['redirect']) && $_GET['redirect'] === 'true' && isset($_GET['page'])) {
+        // Store the target page URL in a session variable
+        $_SESSION['target_page'] = $_GET['page'];
+    }
+
+    // Redirect after successful login
+    if (isset($_SESSION['target_page'])) {
+        $targetPage = $_SESSION['target_page'];
+        unset($_SESSION['target_page']); // Clear the session variable
+        header("location: $targetPage");
+    } else {
+        header("location: ../components/dashboards.php");
+    }
+    exit();
+}
+
+// Perform login if form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST["id"];
+    $pwd = $_POST["pwd"];
+
+    loginUser($connection, $id, $pwd);
+}
+
+// Close database connection
+$connection->close();
+
+// Handle error messages
+$errorMessage = "";
+if (isset($_GET['Error'])) {
+    if ($_GET['Error'] == 'MIF') {
+        $errorMessage = "Error: Missing input fields.";
+    } else if ($_GET['Error'] == 'UDE') {
+        $errorMessage = "Error: Username doesn't exist.";
+    } else if ($_GET['Error'] == 'IUP') {
+        $errorMessage = "Error: Incorrect user password.";
     }
 }
 ?>
+
 
 
 
