@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<meta name="apple-mobile-web-app-title" content="Inter Loans">
 	<link rel="manifest" href="../../manifest.json">
 
-	<title>Create | IELS</title>
+	<title>Create | IRLS</title>
 	<!-- Custom CSS specifically for this page -->
 	<link rel="stylesheet" , href="../../css/inventory.css">
 	<link rel="stylesheet" , href="../../css/loans-create.css">

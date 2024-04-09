@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
 
-    <title>Create | IELS</title>
+    <title>Create | IRLS</title>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
     <!-- Google font & icons -->

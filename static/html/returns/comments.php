@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
 
-    <title>Comments | IELS</title>
+    <title>Comments | IRLS</title>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
     <!-- Google font & icons -->

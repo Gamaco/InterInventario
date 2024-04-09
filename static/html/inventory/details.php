@@ -1,5 +1,63 @@
 <?php include '../components/userSessionValidation.php'; ?>
 
+<?php
+include '../../db/config.php';
+
+$ItemIsAvailable = false;
+
+// Check whether the item is available or not
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    // GET Method - the user is accessing the page from a scanned QR code
+    if (isset($_GET["id"])) {
+        // Sanitize the input
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        // Check if $id is valid
+        if ($id === false || $id === null) {
+            // Handle invalid input (e.g., display an error message, redirect the user, etc.)
+            header("location: ../components/error_404.php");
+            exit;
+        }
+
+        // Call the stored procedure to get the item based on the ID
+        $query = "CALL GetAvailableSingleItemByItemID(?)";
+
+        // Prepare the statement
+        $stmt = $connection->prepare($query);
+
+        if (!$stmt) {
+            $errorMessage = "Error preparing statement: " . $connection->error;
+        } else {
+            // Bind parameters
+            $stmt->bind_param("i", $id);
+
+            // Execute the statement
+            $result = $stmt->execute();
+
+            if (!$result) {
+                $errorMessage = "Error executing statement: " . $stmt->error;
+            } else {
+                // Fetch the result set as an associative array
+                $item = $stmt->get_result()->fetch_assoc();
+
+                if ($item) {
+                    $ItemIsAvailable = true;
+                } else {
+                    $ItemIsAvailable = false;
+                }
+            }
+
+            // Close statement
+            $stmt->close();
+        }
+
+        // Close connection
+        $connection->close();
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +76,7 @@
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
 
-    <title>Index | IELS</title>
+    <title>Index | IRLS</title>
     <link rel="stylesheet" , href="../../css/inventory.css">
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
@@ -41,159 +99,148 @@
         <?php include '../components/navbar.php'; ?>
 
         <main class="content">
-            <div class="container-fluid p-0">
-                <h1 class="h3 mb-3"><strong>Equipment </strong>Information</h1>
-                <div class="row">
-                    <div class="col-12 col-lg-14 col-xxl-12 d-flex">
-                        <div class="card flex-fill">
-                            <div class="table-container">
-                                <table id="InventoryTable" class="table my-0 table-hover border-secondary">
-                                    <thead>
-                                        <tr>
-                                            <th>Description</th>
-                                            <th>PTag</th>
-                                            <th>GN</th>
-                                            <th>Model</th>
-                                            <th>Serial No</th>
-                                            <th>Fund</th>
-                                            <th>AC</th>
-                                            <th>CL</th>
-                                            <th>F</th>
-                                            <th>AQU</th>
-                                            <th>ST</th>
-                                            <th>Acquisition</th>
-                                            <th>Received</th>
-                                            <th>Doc No</th>
-                                            <th>Amt</th>
-                                            <th>Location</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        // Establish database connection
-                                        include '../../db/config.php';
+            <div class="row">
+            <h6 class="h6 mb-2 text-secondary"><strong>Options</strong></h6>
+            <div class="col-10 col-lg-10 col-xxl-10 d-flex">
+                <a class="btn btn-secondary text-dark btn-lg mb-3 p-3 me-2" href="../loans/index.php"><i class='material-symbols-outlined fs-4' style="vertical-align: middle;">manage_search</i>Manage Loans</a>
+                <?php
+                    if ($ItemIsAvailable == true) {
+                        echo "
+                            <a class='btn btn-primary btn-lg mb-3 p-3' href='../loans/create.php?id=$id'><i class='material-symbols-outlined fs-4' style='vertical-align: middle;'>calendar_add_on</i>Create Loan</a>
+                        ";
+                    }
+                ?>
+                </div>
+                <hr />
+                <div class="col-12 col-lg-14 col-xxl-12 d-flex">
 
-                                        // Function to fetch item details by ID using a stored procedure
-                                        function getItemDetails($connection, $itemId)
-                                        {
-                                            // Prepare and execute the stored procedure
-                                            $stmt = $connection->prepare("CALL GetItemDetails(?)");
-                                            $stmt->bind_param("i", $itemId);
-                                            $stmt->execute();
+                    <div class="card flex-fill">
+                        <?php
+                        if ($ItemIsAvailable == true) {
+                            echo "
+                            <div class='flex-fill text-center mb-1' style='background-color: #00973c;'>
+                            <p class='text-white fs-3 mb-0 p-1'><b>Available</b></p>
+                            </div>
+                        ";
+                        } else {
+                            echo "
+                            <div class='flex-fill text-center mb-1' style='background-color: red;'>
+                            <p class='text-white fs-3 mb-0 p-2'><b>Unavailable</b></p>
+                            </div>
+                            ";
+                        }
+                        ?>
+                        <div class="table-container">
+                            <table id="InventoryTable" class="table my-0 table-hover border-secondary">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>PTag</th>
+                                        <th>GN</th>
+                                        <th>Model</th>
+                                        <th>Serial No</th>
+                                        <th>Fund</th>
+                                        <th>AC</th>
+                                        <th>CL</th>
+                                        <th>F</th>
+                                        <th>AQU</th>
+                                        <th>ST</th>
+                                        <th>Acquisition</th>
+                                        <th>Received</th>
+                                        <th>Doc No</th>
+                                        <th>Amt</th>
+                                        <th>Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    // Establish database connection
+                                    include '../../db/config.php';
 
-                                            // Get result
-                                            $result = $stmt->get_result();
+                                    // Function to fetch item details by ID using a stored procedure
+                                    function getItemDetails($connection, $itemId)
+                                    {
+                                        // Prepare and execute the stored procedure
+                                        $stmt = $connection->prepare("CALL GetItemDetails(?)");
+                                        $stmt->bind_param("i", $itemId);
+                                        $stmt->execute();
 
-                                            // Check if the query result contains any rows
-                                            if ($result->num_rows > 0) {
-                                                // Fetch item details
-                                                return $result->fetch_assoc();
-                                            } else {
-                                                return false;
-                                            }
-                                        }
+                                        // Get result
+                                        $result = $stmt->get_result();
 
-                                        // Check if the item ID is provided in the URL
-                                        if (isset($_GET['id'])) {
-
-                                            $itemId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-
-                                            // Check if $id is valid
-                                            if ($itemId === false || $itemId === null) {
-                                                header("location: ../components/error_404.php");
-                                                exit;
-                                            }
-
-                                            // Fetch item details by ID
-                                            $itemDetails = getItemDetails($connection, $itemId);
-
-                                            // Check if item details were retrieved
-                                            if ($itemDetails) {
-                                                // Output item details
-                                        ?>
-                                                <tr>
-                                                    <td data-label='Description'><?php echo $itemDetails['Description'] ? $itemDetails['Description'] : 'N/A'; ?></td>
-                                                    <td data-label='PTag'><?php echo $itemDetails['Ptag'] ? $itemDetails['Ptag'] : 'N/A'; ?></td>
-                                                    <td data-label='gn'><?php echo $itemDetails['gn'] ? $itemDetails['gn'] : 'N/A'; ?></td>
-                                                    <td data-label='Model'><?php echo $itemDetails['Model'] ? $itemDetails['Model'] : 'N/A'; ?></td>
-                                                    <td data-label='Serial_No'><?php echo $itemDetails['Serial_No'] ? $itemDetails['Serial_No'] : 'N/A'; ?></td>
-                                                    <td data-label='Fund'><?php echo $itemDetails['Fund'] ? $itemDetails['Fund'] : 'N/A'; ?></td>
-                                                    <td data-label='AC'><?php echo $itemDetails['AC'] ? $itemDetails['AC'] : 'N/A'; ?></td>
-                                                    <td data-label='CL'><?php echo $itemDetails['CL'] ? $itemDetails['CL'] : 'N/A'; ?></td>
-                                                    <td data-label='F'><?php echo $itemDetails['F'] ? $itemDetails['F'] : 'N/A'; ?></td>
-                                                    <td data-label='AQU'><?php echo $itemDetails['AQU'] ? $itemDetails['AQU'] : 'N/A'; ?></td>
-                                                    <td data-label='ST'><?php echo $itemDetails['ST'] ? $itemDetails['ST'] : 'N/A'; ?></td>
-                                                    <td data-label='Acquisition'><?php echo $itemDetails['Acquisition'] ? $itemDetails['Acquisition'] : 'N/A'; ?></td>
-                                                    <td data-label='Received'><?php echo $itemDetails['Received'] ? $itemDetails['Received'] : 'N/A'; ?></td>
-                                                    <td data-label='Doc No'><?php echo $itemDetails['DocNo'] ? $itemDetails['DocNo'] : 'N/A'; ?></td>
-                                                    <td data-label='Amt'><?php echo $itemDetails['Amt'] ? $itemDetails['Amt'] : 'N/A'; ?></td>
-                                                    <td data-label='Location'><?php echo $itemDetails['Location'] ? $itemDetails['Location'] : 'N/A'; ?></td>
-                                                </tr>
-                                        <?php
-                                            } else {
-                                                // If no matching item found, redirect or show an error message
-                                                echo "<tr><td colspan='17'>Item not found</td></tr>";
-                                            }
+                                        // Check if the query result contains any rows
+                                        if ($result->num_rows > 0) {
+                                            // Fetch item details
+                                            return $result->fetch_assoc();
                                         } else {
-                                            // If no item ID is provided, redirect or show an error message
-                                            echo "<tr><td colspan='17'>Item ID not provided</td></tr>";
+                                            return false;
                                         }
-                                        ?>
-                                    </tbody>
-                                </table>
-                                <?php
-                                // Close database connection
-                                $connection->close();
-                                ?>
-                            </div>
-                        </div>
-                    </div>
+                                    }
 
-                    <div class="row justify-content-center">
-                        <div class="col-9 col-lg-3 col-xxl-5">
-                            <div class="d-flex justify-content-center">
-                                <div class="card gradient-box" style="width: 240px;">
-                                    <div class="card-body gradient-box mt-0 text-center">
-                                        <h5 class="card-title mb-2" style="color: white !important">QR Code</h5>
-                                        <div id="qr-code-container" class="d-flex justify-content-center align-items-center" style="height: 300px;">
-                                            <!-- QR code will be appended here -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    // Check if the item ID is provided in the URL
+                                    if (isset($_GET['id'])) {
+
+                                        $itemId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+                                        // Check if $id is valid
+                                        if ($itemId === false || $itemId === null) {
+                                            header("location: ../components/error_404.php");
+                                            exit;
+                                        }
+
+                                        // Fetch item details by ID
+                                        $itemDetails = getItemDetails($connection, $itemId);
+
+                                        // Check if item details were retrieved
+                                        if ($itemDetails) {
+                                            // Output item details
+                                    ?>
+                                            <tr>
+                                                <td data-label='Description'><?php echo $itemDetails['Description'] ? $itemDetails['Description'] : 'N/A'; ?></td>
+                                                <td data-label='PTag'><?php echo $itemDetails['Ptag'] ? $itemDetails['Ptag'] : 'N/A'; ?></td>
+                                                <td data-label='gn'><?php echo $itemDetails['gn'] ? $itemDetails['gn'] : 'N/A'; ?></td>
+                                                <td data-label='Model'><?php echo $itemDetails['Model'] ? $itemDetails['Model'] : 'N/A'; ?></td>
+                                                <td data-label='Serial_No'><?php echo $itemDetails['Serial_No'] ? $itemDetails['Serial_No'] : 'N/A'; ?></td>
+                                                <td data-label='Fund'><?php echo $itemDetails['Fund'] ? $itemDetails['Fund'] : 'N/A'; ?></td>
+                                                <td data-label='AC'><?php echo $itemDetails['AC'] ? $itemDetails['AC'] : 'N/A'; ?></td>
+                                                <td data-label='CL'><?php echo $itemDetails['CL'] ? $itemDetails['CL'] : 'N/A'; ?></td>
+                                                <td data-label='F'><?php echo $itemDetails['F'] ? $itemDetails['F'] : 'N/A'; ?></td>
+                                                <td data-label='AQU'><?php echo $itemDetails['AQU'] ? $itemDetails['AQU'] : 'N/A'; ?></td>
+                                                <td data-label='ST'><?php echo $itemDetails['ST'] ? $itemDetails['ST'] : 'N/A'; ?></td>
+                                                <td data-label='Acquisition'><?php echo $itemDetails['Acquisition'] ? $itemDetails['Acquisition'] : 'N/A'; ?></td>
+                                                <td data-label='Received'><?php echo $itemDetails['Received'] ? $itemDetails['Received'] : 'N/A'; ?></td>
+                                                <td data-label='Doc No'><?php echo $itemDetails['DocNo'] ? $itemDetails['DocNo'] : 'N/A'; ?></td>
+                                                <td data-label='Amt'><?php echo $itemDetails['Amt'] ? $itemDetails['Amt'] : 'N/A'; ?></td>
+                                                <td data-label='Location'><?php echo $itemDetails['Location'] ? $itemDetails['Location'] : 'N/A'; ?></td>
+                                            </tr>
+                                    <?php
+                                        } else {
+                                            // If no matching item found, redirect or show an error message
+                                            echo "<tr><td colspan='17'>Item not found</td></tr>";
+                                        }
+                                    } else {
+                                        // If no item ID is provided, redirect or show an error message
+                                        echo "<tr><td colspan='17'>Item ID not provided</td></tr>";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                            <?php
+                            // Close database connection
+                            $connection->close();
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+    </div>
+    </main>
 
-        <script>
-            // Function to generate the QR code
-            function generateQRCode(value) {
-            var qr = qrcode(0, 'L'); // Create QRCode object with error correction level 'L' and size '0'
-            qr.addData(value); // Add the input field value to the QRCode object
-            qr.make(); // Generate QR code data
-            var qrImage = qr.createImgTag(4); // Create image tag with a scaling factor of 4 (adjust as needed)
-            document.getElementById('qr-code-container').innerHTML = qrImage; // Set the QR code image HTML to the qr-code div
-            }
+    <!-- jQuery -->
+    <script src='https://code.jquery.com/jquery-3.7.0.js'></script>
 
-            // Function to run when the DOM is ready
-            document.addEventListener('DOMContentLoaded', function() {
-                var itemId = "<?php echo $itemId; ?>";
-                var baseURL = "http://192.168.4.26/InterInventario/static/html/loans/create.php";
-                var itemURL = baseURL + "?id=" + itemId;
-                generateQRCode(itemURL);
-            });
-        </script>
-
-        <!-- jQuery -->
-        <script src='https://code.jquery.com/jquery-3.7.0.js'></script>
-
-        <!-- QR Code library -->
-        <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.min.js"></script>
-
-        <!-- Local JS -->
-        <script src="../../js/app.js"></script>
+    <!-- Local JS -->
+    <script src="../../js/app.js"></script>
 
 </body>
 

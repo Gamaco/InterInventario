@@ -94,7 +94,7 @@ if ($id === false || $id === null) {
     <meta name="apple-mobile-web-app-title" content="Inter Loans">
     <link rel="manifest" href="../../manifest.json">
 
-    <title>Edit | IELS</title>
+    <title>Edit | IRLS</title>
     <!-- Bootstrap added locally -->
     <link href="../../css/app.css" rel="stylesheet">
     <!-- Google font & icons -->
