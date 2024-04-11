@@ -164,5 +164,65 @@ function filterTable(filterText) {
 }
 
 
+// JavaScript for pagination
+document.addEventListener('DOMContentLoaded', function() {
+  const prevPageBtn = document.getElementById('prevPageBtn');
+  const nextPageBtn = document.getElementById('nextPageBtn');
+  const paginationUl = document.getElementById('paginationControls');
+
+  let currentPage = 1; // Initialize current page
+
+  // Function to load page based on page number
+  function loadPage(page) {
+      // AJAX request to fetch data for the specified page
+      // You can use fetch or XMLHttpRequest to fetch data from the server
+      // Update table content based on fetched data
+      // Update currentPageSpan.textContent with the current page number
+  }
+
+  // Event listener for Previous button
+  prevPageBtn.addEventListener('click', function() {
+      if (currentPage > 1) {
+          currentPage--;
+          loadPage(currentPage);
+      }
+  });
+
+  // Event listener for Next button
+  nextPageBtn.addEventListener('click', function() {
+      // Implement logic to check if there are more pages
+      // For example, you can use totalPage variable
+      if (currentPage < totalPage) {
+          currentPage++;
+          loadPage(currentPage);
+      }
+  });
+
+  // Function to generate page numbers
+  function generatePageNumbers(totalPages) {
+      paginationUl.innerHTML = ''; // Clear existing page numbers
+      for (let i = 1; i <= totalPages; i++) {
+          const li = document.createElement('li');
+          li.classList.add('page-item');
+          const a = document.createElement('a');
+          a.classList.add('page-link');
+          a.href = '#';
+          a.textContent = i;
+          a.addEventListener('click', function() {
+              currentPage = i;
+              loadPage(currentPage);
+          });
+          li.appendChild(a);
+          paginationUl.appendChild(li);
+      }
+  }
+
+  // Initially load the first page
+  loadPage(currentPage);
+
+  // Example usage:
+  // Generate 5 page numbers initially
+  generatePageNumbers(5);
+});
 
 

@@ -197,7 +197,27 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer"></div>
+                        <div class="card-footer">
+                            <!-- Pagination controls -->
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center" id="paginationControls">
+                                    <li class="page-item" id="prevPageBtn">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </a>
+                                    </li>
+                                    <!-- Page numbers will be dynamically generated here -->
+                                    <li class="page-item" id="nextPageBtn">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="visually-hidden">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
                     </div>
                 </div>
             </div>
