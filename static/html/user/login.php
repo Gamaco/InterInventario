@@ -147,11 +147,12 @@ if (isset($_GET['Error'])) {
                 <div class="row vh-100">
                     <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
                         <div class="d-table-cell align-middle">
-                            <div class="card">
+                            <div class="card m-1 border">
                                 <div class="text-center mt-4">
-                                    <img class="img-fluid mb-0" src="../../img/icons/inter-logo.png" style="max-width: 150px; max-height: 150px;">
-                                    <h1 class="login mt-0">Equipment Loan System</h1>
-                                    <p class="lead">
+                                    <img class="img-fluid mb-0" src="../../img/icons/inter-logo.png" style="max-width: 100px; max-height: 100px;">
+                                    <h3 class="login mt-0"><b>Resource Loan System<b></h3>
+                                    <hr />
+                                    <p class="lead mt-4">
                                         Sign in to your account to continue
                                     </p>
                                 </div>

@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
                             <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>arrow_back</i>Back</a>
-                            <div class="card text-dark mb-0">
+                            <div class="card text-dark mb-0 border">
                                 <div class="card-body p-4">
                                     <div class="col-12 col-md">
                                         <div data-mdb-input-init class="form-outline">
@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 $CommentID = $Comment['id'];
 
                                 echo "
-                                    <div class='card text-dark mb-0 mt-2'>
+                                    <div class='card text-dark mb-0 mt-2 border'>
                                     <div class='card-body p-4'>
                                     <div class='d-flex flex-column'>
                                         <!-- Date -->

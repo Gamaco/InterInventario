@@ -89,10 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <main class="content">
             <div class="container-fluid p-0 justify-content-center">
-                <div class="row">
-                    <div class="card mx-auto my-5 col-12 col-md-9 p-0">
+                <div class="row m-1">
+                    <div class="card mx-auto my-5 col-12 col-md-9 p-0 border">
                         <div class="card-header bg-success w-100" style="background-color: #00973c !important;">
-                            <h5 class="h5 mb-0 text-white"><i class="material-symbols-outlined" style='vertical-align: middle;'>rule_settings</i> Categories</i></h5>
+                            <h5 class="h5 mb-0 text-white"><i class="material-symbols-outlined" style='vertical-align: middle;'>settings</i> Categories</i></h5>
                         </div>
                         <div class="card-body">
                             <?php

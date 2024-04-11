@@ -40,7 +40,7 @@
 
 				<div class="row">
 					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
-						<div class="card flex-fill">
+						<div class="card flex-fill border">
 							<div class="card-header">
 								<div class="col-auto text-center text-md-start">
 									<div class="d-flex mt-3">

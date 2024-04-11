@@ -41,7 +41,7 @@
 
                 <div class="row mb-3">
                     <div class="col-sm-auto ms-auto">
-                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>rule_settings</i> Manage Categories</a>
+                        <a class="btn btn-lg fs-5 text-dark btn-secondary" href="../inventory/create-category.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>settings</i> Manage Categories</a>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
 
                 <div class="row mb-3">
                     <div class="col-md-auto mb-2 mb-md-0 d-flex align-items-center">
-                        <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>add</i> Add Product</a>
+                        <a class="btn btn-primary btn-lg fs-5 me-md-2 me-2" href="../inventory/create.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>add</i>Add Item</a>
                         <div class="dropdown-center">
                             <button class="btn btn-secondary text-dark fs-5 btn-lg dropdown-toggle" id="CategoriesButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 All Categories
@@ -95,7 +95,7 @@
 
             <div class="row">
                 <div class="col-12 col-lg-14 col-xxl-12 d-flex">
-                    <div class="card flex-fill">
+                    <div class="card flex-fill border">
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="col-12 col-lg-14 col-xxl-12 d-flex">
-                    <div class="card flex-fill">
+                    <div class="card flex-fill border">
                         <div class="table-container" style="overflow-x: auto;">
                             <table id="InventoryTable" class="table my-0 table-hover border-secondary">
                                 <thead>

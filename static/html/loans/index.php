@@ -73,7 +73,7 @@
 
 				<div class="row">
 					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
-						<div class="card flex-fill">
+						<div class="card flex-fill border">
 							<div class="card-header">
 								<div class="d-flex mt-3 mb-3">
 									<div class="input-group">
@@ -105,7 +105,7 @@
 				</div>
 				<div class="row">
 					<div class="col-12 col-lg-15 col-xxl-12 d-flex">
-						<div class="card flex-fill">
+						<div class="card flex-fill border">
 							<table id="LoansTable" class="table table-hover my-0">
 								<thead>
 									<tr>
