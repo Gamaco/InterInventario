@@ -164,6 +164,7 @@
 												<td data-label='Start Date'>" . htmlspecialchars($prestamo['START_DATE'] ?? 'N/A') . "</td>
 												<td data-label='End Date'>" . htmlspecialchars($prestamo['END_DATE'] ?? 'N/A') . "</td>
 												<td data-label='Options'>
+													<a class='btn btn-light mt-1 mb-lg-1 rounded-3 btn-lg' href='./edit.php?id=" . htmlspecialchars($prestamo['id']) . "'>Edit</a>
 													<a class='btn btn-primary rounded-3 btn-lg' data-bs-toggle='modal' data-bs-target='#itemReturnModal' data-item-location='" . $prestamo['Location'] . "' data-item-id='" . htmlspecialchars($prestamo['PTag']) . "' data-item-description='" . htmlspecialchars($prestamo['ItemDescription']) . "'>Return</a>
 												</td>
 											</tr>";

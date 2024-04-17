@@ -14751,7 +14751,7 @@ screen and (-ms-high-contrast:active) {
         z-index: -1;
     }
 
-    transition: margin-left .25s ease-in-out, left .25s ease-in-out, margin-right .25s ease-in-out, right .25s ease-in-out
+    /* transition: margin-left .25s ease-in-out, left .25s ease-in-out, margin-right .25s ease-in-out, right .25s ease-in-out */
 }
 
 .js-simplebar,

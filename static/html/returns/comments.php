@@ -40,16 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $id = filter_var($_POST["id"], FILTER_SANITIZE_SPECIAL_CHARS);
     $Comments = filter_var($_POST["Comments"], FILTER_SANITIZE_SPECIAL_CHARS);
     $Date = filter_var($_POST["date"], FILTER_SANITIZE_SPECIAL_CHARS);
+    $uname = filter_var($_POST["user_name"], FILTER_SANITIZE_SPECIAL_CHARS);
 
     // Call the stored procedure to update an item
-    $query = "CALL InsertComment(?, ?, ?);";
+    $query = "CALL InsertComment(?, ?, ?, ?);";
     $stmt = $connection->prepare($query);
 
     if (!$stmt) {
         $errorMessage = "Error preparing statement: " . $connection->error;
     } else {
         // Bind parameters
-        $stmt->bind_param("ssi", $Comments, $Date, $id);
+        $stmt->bind_param("ssis", $Comments, $Date, $id, $uname);
 
         // Execute the statement
         $result = $stmt->execute();
@@ -102,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             <div class="container-fluid p-0 justify-content-center">
                 <div class="container my-1 py-5">
                     <div class="row d-flex justify-content-center">
+                        <?php echo $errorMessage; ?>
                         <div class="col-md-12 col-lg-10">
                             <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>arrow_back</i>Back</a>
                             <div class="card text-dark mb-0 border">
@@ -111,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                             <form method="post">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <input type="hidden" name="date" id="dateField" value="getCurrentDate()">
+                                                <input type="hidden" name="user_name" value="<?php echo $user_name; ?>">
                                                 <textarea class="form-control" id="commentsText" name="Comments" rows="3" placeholder="New Comment" required></textarea>
                                                 <button type="submit" class="btn btn-primary btn-lg mt-3">Add Comments</button>
                                             </form>
@@ -141,26 +144,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 $Cmt = $Comment['comment'];
                                 $Date = $Comment['date'];
                                 $CommentID = $Comment['id'];
+                                $CommentUser = $Comment["user_name"];
 
                                 echo "
-                                    <div class='card text-dark mb-0 mt-2 border'>
-                                    <div class='card-body p-4'>
-                                    <div class='d-flex flex-column'>
-                                        <!-- Date -->
-                                        <div class='mb-3'>
-                                            <p class='mb-0 fw-bold'>
-                                                $Date
-                                            </p>
+                                <div class='card text-dark mb-0 mt-2 border'>
+                                <div class='card-body p-4'>
+                                    <div class='d-flex justify-content-between align-items-center'>
+                                        <!-- Name and Date -->
+                                        <div>
+                                            <p class='mb-0 text-secondary'>$CommentUser</p>
                                         </div>
-                                        <!-- Paragraph Text -->
-                                            <p class='mt-0'>$Cmt</p>
-                                        <!-- Delete Button -->
-                                        <div class='mt-3 text-end'>
-                                            <a type='button' class='btn btn-light btn-lg' data-bs-toggle='modal' data-bs-target='#commentDeletionModal' data-comment-id='$CommentID' data-item-id='$id'>Delete</a>
+                                        <div class='text-end'>
+                                            <p class='mb-0 text-secondary'>$Date</p>
                                         </div>
                                     </div>
+                                    <hr class='mb-0 mt-1'/>
+                                    <!-- Paragraph Text -->
+                                    <p class='mt-3'>$Cmt</p>
+                                    <!-- Delete Button -->
+                                    <div class='mt-3 text-end'>
+                                        <a type='button' class='btn btn-light btn-lg' data-bs-toggle='modal' data-bs-target='#commentDeletionModal' data-comment-id='$CommentID' data-item-id='$id'>Delete</a>
+                                    </div>
                                 </div>
-                                </div>
+                            </div>
+                            
                                 ";
                             }
 
@@ -199,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <!-- Item Deletion Warning Modal (Are you sure you want to delete?) -->
         <script>
             var commentDeletionModal = document.getElementById('commentDeletionModal');
-                commentDeletionModal.addEventListener('show.bs.modal', function(event) {
+            commentDeletionModal.addEventListener('show.bs.modal', function(event) {
                 var button = event.relatedTarget; // Button that triggered the modal
                 let commentId = button.getAttribute('data-comment-id'); // Extract info from data-* attributes
                 let itemId = button.getAttribute("data-item-id");

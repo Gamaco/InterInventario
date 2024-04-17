@@ -5,7 +5,7 @@
                 <img src="../../img/icons/universidad-interamericana-pr-logo.png" alt="" class="img-fluid w-50 h-50">
                 <br><span class="align-middle">Resource Loan System</span>
             </a>
-
+            <hr class="mt-0 mb-0"/>
             <ul class="sidebar-nav">
                 <li class="sidebar-header">
                     Menu

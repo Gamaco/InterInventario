@@ -46,7 +46,7 @@ td {
 
   table tbody td[data-label="Description"] {
     background-color: #00973c;
-    /* Dark background color for "ID" td */
+    /* Green background color for "ID" td */
     color: #ffffff;
     /* White text color for better visibility */
   }
