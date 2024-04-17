@@ -170,7 +170,6 @@ if ($id === false || $id === null) {
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="PTAG">PTag <i class="text-danger">*</i></label>
 											<div class="input-group">
-												<button class="btn btn-primary btn-lg btn-outline-primary" type="button" id="searchInventoryBtn" data-bs-toggle="modal" data-bs-target="#inventoryList">Search</button>
 												<input type="text" name="Ptag" id="PTAG" class="form-control fs-4 form-control-lg p-2" aria-describedby="searchInput" value="<?php echo $PTag; ?>" disabled>
 											</div>
 										</div>
