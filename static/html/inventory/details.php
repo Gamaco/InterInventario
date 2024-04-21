@@ -133,15 +133,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <?php
                         if ($ItemIsAvailable == true) {
                             echo "
-                        <div class='card-status-header available border p-0 mb-0 mt-0 text-center text-light fs-4'><i class='material-symbols-outlined text-light mb-2 mt-1' style='vertical-align: middle;'>info</i><b>Available</b></div>
-                        <div class='fs-4'><b><p><center>This Item is available.</p></b>
-                        <a class='btn btn-primary btn-lg mb-3 p-3' href='../loans/create.php?id=$id'><i class='material-symbols-outlined fs-4' style='vertical-align: middle;'>calendar_add_on</i>Create Loan</a></center>
-                        </div>
+                            <div class='card-status-header available border p-0 mb-0 mt-0 text-center text-light fs-4'><i class='material-symbols-outlined text-light mb-2 mt-1' style='vertical-align: middle;'>info</i><b>Available</b></div>
+                            <div class='fs-4'><b><p><center>This Item is available.</p></b>
+                            <p class='fs-5 mt-0'><i>Do you want to loan this product?</i></p>
+                            <a class='btn btn-primary btn-lg mb-3 p-3' href='../loans/create.php?id=$id'><i class='material-symbols-outlined fs-4' style='vertical-align: middle;'>calendar_add_on</i>Create Loan</a></center>
+                            </div>
                         ";
                         } else {
                             echo "<div class='card-status-header unavailable border p-0 mb-0 mt-0 text-center text-light fs-4'><i class='material-symbols-outlined text-light mb-2 mt-1' style='vertical-align: middle;'>info</i><b>Unavailable</b></div>";
                             if ($ItemCondition == "Borrowed") {
-                                echo "<div class='fs-4'><b><p><center>This Item is currently on loan.</center></p></b>";
+                                echo "<div class='fs-4'>
+                                <b><p><center>This Item is currently on loan.</center></p></b>
+                                <center><p class='fs-5 mt-0'><i>Do you want to return this product?</i></p></center>
+                                <center><a class='btn btn-secondary text-dark btn-lg mb-3 p-2' href='../loans/create.php?id=$id'><b><i class='material-symbols-outlined text-dark mb-2 mt-1' style='vertical-align: middle;'>event_available</i> Return Product</b></a></center>
+                                ";
                             } else if ($ItemCondition == "Damaged") {
                                 echo "<div class='fs-5'><b><p><center>Item awaiting review due to defects or damage.</center></p></b>";
                             }
