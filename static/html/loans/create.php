@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 		// Call the stored procedure to get the item based on the ID
-		$query = "CALL GetAvailableSingleItemByItemID(?)";
+		$query = "CALL GetAvailableItemById(?)";
 
 		// Prepare the statement
 		$stmt = $connection->prepare($query);
@@ -257,9 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 									<div class="col-12 col-md mb-3">
 										<div data-mdb-input-init class="form-outline">
 											<label class="form-label" for="START_DATE">Start Date <i class="text-danger">*</i></label>
-											<div class="mb-3">
 												<input type="date" name="START_DATE" id="START_DATE" class="form-control fs-4 form-control-lg" value="<?php echo htmlspecialchars($START_DATE); ?>" required>
-											</div>
 										</div>
 									</div>
 								</div>

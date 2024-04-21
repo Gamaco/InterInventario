@@ -5013,6 +5013,27 @@ fieldset:disabled .btn {
     padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x)
 }
 
+.card-status {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-status-header {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-width: 1px;
+}
+
+.card-status-header.available {
+    border-color: #00973c !important;
+    background-color: #00973c !important;
+}
+
+.card-status-header.unavailable {
+    border-color: red !important;
+    background-color: red !important;
+}
+
 .card-header:first-child {
     border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0
 }

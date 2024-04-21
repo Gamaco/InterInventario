@@ -3,7 +3,13 @@
 <?php
 include '../../db/config.php';
 
+// Declare 
+global $ItemIsAvailable;
+global $ItemCondition;
+
+// Initialize
 $ItemIsAvailable = false;
+$ItemCondition = "";
 
 // Check whether the item is available or not
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -19,11 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             exit;
         }
 
-        // Call the stored procedure to get the item based on the ID
-        $query = "CALL GetAvailableSingleItemByItemID(?)";
+        // Call the stored procedure to get the table name where the item is found based on the ID
+        $query = "CALL FindItemAndReturnTable(?)";
 
         // Prepare the statement
         $stmt = $connection->prepare($query);
+
+        function getItemCondition($table)
+        {
+            if ($table == "prestamos") {
+                return "Borrowed";
+            } else {
+                return "Damaged";
+            }
+        }
 
         if (!$stmt) {
             $errorMessage = "Error preparing statement: " . $connection->error;
@@ -37,13 +52,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (!$result) {
                 $errorMessage = "Error executing statement: " . $stmt->error;
             } else {
-                // Fetch the result set as an associative array
-                $item = $stmt->get_result()->fetch_assoc();
+                // Bind the result of the stored procedure
+                $stmt->bind_result($tableName);
+                $stmt->fetch();
 
-                if ($item) {
-                    $ItemIsAvailable = true;
-                } else {
+                // Check if the item is available in either 'prestamos' or 'returns' tables
+                if ($tableName == "prestamos" || $tableName == "returns") {
                     $ItemIsAvailable = false;
+                    $ItemCondition = getItemCondition($tableName);
+                } else {
+                    $ItemIsAvailable = true;
                 }
             }
 
@@ -100,34 +118,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         <main class="content">
             <div class="row">
-            <h6 class="h6 mb-2 text-secondary"><strong>Options</strong></h6>
-            <div class="col-10 col-lg-10 col-xxl-10 d-flex">
-                <a class="btn btn-secondary text-dark btn-lg mb-3 p-3 me-2" href="../loans/index.php"><i class='material-symbols-outlined fs-4' style="vertical-align: middle;">manage_search</i>Manage Loans</a>
-                <?php
-                    if ($ItemIsAvailable == true) {
-                        echo "
-                            <a class='btn btn-primary btn-lg mb-3 p-3' href='../loans/create.php?id=$id'><i class='material-symbols-outlined fs-4' style='vertical-align: middle;'>calendar_add_on</i>Create Loan</a>
-                        ";
-                    }
-                ?>
+                <h6 class="h6 mb-2 text-secondary"><strong>Options</strong></h6>
+                <div class="col-14 col-lg-10 col-xxl-10 d-flex">
+                    <a class="btn btn-secondary text-dark btn-lg mb-3 p-2 me-2" href="../loans/index.php"><i class='material-symbols-outlined fs-5' style="vertical-align: middle;">manage_search</i>Manage Loans</a>
+                    <a class="btn btn-secondary text-dark btn-lg mb-3 p-2 me-2" href="../returns/index.php"><i class='material-symbols-outlined fs-5' style="vertical-align: middle;">manage_search</i>Review Items</a>
+                    <a class="btn btn-secondary text-dark btn-lg mb-3 p-2 me-2" href="../inventory/available.php"><i class='material-symbols-outlined fs-5' style="vertical-align: middle;">manage_search</i>View Inventory</a>
+                </div>
+                <div class="col-12 col-lg-14 col-xxl-12 d-flex">
+
                 </div>
                 <hr />
                 <div class="col-12 col-lg-14 col-xxl-12 d-flex">
-
-                    <div class="card flex-fill">
+                    <div class="card flex-fill border border-2 card-status">
                         <?php
                         if ($ItemIsAvailable == true) {
                             echo "
-                            <div class='flex-fill text-center mb-1' style='background-color: #00973c;'>
-                            <p class='text-white fs-3 mb-0 p-1'><b>Available</b></p>
-                            </div>
+                        <div class='card-status-header available border p-0 mb-0 mt-0 text-center text-light fs-4'><i class='material-symbols-outlined text-light mb-2 mt-1' style='vertical-align: middle;'>info</i><b>Available</b></div>
+                        <div class='fs-4'><b><p><center>This Item is available.</p></b>
+                        <a class='btn btn-primary btn-lg mb-3 p-3' href='../loans/create.php?id=$id'><i class='material-symbols-outlined fs-4' style='vertical-align: middle;'>calendar_add_on</i>Create Loan</a></center>
+                        </div>
                         ";
                         } else {
-                            echo "
-                            <div class='flex-fill text-center mb-1' style='background-color: red;'>
-                            <p class='text-white fs-3 mb-0 p-2'><b>Unavailable</b></p>
-                            </div>
-                            ";
+                            echo "<div class='card-status-header unavailable border p-0 mb-0 mt-0 text-center text-light fs-4'><i class='material-symbols-outlined text-light mb-2 mt-1' style='vertical-align: middle;'>info</i><b>Unavailable</b></div>";
+                            if ($ItemCondition == "Borrowed") {
+                                echo "<div class='fs-4'><b><p><center>This Item is currently on loan.</center></p></b>";
+                            } else if ($ItemCondition == "Damaged") {
+                                echo "<div class='fs-5'><b><p><center>Item awaiting review due to defects or damage.</center></p></b>";
+                            }
+
+                            echo "</div>";
                         }
                         ?>
                         <div class="table-container">
@@ -216,11 +235,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                     <?php
                                         } else {
                                             // If no matching item found, redirect or show an error message
-                                            echo "<tr><td colspan='17'>Item not found</td></tr>";
+                                            echo "<script>";
+                                            echo "function redirectToPage(url) {";
+                                            echo "    window.location.href = url;";
+                                            echo "}";
+                                            echo "redirectToPage('../components/error_404.php');"; // Redirect to the specified URL
+                                            echo "</script>";
                                         }
                                     } else {
                                         // If no item ID is provided, redirect or show an error message
-                                        echo "<tr><td colspan='17'>Item ID not provided</td></tr>";
+                                        echo "<script>";
+                                        echo "function redirectToPage(url) {";
+                                        echo "    window.location.href = url;";
+                                        echo "}";
+                                        echo "redirectToPage('../components/error_404.php');"; // Redirect to the specified URL
+                                        echo "</script>";
                                     }
                                     ?>
                                 </tbody>
