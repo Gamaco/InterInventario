@@ -101,10 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         <main class="content">
             <div class="container-fluid p-0 justify-content-center">
-                <div class="container my-1 py-5">
+                <div class="container my-1 py-1">
                     <div class="row d-flex justify-content-center">
                         <?php echo $errorMessage; ?>
-                        <div class="col-md-12 col-lg-10">
+                        <div class="col-md-12 col-lg-10 mt-0">
                             <a id="Close" class="btn btn-light btn-lg mb-2" type="button" href="./index.php"><i class="material-symbols-outlined" style='vertical-align: middle;'>arrow_back</i>Back</a>
                             <div class="card text-dark mb-0 border">
                                 <div class="card-body p-4">
