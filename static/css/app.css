@@ -14836,7 +14836,8 @@ a.sidebar-link svg {
 
 .sidebar-item.active .sidebar-link:hover,
 .sidebar-item.active>.sidebar-link {
-    background: #00973c; 
+    background: rgb(0,151,60);
+    background: linear-gradient(90deg, rgba(0,151,60,1) 0%, rgba(34,34,34,1) 100%);
     border-left-color: #ffd24f;
     color: #fff
 }

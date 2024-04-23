@@ -47,6 +47,8 @@
 								All Categories
 							</button>
 							<ul class="dropdown-menu" id="categoryDropdown">
+								<li class="disabled"><a class="dropdown-header disabled"><i class="material-symbols-outlined" style='vertical-align: middle;'>filter_alt</i> Categories | Scroll Down</a></li>
+								<hr class="mt-0 mb-2">
 								<?php
 								include '../../db/config.php';
 
